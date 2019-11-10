@@ -109,7 +109,7 @@ public class WordBookController : MonoBehaviour {
     // Use this for initialization
     void Start () {
 
-        //GameObject.Find("GameRoot").GetComponent<PuzzleMain>().InitScoreOutput();
+        //GameObject.Fin").GetComponent<PuzzleMain>().InitScoreOutput();
         SaveDataBase.loadData();
         ItemWord = new GameObject[DataBase.WordDataList.Count];
         WordCountText.text = DataBase.WordDataList.Count.ToString();

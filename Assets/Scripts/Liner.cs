@@ -100,28 +100,8 @@ public class Liner : MonoBehaviour
         }
     }
 
-    /*
-    public void OnMove(Vector2 endpos, int d)
-    {
 
-        // 1マスを0,5秒で移動
-        time = d * 0.3f;
 
-        if (time <= 0)
-        {
-            transform.position = endPosition;
-            //enabled = false;
-            return;
-        }
-
-        endPosition = endpos;
-
-        startTime = Time.timeSinceLevelLoad;
-        startPosition = transform.position;
-
-        iMove = true;
-    }
-    */
 
     void Update()
     {

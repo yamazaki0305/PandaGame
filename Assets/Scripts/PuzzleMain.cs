@@ -138,8 +138,13 @@ public class PuzzleMain : MonoBehaviour
     // Movesが0になった時一度だけAd動画視聴でMoveを増やせる
     public bool Moves0AdFlg = true;
 
+    // DogObjectのゲームオブジェクト
+    GameObject DogObject;
+
     void Start()
     {
+        DogObject = GameObject.Find("Dog");
+        DogObject.transform.SetParent(puzzleTransform);
 
         // 言語を判定する
         if (Application.systemLanguage == SystemLanguage.Japanese)
@@ -311,7 +316,6 @@ public class PuzzleMain : MonoBehaviour
             Time.timeScale = 0f;
         else
             Time.timeScale = 1f;
-            
 
         // 時間制のゲームの場合
         if (StatusData.timeflg)
@@ -549,7 +553,11 @@ public class PuzzleMain : MonoBehaviour
                     }
                 }
             }
+
         }
+
+        // 犬の移動処理（Updateで実行）
+        DogMove();
 
     }
 
@@ -1920,6 +1928,84 @@ public class PuzzleMain : MonoBehaviour
         popup.transform.localScale = Vector3.zero;
         popup.transform.SetParent(m_canvas.transform, false);
         popup.GetComponent<WinLosePopup>().Open();
+
+    }
+
+    void DogMove()
+    {
+        DogData dogd = DogObject.GetComponent<DogData>();
+
+        //左右下に移動できるか判定
+        if(dogd.X == 0)
+            dogd.bLeftMove = false;
+        else if (PuzzleData[DogObject.GetComponent<DogData>().X - 1, DogObject.GetComponent<DogData>().Y]==null)
+            dogd.bLeftMove = true;
+        else
+            dogd.bLeftMove = false;
+
+        if (dogd.X == columnLength - 1)
+        {
+            dogd.bRightMove = false;
+        }
+        else if (PuzzleData[DogObject.GetComponent<DogData>().X + 1, DogObject.GetComponent<DogData>().Y] == null)
+            dogd.bRightMove = true;
+        else
+            dogd.bRightMove = false;
+
+        if( dogd.Y == 0)
+            dogd.bUnderMove = false;
+        else if (PuzzleData[DogObject.GetComponent<DogData>().X, DogObject.GetComponent<DogData>().Y - 1] == null)
+            dogd.bUnderMove = true;
+        else
+            dogd.bUnderMove = false;
+
+        if(!dogd.iMove)
+        {
+            if ( dogd.bUnderMove)
+            {
+                dogd.arrowType = ArrowType.UNDER;
+
+                Vector2 pos = new Vector2((dogd.X + 0) * BlockSize - (BlockSize * columnLength) / 2 + BlockSize / 2, (dogd.Y - 1) * BlockSize + BlockGroundHeight - (rowLength - DefaultBlockHeight) * BlockSize);
+
+                //    Vector2 pos = new Vector2(i * BlockSize - (BlockSize * columnLength) / 2 + BlockSize / 2, (j + 1) * BlockSize + BlockGroundHeight - (rowLength - DefaultBlockHeight) * BlockSize);
+
+                dogd.OnStart(pos, 1);
+            }
+            else if(!dogd.bUnderMove && dogd.arrowType == ArrowType.UNDER)
+            {
+                if(dogd.bLeftMove)
+                    dogd.arrowType = ArrowType.LEFT;
+                else if (dogd.bRightMove)
+                    dogd.arrowType = ArrowType.RIGHT;
+            }
+
+
+            if (dogd.arrowType == ArrowType.RIGHT && dogd.bRightMove)
+            {
+                Vector2 pos = new Vector2((dogd.X + 1) * BlockSize - (BlockSize * columnLength) / 2 + BlockSize / 2, (dogd.Y + 0) * BlockSize + BlockGroundHeight - (rowLength - DefaultBlockHeight) * BlockSize);
+
+                //    Vector2 pos = new Vector2(i * BlockSize - (BlockSize * columnLength) / 2 + BlockSize / 2, (j + 1) * BlockSize + BlockGroundHeight - (rowLength - DefaultBlockHeight) * BlockSize);
+
+                dogd.OnStart(pos, 1);
+            }
+            else if (dogd.arrowType == ArrowType.RIGHT && !dogd.bRightMove)
+                dogd.arrowType = ArrowType.LEFT;
+
+            if (dogd.arrowType == ArrowType.LEFT && dogd.bLeftMove)
+            {
+                Vector2 pos = new Vector2((dogd.X - 1) * BlockSize - (BlockSize * columnLength) / 2 + BlockSize / 2, (dogd.Y + 0) * BlockSize + BlockGroundHeight - (rowLength - DefaultBlockHeight) * BlockSize);
+
+                //    Vector2 pos = new Vector2(i * BlockSize - (BlockSize * columnLength) / 2 + BlockSize / 2, (j + 1) * BlockSize + BlockGroundHeight - (rowLength - DefaultBlockHeight) * BlockSize);
+
+                dogd.OnStart(pos, 1);
+            }
+            else if (dogd.arrowType == ArrowType.LEFT && dogd.bRightMove)
+                dogd.arrowType = ArrowType.RIGHT;
+
+        }
+
+
+
 
     }
 
