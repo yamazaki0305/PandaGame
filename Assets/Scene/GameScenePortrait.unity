@@ -2948,7 +2948,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 097a4074a8463f149892c66c0f88068f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 17cb27b224bf61b47acf0854633c45e5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2966,7 +2966,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 869836122}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 100, y: 130, z: 0}
+  m_LocalPosition: {x: 10000, y: 10000, z: 0}
   m_LocalScale: {x: 84, y: 84, z: 1}
   m_Children: []
   m_Father: {fileID: 1557451416}
@@ -2988,7 +2988,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.925, y: 0.8}
+    oldSize: {x: 0.8875, y: 1}
     newSize: {x: 0.925, y: 0.8}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -3009,9 +3009,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   arrowType: 0
+  iMove: 0
+  iStart: 0
+  bRightMove: 0
+  bLeftMove: 0
+  bUnderMove: 0
   X: 4
   Y: 4
-  DogObject: {fileID: 869836122}
 --- !u!1 &870407159
 GameObject:
   m_ObjectHideFlags: 0

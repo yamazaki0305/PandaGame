@@ -182,43 +182,10 @@ public class BlockData : MonoBehaviour
 
 
 
-            /*
-            // 取得する値: 秒
-            int datetimeStr = System.DateTime.Now.Second;
-            int sec = datetimeStr;
-
-            while (10 < sec)
-            {
-                sec = sec-10;
-            }
-            
-            if (sec == 1 || sec == 2 || sec == 4 || sec == 5 || sec == 7 || sec == 8)
-                this.GetComponent<SpriteRenderer>().sprite  = Sprites[(int)animalType];
-            else if( sec ==3 || sec == 6 || sec == 9)
-                this.GetComponent<SpriteRenderer>().sprite = Sprites[(int)animalType+1];
-            */
-
         }
 
-        //rend = GetComponent<SpriteRenderer>();
-        //rend.sprite = block[1];
-        //this.transform.position = new Vector3(0, 0,0);
 
     }
 
 
-    /*
-    public PuzzleBlock Generate()
-    {
-        //var blockType = Random.Range(0, prefabs.Count);
-
-        //GameObject instance = GameObject.Instantiate(block[0]);
-        //instance.transform.SetParent(transform);
-        //instance.SetChainLine(chainLineGroup.Get());
-        //instance.SetBlockType(blockType);
-        //instance.transform.position = new Vector3(UnityEngine.Random.Range(-300, 300), 600);
-       //gidbodyList.Add(instance.GetComponent<Rigidbody2D>());
-        //return instance;
-    }
-    */
 }

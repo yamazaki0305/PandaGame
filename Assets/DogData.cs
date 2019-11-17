@@ -23,8 +23,12 @@ public class DogData : MonoBehaviour
 {
     public ArrowType arrowType;
 
-    public bool iMove;
+    public bool iMove; //下左右に移動できるか
+    public bool iStart; //ゲーム開始時の時true
     public bool bRightMove, bLeftMove, bUnderMove;
+
+    // PuzzleMainから情報をSET
+    private int BlockSize, rowLength, columnLength, DefaultBlockHeight, BlockGroundHeight;
 
     // 7かける7のX座標
     public int X=4;
@@ -47,8 +51,105 @@ public class DogData : MonoBehaviour
         bLeftMove = false;
         bUnderMove = false;
         iMove = false;
-
+        iStart = true;
         
+    }
+
+    // 初期位置をセット
+    public void setPos(int _x, int _y, int _BlockSize, int _rowLength, int _columnLength, int _DefaultBlockHeight, int _BlockGroundHeight)
+    {
+        X = _x;
+        Y = _y;
+        BlockSize = _BlockSize;
+        rowLength = _rowLength;
+        columnLength = _columnLength;
+        DefaultBlockHeight = _DefaultBlockHeight;
+        BlockGroundHeight = _BlockGroundHeight;
+
+        Vector2 pos = new Vector2((X + 0) * BlockSize - (BlockSize * columnLength) / 2 + BlockSize / 2, (Y + 0) * BlockSize + BlockGroundHeight - (rowLength - DefaultBlockHeight) * BlockSize);
+
+        this.transform.localPosition = pos;
+        iStart = false;
+
+    }
+
+    // 移動できるかチェック
+    public void moveCheck(GameObject[,] _PuzzleData)
+    {
+        //ゲーム開始時以外の時
+        if (!iStart)
+        {
+            //左右下に移動できるか判定
+            if (X == 0)
+                bLeftMove = false;
+            else if (_PuzzleData[X - 1, Y] == null)
+                bLeftMove = true;
+            else
+                bLeftMove = false;
+
+            if (X == columnLength - 1)
+            {
+                bRightMove = false;
+            }
+            else if (_PuzzleData[X + 1, Y] == null)
+                bRightMove = true;
+            else
+                bRightMove = false;
+
+            if (Y == 0)
+                bUnderMove = false;
+            else if (_PuzzleData[X, Y - 1] == null)
+                bUnderMove = true;
+            else
+                bUnderMove = false;
+        }
+
+        // 犬が下左右に移動できる時の処理
+        if (!iMove)
+        {
+            if (bUnderMove)
+            {
+                arrowType = ArrowType.UNDER;
+
+                Vector2 pos = new Vector2((X + 0) * BlockSize - (BlockSize * columnLength) / 2 + BlockSize / 2, (Y - 1) * BlockSize + BlockGroundHeight - (rowLength - DefaultBlockHeight) * BlockSize);
+
+                //    Vector2 pos = new Vector2(i * BlockSize - (BlockSize * columnLength) / 2 + BlockSize / 2, (j + 1) * BlockSize + BlockGroundHeight - (rowLength - DefaultBlockHeight) * BlockSize);
+
+                OnStart(pos, 1);
+            }
+            else if (!bUnderMove && arrowType == ArrowType.UNDER)
+            {
+                if (bLeftMove)
+                    arrowType = ArrowType.LEFT;
+                else if (bRightMove)
+                    arrowType = ArrowType.RIGHT;
+            }
+
+
+            if (arrowType == ArrowType.RIGHT && bRightMove)
+            {
+                Vector2 pos = new Vector2((X + 1) * BlockSize - (BlockSize * columnLength) / 2 + BlockSize / 2, (Y + 0) * BlockSize + BlockGroundHeight - (rowLength - DefaultBlockHeight) * BlockSize);
+
+                //    Vector2 pos = new Vector2(i * BlockSize - (BlockSize * columnLength) / 2 + BlockSize / 2, (j + 1) * BlockSize + BlockGroundHeight - (rowLength - DefaultBlockHeight) * BlockSize);
+
+                OnStart(pos, 1);
+            }
+            else if (arrowType == ArrowType.RIGHT && !bRightMove)
+                arrowType = ArrowType.LEFT;
+
+            if (arrowType == ArrowType.LEFT && bLeftMove)
+            {
+                Vector2 pos = new Vector2((X - 1) * BlockSize - (BlockSize * columnLength) / 2 + BlockSize / 2, (Y + 0) * BlockSize + BlockGroundHeight - (rowLength - DefaultBlockHeight) * BlockSize);
+
+                //    Vector2 pos = new Vector2(i * BlockSize - (BlockSize * columnLength) / 2 + BlockSize / 2, (j + 1) * BlockSize + BlockGroundHeight - (rowLength - DefaultBlockHeight) * BlockSize);
+
+                OnStart(pos, 1);
+            }
+            else if (arrowType == ArrowType.LEFT && bRightMove)
+                arrowType = ArrowType.RIGHT;
+
+        }
+
     }
 
     // ブロックが落ちる時の落ちた位置の座標;toPos、何段落ちるか:k
@@ -69,6 +170,8 @@ public class DogData : MonoBehaviour
         // この関数を呼び出すとオブジェクトが移動する
         StartCoroutine(MoveTo(startPosition, toPos, duration, true));
     }
+
+
 
     /*
     // Update is called once per frame

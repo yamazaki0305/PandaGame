@@ -303,6 +303,10 @@ public class PuzzleMain : MonoBehaviour
         {
             RemainTimerText.text = "";
         }
+
+        // 犬の初期値をセット
+        DogObject.GetComponent<DogData>();
+        //DogMove();
     }
 
 
@@ -557,7 +561,7 @@ public class PuzzleMain : MonoBehaviour
         }
 
         // 犬の移動処理（Updateで実行）
-        DogMove();
+        DogObject.GetComponent<DogData>().moveCheck(PuzzleData);
 
     }
 
@@ -1435,12 +1439,22 @@ public class PuzzleMain : MonoBehaviour
                 {
                     stageData[n, k] = "+";
                 }
+                // 犬の初期位置の時
+                else if (str == "!")
+                {
+
+                    stageData[n, k] = "+";
+                    //犬の初期値をセットする
+                    DogData dogd = DogObject.GetComponent<DogData>();
+                    dogd.setPos(n, k, BlockSize, rowLength, columnLength, DefaultBlockHeight, BlockGroundHeight);
+
+                }
                 //アルファベットランダム
                 else if (str == "?")
                 { 
-                stageData[n, k] = RandomMake.alphabet();
+                    stageData[n, k] = RandomMake.alphabet();
                 }
-                //アルファベット
+                //アルファベットの時
                 else
                 {
                     stageData[n, k] = str;
@@ -1931,82 +1945,5 @@ public class PuzzleMain : MonoBehaviour
 
     }
 
-    void DogMove()
-    {
-        DogData dogd = DogObject.GetComponent<DogData>();
-
-        //左右下に移動できるか判定
-        if(dogd.X == 0)
-            dogd.bLeftMove = false;
-        else if (PuzzleData[DogObject.GetComponent<DogData>().X - 1, DogObject.GetComponent<DogData>().Y]==null)
-            dogd.bLeftMove = true;
-        else
-            dogd.bLeftMove = false;
-
-        if (dogd.X == columnLength - 1)
-        {
-            dogd.bRightMove = false;
-        }
-        else if (PuzzleData[DogObject.GetComponent<DogData>().X + 1, DogObject.GetComponent<DogData>().Y] == null)
-            dogd.bRightMove = true;
-        else
-            dogd.bRightMove = false;
-
-        if( dogd.Y == 0)
-            dogd.bUnderMove = false;
-        else if (PuzzleData[DogObject.GetComponent<DogData>().X, DogObject.GetComponent<DogData>().Y - 1] == null)
-            dogd.bUnderMove = true;
-        else
-            dogd.bUnderMove = false;
-
-        if(!dogd.iMove)
-        {
-            if ( dogd.bUnderMove)
-            {
-                dogd.arrowType = ArrowType.UNDER;
-
-                Vector2 pos = new Vector2((dogd.X + 0) * BlockSize - (BlockSize * columnLength) / 2 + BlockSize / 2, (dogd.Y - 1) * BlockSize + BlockGroundHeight - (rowLength - DefaultBlockHeight) * BlockSize);
-
-                //    Vector2 pos = new Vector2(i * BlockSize - (BlockSize * columnLength) / 2 + BlockSize / 2, (j + 1) * BlockSize + BlockGroundHeight - (rowLength - DefaultBlockHeight) * BlockSize);
-
-                dogd.OnStart(pos, 1);
-            }
-            else if(!dogd.bUnderMove && dogd.arrowType == ArrowType.UNDER)
-            {
-                if(dogd.bLeftMove)
-                    dogd.arrowType = ArrowType.LEFT;
-                else if (dogd.bRightMove)
-                    dogd.arrowType = ArrowType.RIGHT;
-            }
-
-
-            if (dogd.arrowType == ArrowType.RIGHT && dogd.bRightMove)
-            {
-                Vector2 pos = new Vector2((dogd.X + 1) * BlockSize - (BlockSize * columnLength) / 2 + BlockSize / 2, (dogd.Y + 0) * BlockSize + BlockGroundHeight - (rowLength - DefaultBlockHeight) * BlockSize);
-
-                //    Vector2 pos = new Vector2(i * BlockSize - (BlockSize * columnLength) / 2 + BlockSize / 2, (j + 1) * BlockSize + BlockGroundHeight - (rowLength - DefaultBlockHeight) * BlockSize);
-
-                dogd.OnStart(pos, 1);
-            }
-            else if (dogd.arrowType == ArrowType.RIGHT && !dogd.bRightMove)
-                dogd.arrowType = ArrowType.LEFT;
-
-            if (dogd.arrowType == ArrowType.LEFT && dogd.bLeftMove)
-            {
-                Vector2 pos = new Vector2((dogd.X - 1) * BlockSize - (BlockSize * columnLength) / 2 + BlockSize / 2, (dogd.Y + 0) * BlockSize + BlockGroundHeight - (rowLength - DefaultBlockHeight) * BlockSize);
-
-                //    Vector2 pos = new Vector2(i * BlockSize - (BlockSize * columnLength) / 2 + BlockSize / 2, (j + 1) * BlockSize + BlockGroundHeight - (rowLength - DefaultBlockHeight) * BlockSize);
-
-                dogd.OnStart(pos, 1);
-            }
-            else if (dogd.arrowType == ArrowType.LEFT && dogd.bRightMove)
-                dogd.arrowType = ArrowType.RIGHT;
-
-        }
-
-
-
-
-    }
 
 }
