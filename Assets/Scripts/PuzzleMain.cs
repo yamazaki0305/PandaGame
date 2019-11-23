@@ -443,6 +443,17 @@ public class PuzzleMain : MonoBehaviour
         {
 
             //ゲームクリア判定
+            if (DogObject.GetComponent<DogData>().bDogJimen)
+            {
+                DataBase.bGameClearFlg = true;
+
+                //GameOverObj.GetComponent<Text>().text = "GameClear!!\n次のステージへ";
+                //GameOverObj.SetActive(true);
+                //WinPopup();
+                GameFlg = GameLoopFlg.PlayEnd;
+
+            }
+            /*
             if (StatusData.AnimalSum == 0)
             {
                 DataBase.bGameClearFlg = true;
@@ -453,6 +464,7 @@ public class PuzzleMain : MonoBehaviour
                 GameFlg = GameLoopFlg.PlayEnd;
 
             }
+            */
             //ゲームオーバー判定
             else if (StatusData.Hand == 0 || StatusData.currentTime <= 0.0f)
             {

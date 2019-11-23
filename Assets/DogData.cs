@@ -25,6 +25,7 @@ public class DogData : MonoBehaviour
 
     public bool iMove; //下左右に移動できるか
     public bool iStart; //ゲーム開始時の時true
+    public bool bDogJimen; //true:未クリア、false:true
     public bool bRightMove, bLeftMove, bUnderMove;
 
     // PuzzleMainから情報をSET
@@ -52,7 +53,7 @@ public class DogData : MonoBehaviour
         bUnderMove = false;
         iMove = false;
         iStart = true;
-        
+        bDogJimen = false;
     }
 
     // 初期位置をセット
@@ -79,6 +80,13 @@ public class DogData : MonoBehaviour
         //ゲーム開始時以外の時
         if (!iStart)
         {
+            // 犬が地面についたらクリア
+            if (!bDogJimen && Y == 0)
+            {
+                Debug.Log("犬地面についた");
+                bDogJimen = true;
+            }
+
             //左右下に移動できるか判定
             if (X == 0)
                 bLeftMove = false;
@@ -104,50 +112,54 @@ public class DogData : MonoBehaviour
                 bUnderMove = false;
         }
 
-        // 犬が下左右に移動できる時の処理
-        if (!iMove)
+        // 犬が地面についていない時
+        if (!bDogJimen)
         {
-            if (bUnderMove)
+            // 犬が下左右に移動できる時の処理
+            if (!iMove)
             {
-                arrowType = ArrowType.UNDER;
+                if (bUnderMove)
+                {
+                    arrowType = ArrowType.UNDER;
 
-                Vector2 pos = new Vector2((X + 0) * BlockSize - (BlockSize * columnLength) / 2 + BlockSize / 2, (Y - 1) * BlockSize + BlockGroundHeight - (rowLength - DefaultBlockHeight) * BlockSize);
+                    Vector2 pos = new Vector2((X + 0) * BlockSize - (BlockSize * columnLength) / 2 + BlockSize / 2, (Y - 1) * BlockSize + BlockGroundHeight - (rowLength - DefaultBlockHeight) * BlockSize);
 
-                //    Vector2 pos = new Vector2(i * BlockSize - (BlockSize * columnLength) / 2 + BlockSize / 2, (j + 1) * BlockSize + BlockGroundHeight - (rowLength - DefaultBlockHeight) * BlockSize);
+                    //    Vector2 pos = new Vector2(i * BlockSize - (BlockSize * columnLength) / 2 + BlockSize / 2, (j + 1) * BlockSize + BlockGroundHeight - (rowLength - DefaultBlockHeight) * BlockSize);
 
-                OnStart(pos, 1);
-            }
-            else if (!bUnderMove && arrowType == ArrowType.UNDER)
-            {
-                if (bLeftMove)
+                    OnStart(pos, 1);
+                }
+                else if (!bUnderMove && arrowType == ArrowType.UNDER)
+                {
+                    if (bLeftMove)
+                        arrowType = ArrowType.LEFT;
+                    else if (bRightMove)
+                        arrowType = ArrowType.RIGHT;
+                }
+
+
+                if (arrowType == ArrowType.RIGHT && bRightMove)
+                {
+                    Vector2 pos = new Vector2((X + 1) * BlockSize - (BlockSize * columnLength) / 2 + BlockSize / 2, (Y + 0) * BlockSize + BlockGroundHeight - (rowLength - DefaultBlockHeight) * BlockSize);
+
+                    //    Vector2 pos = new Vector2(i * BlockSize - (BlockSize * columnLength) / 2 + BlockSize / 2, (j + 1) * BlockSize + BlockGroundHeight - (rowLength - DefaultBlockHeight) * BlockSize);
+
+                    OnStart(pos, 1);
+                }
+                else if (arrowType == ArrowType.RIGHT && !bRightMove)
                     arrowType = ArrowType.LEFT;
-                else if (bRightMove)
+
+                if (arrowType == ArrowType.LEFT && bLeftMove)
+                {
+                    Vector2 pos = new Vector2((X - 1) * BlockSize - (BlockSize * columnLength) / 2 + BlockSize / 2, (Y + 0) * BlockSize + BlockGroundHeight - (rowLength - DefaultBlockHeight) * BlockSize);
+
+                    //    Vector2 pos = new Vector2(i * BlockSize - (BlockSize * columnLength) / 2 + BlockSize / 2, (j + 1) * BlockSize + BlockGroundHeight - (rowLength - DefaultBlockHeight) * BlockSize);
+
+                    OnStart(pos, 1);
+                }
+                else if (arrowType == ArrowType.LEFT && bRightMove)
                     arrowType = ArrowType.RIGHT;
+
             }
-
-
-            if (arrowType == ArrowType.RIGHT && bRightMove)
-            {
-                Vector2 pos = new Vector2((X + 1) * BlockSize - (BlockSize * columnLength) / 2 + BlockSize / 2, (Y + 0) * BlockSize + BlockGroundHeight - (rowLength - DefaultBlockHeight) * BlockSize);
-
-                //    Vector2 pos = new Vector2(i * BlockSize - (BlockSize * columnLength) / 2 + BlockSize / 2, (j + 1) * BlockSize + BlockGroundHeight - (rowLength - DefaultBlockHeight) * BlockSize);
-
-                OnStart(pos, 1);
-            }
-            else if (arrowType == ArrowType.RIGHT && !bRightMove)
-                arrowType = ArrowType.LEFT;
-
-            if (arrowType == ArrowType.LEFT && bLeftMove)
-            {
-                Vector2 pos = new Vector2((X - 1) * BlockSize - (BlockSize * columnLength) / 2 + BlockSize / 2, (Y + 0) * BlockSize + BlockGroundHeight - (rowLength - DefaultBlockHeight) * BlockSize);
-
-                //    Vector2 pos = new Vector2(i * BlockSize - (BlockSize * columnLength) / 2 + BlockSize / 2, (j + 1) * BlockSize + BlockGroundHeight - (rowLength - DefaultBlockHeight) * BlockSize);
-
-                OnStart(pos, 1);
-            }
-            else if (arrowType == ArrowType.LEFT && bRightMove)
-                arrowType = ArrowType.RIGHT;
-
         }
 
     }
