@@ -84,6 +84,7 @@ public class DogData : MonoBehaviour
             if (!bDogJimen && Y == 0)
             {
                 Debug.Log("犬地面についた");
+                arrowType = ArrowType.WAIT;
                 bDogJimen = true;
             }
 
@@ -112,6 +113,25 @@ public class DogData : MonoBehaviour
                 bUnderMove = false;
         }
 
+        // 犬のアニメーションを変更
+        if (arrowType == ArrowType.UNDER)
+            GetComponent<Animator>().SetTrigger("fallTrigger");
+        else if (arrowType == ArrowType.LEFT)
+        {
+            //this.transform.localScale = new Vector3(-84, 84, 1);
+            Debug.Log("xx:"+transform.localScale.x);
+            this.transform.localScale = new Vector3(-84, transform.localScale.y, transform.localScale.z);
+            GetComponent<Animator>().SetTrigger("walkTrigger");
+        }
+        else if (arrowType == ArrowType.RIGHT)
+        {
+            this.transform.localScale = new Vector3(84, transform.localScale.y, transform.localScale.z);
+            GetComponent<Animator>().SetTrigger("walkTrigger");
+        }
+        else
+            GetComponent<Animator>().SetTrigger("waitTrigger");
+
+
         // 犬が地面についていない時
         if (!bDogJimen)
         {
@@ -127,6 +147,7 @@ public class DogData : MonoBehaviour
                     //    Vector2 pos = new Vector2(i * BlockSize - (BlockSize * columnLength) / 2 + BlockSize / 2, (j + 1) * BlockSize + BlockGroundHeight - (rowLength - DefaultBlockHeight) * BlockSize);
 
                     OnStart(pos, 1);
+
                 }
                 else if (!bUnderMove && arrowType == ArrowType.UNDER)
                 {
@@ -134,6 +155,7 @@ public class DogData : MonoBehaviour
                         arrowType = ArrowType.LEFT;
                     else if (bRightMove)
                         arrowType = ArrowType.RIGHT;
+ 
                 }
 
 
@@ -144,9 +166,12 @@ public class DogData : MonoBehaviour
                     //    Vector2 pos = new Vector2(i * BlockSize - (BlockSize * columnLength) / 2 + BlockSize / 2, (j + 1) * BlockSize + BlockGroundHeight - (rowLength - DefaultBlockHeight) * BlockSize);
 
                     OnStart(pos, 1);
+
                 }
                 else if (arrowType == ArrowType.RIGHT && !bRightMove)
+                {
                     arrowType = ArrowType.LEFT;
+                }
 
                 if (arrowType == ArrowType.LEFT && bLeftMove)
                 {
@@ -155,12 +180,33 @@ public class DogData : MonoBehaviour
                     //    Vector2 pos = new Vector2(i * BlockSize - (BlockSize * columnLength) / 2 + BlockSize / 2, (j + 1) * BlockSize + BlockGroundHeight - (rowLength - DefaultBlockHeight) * BlockSize);
 
                     OnStart(pos, 1);
+
                 }
                 else if (arrowType == ArrowType.LEFT && bRightMove)
+                {
                     arrowType = ArrowType.RIGHT;
+                }
+
+                // 全て移動不可の時
+                if(!bRightMove && !bLeftMove && !bUnderMove)
+                {
+                    arrowType = ArrowType.WAIT;
+                }
+
+                // ArrowType.Waitの時
+                if(arrowType == ArrowType.WAIT)
+                {
+                    if (bUnderMove)
+                        arrowType = ArrowType.UNDER;
+                    else if (bLeftMove)
+                        arrowType = ArrowType.LEFT;
+                    else if (bRightMove)
+                        arrowType = ArrowType.RIGHT;
+                }
 
             }
         }
+
 
     }
 
