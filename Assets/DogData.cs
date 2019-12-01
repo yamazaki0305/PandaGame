@@ -27,6 +27,7 @@ public class DogData : MonoBehaviour
     public bool iStart; //ゲーム開始時の時true
     public bool bDogJimen; //true:未クリア、false:true
     public bool bRightMove, bLeftMove, bUnderMove;
+    public int drop_count; //落ちたマスの数を記録
 
     // PuzzleMainから情報をSET
     private int BlockSize, rowLength, columnLength, DefaultBlockHeight, BlockGroundHeight;
@@ -54,6 +55,7 @@ public class DogData : MonoBehaviour
         iMove = false;
         iStart = true;
         bDogJimen = false;
+        drop_count = 0;
     }
 
     // 初期位置をセット
@@ -83,7 +85,6 @@ public class DogData : MonoBehaviour
             // 犬が地面についたらクリア
             if (!bDogJimen && Y == 0)
             {
-                Debug.Log("犬地面についた");
                 arrowType = ArrowType.WAIT;
                 bDogJimen = true;
             }
@@ -119,7 +120,6 @@ public class DogData : MonoBehaviour
         else if (arrowType == ArrowType.LEFT)
         {
             //this.transform.localScale = new Vector3(-84, 84, 1);
-            Debug.Log("xx:"+transform.localScale.x);
             this.transform.localScale = new Vector3(-84, transform.localScale.y, transform.localScale.z);
             GetComponent<Animator>().SetTrigger("walkTrigger");
         }
@@ -147,10 +147,17 @@ public class DogData : MonoBehaviour
                     //    Vector2 pos = new Vector2(i * BlockSize - (BlockSize * columnLength) / 2 + BlockSize / 2, (j + 1) * BlockSize + BlockGroundHeight - (rowLength - DefaultBlockHeight) * BlockSize);
 
                     OnStart(pos, 1);
+                    drop_count++;
 
                 }
+                // 下への移動が終了した時
                 else if (!bUnderMove && arrowType == ArrowType.UNDER)
                 {
+                    Debug.Log("落ちた数;" + drop_count);
+                    drop_count = 0;
+                    //GameObject.Find("GameRoot")
+
+
                     if (bLeftMove)
                         arrowType = ArrowType.LEFT;
                     else if (bRightMove)
@@ -229,6 +236,24 @@ public class DogData : MonoBehaviour
         StartCoroutine(MoveTo(startPosition, toPos, duration, true));
     }
 
+    // ブロックが上がる時の落ちた位置の座標;toPos、何段上がるか:k
+    public void OnUpper(Vector3 toPos, int k)
+    {
+        iMove = true;
+
+        // 距離によってアニメーションの時間を変化
+        float duration = 0f;
+        float def = 0.4f;
+        for (int i = 0; i < k; i++)
+        {
+            duration += def;
+            def = def * 0.4f;
+        }
+
+        startPosition = transform.localPosition;
+        // この関数を呼び出すとオブジェクトが移動する
+        StartCoroutine(MoveTo(startPosition, toPos, duration, false));
+    }
 
 
     /*

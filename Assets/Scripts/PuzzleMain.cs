@@ -1791,6 +1791,13 @@ public class PuzzleMain : MonoBehaviour
         // 地面の下にブロックがある時
         if (UnderArrowHeight > 0)
         {
+            // 犬がいるかチェック
+            if (DogObject.GetComponent<DogData>().Y == rowLength - 1)
+            {
+                Debug.Log("inuiruyo");
+                //return false;
+            }
+
             for (int i = 0; i < columnLength; i++)
             {
                 // 最上部行が全て空いているか確認（Maskのないエリアの場合も空いているカウントする）
@@ -1826,8 +1833,15 @@ public class PuzzleMain : MonoBehaviour
                         PuzzleData[i, j + 1].transform.SetParent(puzzleTransform);
 
                         PuzzleData[i, j + 1].GetComponent<Liner>().OnUpper(pos, 1);
+
+                        //犬を上に動かす
+                        //DogObject.GetComponent<DogData>().OnUpper(pos, 1);
+
+
                         PuzzleData[i, j + 1].transform.localScale = puzzlePrefab.transform.localScale;
                     }
+                    // 犬を上に動かす
+                    //DogObject.GetComponent<DogData>().OnUpper(pos, 1);
 
                 }
             }
@@ -1863,8 +1877,6 @@ public class PuzzleMain : MonoBehaviour
 
             // ブックを消すPuzzleDataの座標を1つ上げる
             DeathBlockHeight++;
-
-            Debug.Log("Arrow:"+UnderArrowHeight);
 
             // GlassLineを移動する
             Vector3 glass_pos = new Vector3(0, GlassLineHeight + UnderArrowHeight * -BlockSize, -1);
