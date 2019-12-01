@@ -19,7 +19,7 @@ public class DataBase
     public static int MISS = 3;
     public static int MAXSTAGE = 40;
 
-    public static int playLevel = 1;
+    public static int playLevel = 12;
     public static int openLevel = 1;
     public static int RecordWord = 0;
     public static bool NewWordBook = false; //WordBookにNewアイコンをつけるかのフラグ

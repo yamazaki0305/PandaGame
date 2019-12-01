@@ -16,10 +16,11 @@ public enum ArrowType
     RIGHT = 0,
     LEFT = 1,
     UNDER = 2,
-    WAIT = 3
+    UPPER = 3,
+    WAIT = 4
 }
 
-public class DogData : MonoBehaviour
+public class DogData : BlockData
 {
     public ArrowType arrowType;
 
@@ -33,10 +34,10 @@ public class DogData : MonoBehaviour
     private int BlockSize, rowLength, columnLength, DefaultBlockHeight, BlockGroundHeight;
 
     // 7かける7のX座標
-    public int X=4;
+    //public int X=4;
 
     // 7かける7のY座標
-    public int Y=4;
+    //public int Y=4;
 
     Vector2 pos_now;
     Vector2 pos_future;
@@ -135,16 +136,15 @@ public class DogData : MonoBehaviour
         // 犬が地面についていない時
         if (!bDogJimen)
         {
-            // 犬が下左右に移動できる時の処理
+            // 犬が上下左右に移動中ではない時
             if (!iMove)
             {
+
                 if (bUnderMove)
                 {
                     arrowType = ArrowType.UNDER;
 
                     Vector2 pos = new Vector2((X + 0) * BlockSize - (BlockSize * columnLength) / 2 + BlockSize / 2, (Y - 1) * BlockSize + BlockGroundHeight - (rowLength - DefaultBlockHeight) * BlockSize);
-
-                    //    Vector2 pos = new Vector2(i * BlockSize - (BlockSize * columnLength) / 2 + BlockSize / 2, (j + 1) * BlockSize + BlockGroundHeight - (rowLength - DefaultBlockHeight) * BlockSize);
 
                     OnStart(pos, 1);
                     drop_count++;
@@ -154,14 +154,47 @@ public class DogData : MonoBehaviour
                 else if (!bUnderMove && arrowType == ArrowType.UNDER)
                 {
                     Debug.Log("落ちた数;" + drop_count);
+
+                    GameObject main = GameObject.Find("GameRoot");
+
+                    // 地面の下にブロックがある時の処理
+                    int k = 0;
+                    while (drop_count > 0)
+                    {
+                        if (main.GetComponent<PuzzleMain>().UndderArrowCheck())
+                        {
+                            Debug.Log("デバッグ");
+
+                            arrowType = ArrowType.UPPER;
+
+                            //startPosition = new Vector2(X * BlockSize - (BlockSize * columnLength) / 2 + BlockSize / 2, (Y + k) * BlockSize + BlockGroundHeight - (rowLength - DefaultBlockHeight) * BlockSize);
+                            //Vector2 pos = new Vector2(X * BlockSize - (BlockSize * columnLength) / 2 + BlockSize / 2, (Y + k+1) * BlockSize + BlockGroundHeight - (rowLength - DefaultBlockHeight) * BlockSize);
+
+                            // 落ちる時
+                            //犬を上に動かす
+                            //OnUpper(pos, k);
+
+                            drop_count--;
+                        }
+                        else
+                            break;
+                    }
+
                     drop_count = 0;
-                    //GameObject.Find("GameRoot")
 
 
-                    if (bLeftMove)
-                        arrowType = ArrowType.LEFT;
-                    else if (bRightMove)
-                        arrowType = ArrowType.RIGHT;
+                    if (arrowType == ArrowType.UPPER)
+                    {
+
+                    }
+                    else
+                    {
+                        if (bLeftMove)
+                            arrowType = ArrowType.LEFT;
+                        else if (bRightMove)
+                            arrowType = ArrowType.RIGHT;
+                    }
+                        
  
                 }
 
@@ -169,8 +202,6 @@ public class DogData : MonoBehaviour
                 if (arrowType == ArrowType.RIGHT && bRightMove)
                 {
                     Vector2 pos = new Vector2((X + 1) * BlockSize - (BlockSize * columnLength) / 2 + BlockSize / 2, (Y + 0) * BlockSize + BlockGroundHeight - (rowLength - DefaultBlockHeight) * BlockSize);
-
-                    //    Vector2 pos = new Vector2(i * BlockSize - (BlockSize * columnLength) / 2 + BlockSize / 2, (j + 1) * BlockSize + BlockGroundHeight - (rowLength - DefaultBlockHeight) * BlockSize);
 
                     OnStart(pos, 1);
 
@@ -183,8 +214,6 @@ public class DogData : MonoBehaviour
                 if (arrowType == ArrowType.LEFT && bLeftMove)
                 {
                     Vector2 pos = new Vector2((X - 1) * BlockSize - (BlockSize * columnLength) / 2 + BlockSize / 2, (Y + 0) * BlockSize + BlockGroundHeight - (rowLength - DefaultBlockHeight) * BlockSize);
-
-                    //    Vector2 pos = new Vector2(i * BlockSize - (BlockSize * columnLength) / 2 + BlockSize / 2, (j + 1) * BlockSize + BlockGroundHeight - (rowLength - DefaultBlockHeight) * BlockSize);
 
                     OnStart(pos, 1);
 
@@ -254,38 +283,6 @@ public class DogData : MonoBehaviour
         // この関数を呼び出すとオブジェクトが移動する
         StartCoroutine(MoveTo(startPosition, toPos, duration, false));
     }
-
-
-    /*
-    // Update is called once per frame
-    void Update () {
-        float step = speed * Time.deltaTime;
-        //DogObject.transform.localPosition = Vector3.MoveTowards(DogObject.transform.localPosition, direction, step);
-
-        if(iMove==false)
-        {
-
-            if(GameObject.Find("GameRoot").GetComponent<PuzzleMain>().PuzzleData[X+1, Y]==null)
-            {
-                Vector3 toPos;
-                toPos.x = DogObject.transform.localPosition.x + 90;
-                toPos.y = DogObject.transform.localPosition.y;
-                toPos.z = DogObject.transform.localPosition.z;
-
-                iMove = true;
-                // この関数を呼び出すとオブジェクトが移動する
-                StartCoroutine(MoveTo(DogObject.transform.localPosition, toPos, 3f,false));
-
-            }
-
-        }
-        //Transform transform = GameObject.Find("PuzzleObjectGroup").transform;
-        //DogObject.transform.SetParent(transform.parent);
-        //DogObject.transform.localPosition = new Vector3(0, 0, 0);
-
-        
-    }
-    */
 
     // fromPosが移動元の座標、toPosが移動先の座標、durationが移動の秒数
     IEnumerator MoveTo(Vector3 fromPos, Vector3 toPos, float duration,bool drop)

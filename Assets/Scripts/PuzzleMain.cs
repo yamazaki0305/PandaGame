@@ -61,6 +61,9 @@ public class PuzzleMain : MonoBehaviour
     // 7列のパズルデータのエリア内を作成（Mask）
     public GameObject[,] MaskData;
 
+    // PuzzleDataやMaskの余白の高さ
+    public int margin_height = 20;
+
     public string[,] stageData;
 
     public string[] textMessage; //テキストの加工前の一行を入れる変数
@@ -415,10 +418,12 @@ public class PuzzleMain : MonoBehaviour
         // 地面の下にブロックがある時の処理
         else if (GameFlg == GameLoopFlg.UndderArrow)
         {
+            /*
             while (UndderArrowCheck())
             {
 
             }
+            */
 
             GameFlg = GameLoopFlg.PlayBefore;
 
@@ -1267,7 +1272,7 @@ public class PuzzleMain : MonoBehaviour
                 {
 
                     //空白PuzzleDataのブロックの上にブロックがないかrowLengthまで調べる
-                    for (int k = 1; j + k<rowLength; k++)
+                    for (int k = 1; j + k<rowLength+margin_height; k++)
                     {
 
                         //もしNULL以外のPuzzleDataのブロックが見つかった時
@@ -1399,10 +1404,10 @@ public class PuzzleMain : MonoBehaviour
         stageData = new string[columnLength, rowLength];
 
         // stageDataから空き枠以外をMaskDataに格納する用の２次元配列を作成
-        MaskData = new GameObject[columnLength, rowLength+20];
+        MaskData = new GameObject[columnLength, rowLength+margin_height];
 
         // stageDataから英語ブロック、猫などを格納する用の２次元配列を作成 
-        PuzzleData = new GameObject[columnLength, rowLength];
+        PuzzleData = new GameObject[columnLength, rowLength+margin_height];
 
 
         //2次配列を定義
@@ -1798,6 +1803,7 @@ public class PuzzleMain : MonoBehaviour
                 //return false;
             }
 
+            /*
             for (int i = 0; i < columnLength; i++)
             {
                 // 最上部行が全て空いているか確認（Maskのないエリアの場合も空いているカウントする）
@@ -1812,17 +1818,20 @@ public class PuzzleMain : MonoBehaviour
                     }
                 }
             }
+            */
+            // 犬をパズルデータにコピー
+            PuzzleData[DogObject.GetComponent<DogData>().X, DogObject.GetComponent<DogData>().Y] = DogObject;
 
             //上に移動できる分全ての列を一番高い列が詰まるまで移動
             for (int i = 0; i < columnLength; i++)
             {
-                for (int j = rowLength - 2; j >= 0; j--)
+                for (int j = rowLength - 1; j >= 0; j--)
                 {
                     //もしNULL以外のPuzzleDataのブロックが見つかった時
                     if (PuzzleData[i, j] != null)
                     {
-                        //PuzzleData[i, j].GetComponent<BlockData>().X = i;
-                        PuzzleData[i, j].GetComponent<BlockData>().Y = j + 1;
+                    //PuzzleData[i, j].GetComponent<BlockData>().X = i;
+                    PuzzleData[i, j].GetComponent<BlockData>().Y = j + 1;
 
                         PuzzleData[i, j + 1] = PuzzleData[i, j];
                         PuzzleData[i, j] = null;
@@ -1834,10 +1843,6 @@ public class PuzzleMain : MonoBehaviour
 
                         PuzzleData[i, j + 1].GetComponent<Liner>().OnUpper(pos, 1);
 
-                        //犬を上に動かす
-                        //DogObject.GetComponent<DogData>().OnUpper(pos, 1);
-
-
                         PuzzleData[i, j + 1].transform.localScale = puzzlePrefab.transform.localScale;
                     }
                     // 犬を上に動かす
@@ -1846,10 +1851,16 @@ public class PuzzleMain : MonoBehaviour
                 }
             }
 
+            //Vector2 pos2 = new Vector2(DogObject.GetComponent<DogData>().X * BlockSize - (BlockSize * columnLength) / 2 + BlockSize / 2, (DogObject.GetComponent<DogData>().Y + 1) * BlockSize + BlockGroundHeight - (rowLength - DefaultBlockHeight) * BlockSize);
+
+            //犬を上に動かす
+            //DogObject.GetComponent<DogData>().OnUpper(pos2, 1);
+
+
             // Maskを上に移動する Maskが二重になる問題発生
             for (int i = 0; i < columnLength; i++)
             {
-                for (int j = rowLength+20 - 1; j >= 0; j--)
+                for (int j = rowLength+margin_height - 1; j >= 0; j--)
                 {
                     //もしNULL以外のPuzzleDataのブロックが見つかった時
                     if (MaskData[i, j] != null)
