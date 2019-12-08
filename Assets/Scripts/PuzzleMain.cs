@@ -1048,7 +1048,6 @@ public class PuzzleMain : MonoBehaviour
     {
         bool search = true;
 
-
         // 手数が0以上の時のみ実行可能
         if ( StatusData.Hand > 0)
         {
@@ -1266,7 +1265,7 @@ public class PuzzleMain : MonoBehaviour
         //PuzzleDataの空白を探す
         for (int i = 0; i<columnLength; i++)
         {
-            for (int j = ActiveBlockHeight - UnderArrowHeight; j<rowLength; j++)
+            for (int j = ActiveBlockHeight - UnderArrowHeight; j<rowLength+margin_height; j++)
             {
                 //PuzzleDataが空白の時
                 if (PuzzleData[i, j] == null && MaskData[i, j] != null)
@@ -1360,7 +1359,7 @@ public class PuzzleMain : MonoBehaviour
         //PuzzleDataが移動中か調べる
         for (int i = 0; i < columnLength; i++)
         {
-            for (int j = 0; j < rowLength; j++)
+            for (int j = 0; j < rowLength+margin_height; j++)
             {
                 //空白のPuzzleData以外の時
                 if (PuzzleData[i, j] != null)
@@ -1822,7 +1821,7 @@ public class PuzzleMain : MonoBehaviour
             //上に移動できる分全ての列を一番高い列が詰まるまで移動
             for (int i = 0; i < columnLength; i++)
             {
-                for (int j = rowLength - 1; j >= 0; j--)
+                for (int j = rowLength - 1+margin_height; j >= 0; j--)
                 {
                     //もしNULL以外のPuzzleDataのブロックが見つかった時
                     if (PuzzleData[i, j] != null)
