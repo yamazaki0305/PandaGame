@@ -32,6 +32,7 @@ public class DogData : BlockData
 
     // PuzzleMainから情報をSET
     private int BlockSize, rowLength, columnLength, DefaultBlockHeight, BlockGroundHeight;
+    public int UnderArrowHeight;
 
     // 7かける7のX座標
     //public int X=4;
@@ -57,6 +58,20 @@ public class DogData : BlockData
         iStart = true;
         bDogJimen = false;
         drop_count = 0;
+        blockType = BlockType.Dog;
+    }
+
+    void Update()
+    {
+        if (DataBase.DebugFlg)
+        {
+            Text text = GameObject.Find("DebugText").GetComponent<Text>();
+            text.text = "Arrow:" + arrowType +" ";text.text += "iMove:" + iMove;
+            text.text += " bLeftMove:" + bLeftMove + " "; text.text += "bRightMove:" + bRightMove; text.text += " bUnderMove:" + bUnderMove;
+            text.text += "\n" + "X:" + X + " Y:" + Y;
+            text.text += " drop:" + drop_count;
+        }
+
     }
 
     // 初期位置をセット
@@ -69,6 +84,8 @@ public class DogData : BlockData
         columnLength = _columnLength;
         DefaultBlockHeight = _DefaultBlockHeight;
         BlockGroundHeight = _BlockGroundHeight;
+
+        Debug.Log("height:" + UnderArrowHeight);
 
         Vector2 pos = new Vector2((X + 0) * BlockSize - (BlockSize * columnLength) / 2 + BlockSize / 2, (Y + 0) * BlockSize + BlockGroundHeight - (rowLength - DefaultBlockHeight) * BlockSize);
 
@@ -84,7 +101,7 @@ public class DogData : BlockData
         if (!iStart)
         {
             // 犬が地面についたらクリア
-            if (!bDogJimen && Y == 0)
+            if (!bDogJimen && Y == UnderArrowHeight)
             {
                 arrowType = ArrowType.WAIT;
                 bDogJimen = true;
@@ -147,6 +164,7 @@ public class DogData : BlockData
                     Vector2 pos = new Vector2((X + 0) * BlockSize - (BlockSize * columnLength) / 2 + BlockSize / 2, (Y - 1) * BlockSize + BlockGroundHeight - (rowLength - DefaultBlockHeight) * BlockSize);
 
                     OnStart(pos, 1);
+                    
                     drop_count++;
 
                 }
@@ -175,29 +193,44 @@ public class DogData : BlockData
                             //OnUpper(pos, k);
 
                             drop_count--;
+
                         }
                         else
                             break;
                     }
 
+                    _PuzzleData[X, Y] = null;
+                    
                     drop_count = 0;
 
-
-                    if (arrowType == ArrowType.UPPER)
-                    {
-
-                    }
-                    else
+                    /*
                     {
                         if (bLeftMove)
                             arrowType = ArrowType.LEFT;
                         else if (bRightMove)
                             arrowType = ArrowType.RIGHT;
                     }
-                        
- 
+                    */
+
                 }
 
+                if (arrowType == ArrowType.UPPER)
+                {
+                    if (!iMove)
+                    {
+                        Debug.Log("keft");
+                        arrowType = ArrowType.LEFT;
+                    }
+                }
+                /*
+                else
+                {
+                    if (bLeftMove)
+                        arrowType = ArrowType.LEFT;
+                    else if (bRightMove)
+                        arrowType = ArrowType.RIGHT;
+                }
+                */
 
                 if (arrowType == ArrowType.RIGHT && bRightMove)
                 {
@@ -310,10 +343,14 @@ public class DogData : BlockData
                     else if (arrowType == ArrowType.RIGHT)
                         X += 1;
                     else if (arrowType == ArrowType.UNDER)
+                    {
                         Y += -1;
+                    }
                 }
 
                 iMove = false;
+                if(arrowType == ArrowType.UPPER)
+                Debug.Log("aaaaa");
 
                 yield break;
             }

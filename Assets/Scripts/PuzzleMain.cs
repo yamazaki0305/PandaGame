@@ -194,6 +194,7 @@ public class PuzzleMain : MonoBehaviour
 
         ActiveBlockHeight = rowLength - DefaultBlockHeight;
         UnderArrowHeight = ActiveBlockHeight;
+        DogObject.GetComponent<DogData>().UnderArrowHeight = UnderArrowHeight;
 
         // can_alphabetにパズルエリアのアルフェベットを格納
         CheckPotentialPuzzle();
@@ -1796,12 +1797,6 @@ public class PuzzleMain : MonoBehaviour
         // 地面の下にブロックがある時
         if (UnderArrowHeight > 0)
         {
-            // 犬がいるかチェック
-            if (DogObject.GetComponent<DogData>().Y == rowLength - 1)
-            {
-                Debug.Log("inuiruyo");
-                //return false;
-            }
 
             /*
             for (int i = 0; i < columnLength; i++)
@@ -1821,6 +1816,8 @@ public class PuzzleMain : MonoBehaviour
             */
             // 犬をパズルデータにコピー
             PuzzleData[DogObject.GetComponent<DogData>().X, DogObject.GetComponent<DogData>().Y] = DogObject;
+            if (DogObject.GetComponent<DogData>().drop_count > 0)
+                DogObject.GetComponent<DogData>().iMove = true;
 
             //上に移動できる分全ての列を一番高い列が詰まるまで移動
             for (int i = 0; i < columnLength; i++)
@@ -1900,17 +1897,15 @@ public class PuzzleMain : MonoBehaviour
             Vector3 back_pos = new Vector3(0, GlassLineHeight + UnderArrowHeight * -BlockSize + 300, 100);
             BackPicture.GetComponent<Liner>().OnUpper(back_pos, 1);
 
-            //４列が上まで詰まっているか確認（Maskのないエリアの場合も最上部行があいていれば上に行く）
-            // 最上部行が全て空いているか確認（Maskのないエリアの場合も空いているカウントする）
-            //詰まっている列があれば何もしない、
-            //詰まっていない場合は何個上に移動できるか計算（1段ごとの計算でできなくなるまでループさせる）
-            //上に移動できる分全ての列を一番高い列が詰まるまで移動。
-            //列の最大個数より小さい列は移動しない。 
-
             return true;
         }
+        // 上げるブロックがない時に犬が下に移動した時
         else
+        {
+                        
+            DogObject.GetComponent<DogData>().iMove = false;
             return false;
+        }
 
     }
 

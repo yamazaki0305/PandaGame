@@ -17,6 +17,7 @@ public enum BlockType
     ALPHABET = 0,
     CRIMP,
     Animal = 4,
+    Dog = 5,
     SPACE
 }
 

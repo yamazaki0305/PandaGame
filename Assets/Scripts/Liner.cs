@@ -92,7 +92,16 @@ public class Liner : MonoBehaviour
 
             if (time == 1)
             {
+                // Liner.csのiMoveをfalse
                 iMove = false;
+
+                //DogDataのiMoveをfalseにする
+                if (this.GetComponent<BlockData>().blockType == BlockType.Dog )
+                {
+                    this.GetComponent<DogData>().iMove = false;
+                    Debug.Log("abcdefg");
+                }
+
                 yield break;
             }
 

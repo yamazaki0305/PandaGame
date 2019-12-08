@@ -13,6 +13,8 @@ using System.Globalization;
 
 public class DataBase
 {
+    public static bool DebugFlg = true; // デバッグモードにするか
+
     public static int PLAY = 0;
     public static int CLEAR = 1;
     public static int CLEAR_AFTER = 2;
