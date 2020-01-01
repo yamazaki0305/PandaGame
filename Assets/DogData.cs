@@ -203,6 +203,7 @@ public class DogData : BlockData
                     
                     drop_count = 0;
 
+                    arrowType = ArrowType.WAIT;
                     /*
                     {
                         if (bLeftMove)

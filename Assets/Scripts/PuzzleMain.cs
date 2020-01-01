@@ -1466,6 +1466,11 @@ public class PuzzleMain : MonoBehaviour
                     dogd.setPos(n, k, BlockSize, rowLength, columnLength, DefaultBlockHeight, BlockGroundHeight);
 
                 }
+                // ブロックの時
+                else if(str =="@")
+                {
+                    stageData[n, k] = "@";
+                }
                 //アルファベットランダム
                 else if (str == "?")
                 { 
