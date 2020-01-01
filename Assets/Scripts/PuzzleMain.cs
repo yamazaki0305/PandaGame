@@ -1466,10 +1466,10 @@ public class PuzzleMain : MonoBehaviour
                     dogd.setPos(n, k, BlockSize, rowLength, columnLength, DefaultBlockHeight, BlockGroundHeight);
 
                 }
-                // ブロックの時
+                // 固体ブロック（消せない）の時
                 else if(str =="@")
                 {
-                    stageData[n, k] = "@";
+                    stageData[n, k] = "crimp";
                 }
                 //アルファベットランダム
                 else if (str == "?")
@@ -1774,6 +1774,13 @@ public class PuzzleMain : MonoBehaviour
                         PuzzleData[i, j].name = "neko3"; // GameObjectの名前を決めている
                         StatusData.Animal3++;
                         StatusData.AnimalSum++;
+
+                    }
+                    // 障害ブロックの時
+                    else if(stageData[i, j] == "crimp")
+                    {
+                        PuzzleData[i, j].GetComponent<BlockData>().setup(BlockType.CRIMP, stageData[i, j], false, i, j);
+                        PuzzleData[i, j].name = "Crimp"; // GameObjectの名前を決めている
 
                     }
                     else

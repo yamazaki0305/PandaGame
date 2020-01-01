@@ -324,6 +324,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 9c885cbff61008845aff124152450072, type: 3}
   - {fileID: 21300000, guid: 0ad79af9fe9271f46bf9970f79553c5d, type: 3}
   - {fileID: 21300000, guid: 8e367b53774d59f42a8125530e7e694f, type: 3}
+  - {fileID: 21300000, guid: 209623d1d7943094792c6cac78684cc3, type: 3}
   animalType: 0
   blockType: 0
   Alphabet: 

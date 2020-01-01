@@ -15,7 +15,7 @@ public enum BlockType
 {
     INVALID = -1,
     ALPHABET = 0,
-    CRIMP,
+    CRIMP = 1, 
     Animal = 4,
     Dog = 5,
     SPACE
@@ -37,7 +37,8 @@ public enum AnimalType
     NEKO8 = 18,
     NEKO9 = 20,
     NEKO10 = 22,
-    NEKO11 = 24
+    NEKO11 = 24,
+    CRIMP = 42,
 }
 
 public class BlockData : MonoBehaviour
@@ -132,7 +133,11 @@ public class BlockData : MonoBehaviour
             this.GetComponent<SpriteRenderer>().sprite = Sprites[(int)AnimalType.BIRD];
             this.GetComponentInChildren<TextMesh>().text = "";
         }
-
+        else if (this.blockType == BlockType.CRIMP)
+        {
+            this.GetComponent<SpriteRenderer>().sprite = Sprites[(int)AnimalType.CRIMP];
+            this.GetComponentInChildren<TextMesh>().text = "";
+        }
 
     }
 
