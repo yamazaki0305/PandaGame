@@ -1,7 +1,7 @@
 !,+,+,I,+,
 O,F,F,@,C,
 P,O,S,E,?,
-E,X,E,C,T,
+E,X,E,E,T,
 R,N,A,S,?,
 A,A,P,L,E,
 T,I,O,N,?,
