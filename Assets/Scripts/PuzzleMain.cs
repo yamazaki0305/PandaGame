@@ -1076,7 +1076,6 @@ public class PuzzleMain : MonoBehaviour
                         PuzzleData[i, j].transform.SetParent(puzzleTransform);
                         PuzzleData[i, j].transform.localPosition = pos;
 
-                        Debug.Log("columnLength" + (columnLength) + "j" + j);
                         //アルフェベットブロックの位置をセット
                         pos = new Vector2(i * BlockSize - (BlockSize * columnLength) / 2 + BlockSize / 2, j * BlockSize + BlockGroundHeight - (rowLength - DefaultBlockHeight) * BlockSize);
                         PuzzleData[i, j].GetComponent<Liner>().OnUpper(pos, rowLength - j + 1);
@@ -1275,9 +1274,22 @@ public class PuzzleMain : MonoBehaviour
                     for (int k = 1; j + k<rowLength+margin_height; k++)
                     {
 
+                        /*
+                        // 空白PuzzleDataの上に障害ブロックが見つかった時
+                        if (PuzzleData[i, j + k].GetComponent<BlockData>().blockType == BlockType.CRIMP)
+                        {
+                            //break;
+                        }
+                        */
                         //もしNULL以外のPuzzleDataのブロックが見つかった時
                         if (PuzzleData[i, j + k] != null)
                         {
+                            // 空白PuzzleDataの上に障害ブロックが見つかった時
+                            if (PuzzleData[i, j + k].GetComponent<BlockData>().blockType == BlockType.CRIMP)
+                            {
+                                break;
+                            }
+
                             //PuzzleDataのX,Yのマスの位置を現在→新しい位置に更新
                             PuzzleData[i, j + k].GetComponent<BlockData>().X = i;
                             PuzzleData[i, j + k].GetComponent<BlockData>().Y = j;
