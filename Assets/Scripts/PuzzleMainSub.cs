@@ -116,6 +116,7 @@ public class StageStatus
     }
     public void StatusUpdate()
     {
+        /*
         GameObject.Find("TextAnimal1").GetComponent<Text>().text = "/"+this.Animal1.ToString();
         //if(Animal1 == Animal1OK)
         //    GameObject.Find("TextAnimal1OK").GetComponent<Text>().text = "<color='#FFFF99'>"+this.Animal1OK.ToString() + "</color>";
@@ -133,6 +134,7 @@ public class StageStatus
         //    GameObject.Find("TextAnimal3OK").GetComponent<Text>().text = "<color='#FFFF99'>" + this.Animal3OK.ToString() + "</color>";
         //else
         GameObject.Find("TextAnimal3OK").GetComponent<Text>().text = this.Animal3OK.ToString();
+        */
 
         // Letterを表示
         if (b_letter)

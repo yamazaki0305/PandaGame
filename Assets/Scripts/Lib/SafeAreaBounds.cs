@@ -69,7 +69,6 @@ public class SafeAreaBounds : MonoBehaviour
             {
 
                 positionOffset = new Vector2(0f, area.size.y * 34f / 812f);
-
                 sizeOffset = positionOffset + new Vector2(0f, area.size.y * 44f / 812f);
 
             }
