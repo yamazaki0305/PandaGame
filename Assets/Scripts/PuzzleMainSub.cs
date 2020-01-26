@@ -53,6 +53,7 @@ public class StageStatus
     public AnimalType AnimalTypeOK3; // スコアのAnimal3のAnimalType
 
     public GameObject[] StarObjStar = new GameObject[3];
+    private GameObject BarObj; //スコアバーを更新
 
     //ヘッダーに表示するステータスのclass
     // コンストラクタでインスタンスを生成した時に情報を渡す
@@ -80,6 +81,7 @@ public class StageStatus
         for(int i=0;i<3;i++)
             bstar[i] = false;
 
+        BarObj = GameObject.Find("Bar");
         StatusUpdate();
     }
 
@@ -116,6 +118,7 @@ public class StageStatus
     }
     public void StatusUpdate()
     {
+
         /*
         GameObject.Find("TextAnimal1").GetComponent<Text>().text = "/"+this.Animal1.ToString();
         //if(Animal1 == Animal1OK)
@@ -162,6 +165,9 @@ public class StageStatus
         StarObjStar[2] = GameObject.Find("Star 3");
         //StarObjStar[2].SetActive(false);
 
+        float fill = (float)this.Score / this.StarScore;
+        BarObj.GetComponent<Image>().fillAmount = fill;
+        Debug.Log("Score:" + fill);
     }
 
     // 動画広告を見た時の手数の更新
@@ -186,38 +192,42 @@ public class StageStatus
     {
         bool bAdd = false;
 
-        // Letter
-        if ( !b_letter && str.Length >= StarLetter)
-        {
-            b_letter = true;
-            star++;
-            bAdd = true;
-            // Letterを表示
-            GameObject.Find("Letter Amount").GetComponent<Text>().text = "<color='#FFFF99'>" + this.StarLetter.ToString()+"</color>";
-        }
+        // スコアバーを小数点で記録
+        float fill = (float)this.Score / this.StarScore;
 
-        // Score
-        if ( !b_score && Score >= StarScore )
+        // スコアバーが40%を達成したら☆をつける
+        if(!bstar[0])
         {
-            b_score = true;
-            star++;
-            bAdd = true;
-            GameObject.Find("Score Amount").GetComponent<Text>().text = "<color='#FFFF99'>" + this.Score.ToString() + "</color>";
-        }
-
-        // temp_iの★がstarを超えたら保存
-        if (bAdd)
-        {
-            for (int i = 0; i < star; i++)
+            if (fill >= 0.4f)
             {
-                if (!bstar[i])
-                {
-                    bstar[i] = true;
-                    StarObjStar[i].GetComponent<Animator>().SetTrigger("StarTrigger");
-
-                }
+                Debug.Log("fffffffffff");
+                bstar[0] = true;
+                StarObjStar[0].GetComponent<Animator>().SetTrigger("StarTrigger");
+                bAdd = true;
             }
         }
+        // スコアバーが70%を達成したら☆をつける
+        if (!bstar[1])
+        {
+            if (fill >= 0.7f)
+            {
+                bstar[1] = true;
+                StarObjStar[1].GetComponent<Animator>().SetTrigger("StarTrigger");
+                bAdd = true;
+            }
+        }
+        // スコアバーが100%を達成したら☆をつける
+        if (!bstar[2])
+        {
+            if (fill >= 1.0f)
+            {
+                bstar[2] = true;
+                StarObjStar[2].GetComponent<Animator>().SetTrigger("StarTrigger");
+                bAdd = true;
+            }
+        }
+
+
         return bAdd;
 
     }
