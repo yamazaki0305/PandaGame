@@ -21,7 +21,7 @@ public class DataBase
     public static int MISS = 3;
     public static int MAXSTAGE = 40;
 
-    public static int playLevel = 12;
+    public static int playLevel = 2;
     public static int openLevel = 1;
     public static int RecordWord = 0;
     public static bool NewWordBook = false; //WordBookにNewアイコンをつけるかのフラグ
@@ -29,7 +29,7 @@ public class DataBase
     public static bool AdRewordOK = false; // 動画広告を最後まで見るとONになる
     public static bool AdRealTest = true; // trueのときは本番広告を使用する
     public static bool LangJapanese = true; // 言語が日本語:true 英語:false
-    /// </summary>
+    public static int STAR_TOUCH_SCORE = 1000; // スコアにタッチした時
 
     public static int[] level_star = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -41,9 +41,9 @@ public class DataBase
     public static bool bScoreOutputFlg = false;
     public static bool bScoreOutputNow = false;
     public static int score_count = 0;
-    public static bool bRescueOutputFlg = false;
-    public static bool bRescueOutputNow = false;
-    public static int rescue_count = 0;
+    public static bool bRescueStarOutputFlg = false;
+    public static bool bRescueStarOutputNow = false;
+    public static int RescueStarCount = 0;
     public static bool bMovesOutputFlg = false;
     public static bool bMovesOutputNow = false;
     public static bool bGameClearFlg = false;

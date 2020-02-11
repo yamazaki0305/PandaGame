@@ -74,6 +74,16 @@ public class DogData : BlockData
 
     }
 
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.name == "star")
+        {
+            other.GetComponent<BlockData>().TouchStar();
+
+        }
+
+    }
+
     // 初期位置をセット
     public void setPos(int _x, int _y, int _BlockSize, int _rowLength, int _columnLength, int _DefaultBlockHeight, int _BlockGroundHeight)
     {
@@ -181,7 +191,6 @@ public class DogData : BlockData
                     {
                         if (main.GetComponent<PuzzleMain>().UndderArrowCheck())
                         {
-                            Debug.Log("デバッグ");
 
                             arrowType = ArrowType.UPPER;
 
@@ -219,7 +228,6 @@ public class DogData : BlockData
                 {
                     if (!iMove)
                     {
-                        Debug.Log("keft");
                         arrowType = ArrowType.LEFT;
                     }
                 }
@@ -350,8 +358,8 @@ public class DogData : BlockData
                 }
 
                 iMove = false;
-                if(arrowType == ArrowType.UPPER)
-                Debug.Log("aaaaa");
+                //if(arrowType == ArrowType.UPPER)
+
 
                 yield break;
             }

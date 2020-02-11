@@ -167,7 +167,6 @@ public class StageStatus
 
         float fill = (float)this.Score / this.StarScore;
         BarObj.GetComponent<Image>().fillAmount = fill;
-        Debug.Log("Score:" + fill);
     }
 
     // 動画広告を見た時の手数の更新
@@ -200,10 +199,10 @@ public class StageStatus
         {
             if (fill >= 0.4f)
             {
-                Debug.Log("fffffffffff");
                 bstar[0] = true;
                 StarObjStar[0].GetComponent<Animator>().SetTrigger("StarTrigger");
                 bAdd = true;
+                star++;
             }
         }
         // スコアバーが70%を達成したら☆をつける
@@ -214,6 +213,7 @@ public class StageStatus
                 bstar[1] = true;
                 StarObjStar[1].GetComponent<Animator>().SetTrigger("StarTrigger");
                 bAdd = true;
+                star++;
             }
         }
         // スコアバーが100%を達成したら☆をつける
@@ -224,6 +224,7 @@ public class StageStatus
                 bstar[2] = true;
                 StarObjStar[2].GetComponent<Animator>().SetTrigger("StarTrigger");
                 bAdd = true;
+                star++;
             }
         }
 
@@ -234,7 +235,6 @@ public class StageStatus
 
     public void StarClearAdd()
     {
-        star++;
 
         for (int i = 0; i < star; i++)
         {

@@ -60,9 +60,9 @@ public class ScoreLiner : MonoBehaviour
         float duration = 2f;
         ScoreText = this.GetComponent<Text>();
 
-        int point = count * 300; 
+        int point = count * DataBase.STAR_TOUCH_SCORE; 
 
-        ScoreText.text = "Rescue " + count + " +" + point;
+        ScoreText.text = "Star " + count + " +" + point;
         startPosition = transform.localPosition;
         Vector3 toPos = new Vector3(startPosition.x + 0, startPosition.y + 400, 1);
 
@@ -249,7 +249,7 @@ public class ScoreLiner : MonoBehaviour
                 if (score_kind == SCORE)
                     DataBase.bScoreOutputNow = false;
                 else if (score_kind == RESCUE)
-                    DataBase.bRescueOutputNow = false;
+                    DataBase.bRescueStarOutputNow = false;
 
                 yield break;
             }

@@ -66,7 +66,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 16477522e7e2e4c22ba19ccc2994af77, type: 3}
+  - {fileID: 2100000, guid: 0a7298410b0be36438bf63dc18e1cedc, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -95,7 +95,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -238,10 +238,10 @@ TextMesh:
   m_Anchor: 4
   m_Alignment: 1
   m_TabSize: 4
-  m_FontSize: 50
+  m_FontSize: 80
   m_FontStyle: 0
   m_RichText: 1
-  m_Font: {fileID: 12800000, guid: 16477522e7e2e4c22ba19ccc2994af77, type: 3}
+  m_Font: {fileID: 12800000, guid: 0a7298410b0be36438bf63dc18e1cedc, type: 3}
   m_Color:
     serializedVersion: 2
     rgba: 4282729798
@@ -286,8 +286,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 8d3413ec6e95236469243c13b6c36ff2, type: 3}
   - {fileID: 21300000, guid: 722f5d1a7b934a349b5a68c9157f26e9, type: 3}
   - {fileID: 21300000, guid: e863f396d043c00448f4a1b89bc67b86, type: 3}
-  - {fileID: 21300000, guid: 161292ef18f9a3b46aae981912ca5989, type: 3}
-  - {fileID: 21300000, guid: 6b8ac4c65d234bf4da193814cc2a7311, type: 3}
+  - {fileID: 21300000, guid: 016a39ecf4f75a443b1d0b7d0081bb56, type: 3}
+  - {fileID: 21300000, guid: 016a39ecf4f75a443b1d0b7d0081bb56, type: 3}
   - {fileID: 21300000, guid: 8b4ebb6ed13d0f04ca0cbc95f1ccfe6f, type: 3}
   - {fileID: 21300000, guid: 9dd34af70fd250942acbed9bc64939a7, type: 3}
   - {fileID: 21300000, guid: 71635b985e7d66b41aead2b02de36037, type: 3}

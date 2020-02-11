@@ -202,6 +202,9 @@ public class PuzzleMain : MonoBehaviour
 
         /////////////////
 
+        // ステージLevelを表示
+        GameObject.Find("LevelText").GetComponent<Text>().text = "レベル " + DataBase.playLevel;
+
         // ゲームモードがハードの時
         if (!DataBase.GameMode_Easy)
             GameObject.Find("CanWordText").SetActive(false);
@@ -528,7 +531,6 @@ public class PuzzleMain : MonoBehaviour
                                     // ここでRayが当たったGameObjectを取得できる
                                     EigoText += blockData.Alphabet;
                                     EigoButton.GetComponentInChildren<Text>().text = EigoText;
-                                    //                            Debug.Log(EigoText);
 
                                     //英単語になったかの判定
                                     bool judge = EigoJudgement();
@@ -624,24 +626,25 @@ public class PuzzleMain : MonoBehaviour
 
             //スコアやスターリワードをチェック
         }
-        if (DataBase.bRescueOutputFlg)
+        // スターに接触した時のフラグ
+        if (DataBase.bRescueStarOutputFlg)
         {
-            this.GetComponent<ScorePopup>().RescueOutput(DataBase.rescue_count);
+            this.GetComponent<ScorePopup>().RescueOutput(DataBase.RescueStarCount);
 
-            StatusData.ScoreUpdate(300*DataBase.rescue_count);
+            StatusData.ScoreUpdate(DataBase.STAR_TOUCH_SCORE * DataBase.RescueStarCount);
             StatusData.StarCheck(EigoText);
 
-            DataBase.rescue_count = 0;
-            DataBase.bRescueOutputFlg = false;
+            DataBase.RescueStarCount = 0;
+            DataBase.bRescueStarOutputFlg = false;
 
             AudioSource a1;
-            AudioClip audio = Resources.Load("SOUND/SE/Pretty_Kitten_Meow_1B_Synthesized_1648", typeof(AudioClip)) as AudioClip;
+            AudioClip audio = Resources.Load("SOUND/SE/Button", typeof(AudioClip)) as AudioClip;
             a1 = gameObject.AddComponent<AudioSource>();
             a1.clip = audio;
             a1.Play();
 
         }
-        if (DataBase.bGameClearFlg && !DataBase.bScoreOutputNow && !DataBase.bRescueOutputNow )
+        if (DataBase.bGameClearFlg && !DataBase.bScoreOutputNow && !DataBase.bRescueStarOutputNow )
         {
             this.GetComponent<ScorePopup>().GameClearOutput();
             StatusData.StarClearAdd();
@@ -722,9 +725,9 @@ public class PuzzleMain : MonoBehaviour
         DataBase.bScoreOutputFlg = false;
         DataBase.bScoreOutputNow = false;
         DataBase.score_count = 0;
-        DataBase.bRescueOutputFlg = false;
-        DataBase.bRescueOutputNow = false;
-        DataBase.rescue_count = 0;
+        DataBase.bRescueStarOutputFlg = false;
+        DataBase.bRescueStarOutputNow = false;
+        DataBase.RescueStarCount = 0;
         DataBase.bMovesOutputFlg = false;
         DataBase.bMovesOutputNow = false;
         DataBase.bGameClearFlg = false;
@@ -877,7 +880,6 @@ public class PuzzleMain : MonoBehaviour
                 tempStr = EigoText.ToLowerInvariant();
                 tempStr = char.ToUpper(EigoText[0]) + tempStr.Substring(1);
 
-                Debug.Log("tempStr:" + tempStr);
                 for (int i = 0; i < ignore_word.Length; i++)
                 {
 
@@ -1180,9 +1182,9 @@ public class PuzzleMain : MonoBehaviour
                             if (PuzzleData[i, j].GetComponent<BlockData>().alpha == 1.0f)
                             {
                                 // スコア表示
-                                DataBase.bRescueOutputFlg = true;
-                                DataBase.bRescueOutputNow = true;
-                                DataBase.rescue_count++;
+                                DataBase.bRescueStarOutputFlg = true;
+                                DataBase.bRescueStarOutputNow = true;
+                                DataBase.RescueStarCount++;
                             }
 
                             PuzzleData[i, j].GetComponent<BlockData>().alpha -= Time.deltaTime;
@@ -1450,15 +1452,7 @@ public class PuzzleMain : MonoBehaviour
                 //bird * kaeru # rabbit $
                 if (str == "*")
                 {
-                    stageData[n, k] = "neko1";
-                }
-                else if( str == "#")
-                {
-                    stageData[n, k] = "neko2";
-                }
-                else if( str == "$")
-                {
-                    stageData[n, k] = "neko3";
+                    stageData[n, k] = "star";
                 }
                 //maskなし
                 else if (str == "-")
@@ -1537,216 +1531,14 @@ public class PuzzleMain : MonoBehaviour
         int[] NekoIDRandBest = new int[8] { 4, 8, 12, 18, 20, 22, 26, 34 };
         //int[] NekoIDRand = new int[3] { 20, 22, 24 };
 
+        // starは4
 
-        int NekoID1, NekoID2, NekoID3;
-
-
-        // ステージによってねこを変えます
-        if ( DataBase.playLevel == 1)
-        {
-            NekoID1 = 4;
-            //GameObject.Find("AnimalItem1").GetComponent<Image>().sprite = puzzlePrefab.GetComponent<BlockData>().Sprites[NekoID1];
-            StatusData.AnimalTypeOK1 = (AnimalType)NekoID1;
-            NekoID2 = 8;
-            //GameObject.Find("AnimalItem2").GetComponent<Image>().sprite = puzzlePrefab.GetComponent<BlockData>().Sprites[NekoID2];
-            StatusData.AnimalTypeOK2 = (AnimalType)NekoID2;
-            NekoID3 = 12;
-            //GameObject.Find("AnimalItem3").GetComponent<Image>().sprite = puzzlePrefab.GetComponent<BlockData>().Sprites[NekoID3];
-            StatusData.AnimalTypeOK3 = (AnimalType)NekoID3;
-
-        }
-        else if (DataBase.playLevel == 2)
-        {
-            NekoID1 = 20;
-            //GameObject.Find("AnimalItem1").GetComponent<Image>().sprite = puzzlePrefab.GetComponent<BlockData>().Sprites[NekoID1];
-            StatusData.AnimalTypeOK1 = (AnimalType)NekoID1;
-            NekoID2 = 22;
-            //GameObject.Find("AnimalItem2").GetComponent<Image>().sprite = puzzlePrefab.GetComponent<BlockData>().Sprites[NekoID2];
-            StatusData.AnimalTypeOK2 = (AnimalType)NekoID2;
-            NekoID3 = 24;
-            //GameObject.Find("AnimalItem3").GetComponent<Image>().sprite = puzzlePrefab.GetComponent<BlockData>().Sprites[NekoID3];
-            StatusData.AnimalTypeOK3 = (AnimalType)NekoID3;
-
-        }
-        else if (DataBase.playLevel == 3)
-        {
-            NekoID1 = 4;
-            //GameObject.Find("AnimalItem1").GetComponent<Image>().sprite = puzzlePrefab.GetComponent<BlockData>().Sprites[NekoID1];
-            StatusData.AnimalTypeOK1 = (AnimalType)NekoID1;
-            NekoID2 = 8;
-            //GameObject.Find("AnimalItem2").GetComponent<Image>().sprite = puzzlePrefab.GetComponent<BlockData>().Sprites[NekoID2];
-            StatusData.AnimalTypeOK2 = (AnimalType)NekoID2;
-            NekoID3 = 18;
-            //GameObject.Find("AnimalItem3").GetComponent<Image>().sprite = puzzlePrefab.GetComponent<BlockData>().Sprites[NekoID3];
-            StatusData.AnimalTypeOK3 = (AnimalType)NekoID3;
-
-        }
-        else if (DataBase.playLevel == 4)
-        {
-            NekoID1 = 32;
-            //GameObject.Find("AnimalItem1").GetComponent<Image>().sprite = puzzlePrefab.GetComponent<BlockData>().Sprites[NekoID1];
-            StatusData.AnimalTypeOK1 = (AnimalType)NekoID1;
-            NekoID2 = 34;
-            //GameObject.Find("AnimalItem2").GetComponent<Image>().sprite = puzzlePrefab.GetComponent<BlockData>().Sprites[NekoID2];
-            StatusData.AnimalTypeOK2 = (AnimalType)NekoID2;
-            NekoID3 = 36;
-            //GameObject.Find("AnimalItem3").GetComponent<Image>().sprite = puzzlePrefab.GetComponent<BlockData>().Sprites[NekoID3];
-            StatusData.AnimalTypeOK3 = (AnimalType)NekoID3;
-
-        }
-        else if (DataBase.playLevel == 5)
-        {
-            NekoID1 = 12;
-            //eObject.Find("AnimalItem1").GetComponent<Image>().sprite = puzzlePrefab.GetComponent<BlockData>().Sprites[NekoID1];
-            StatusData.AnimalTypeOK1 = (AnimalType)NekoID1;
-            NekoID2 = 22;
-            //GameObject.Find("AnimalItem2").GetComponent<Image>().sprite = puzzlePrefab.GetComponent<BlockData>().Sprites[NekoID2];
-            StatusData.AnimalTypeOK2 = (AnimalType)NekoID2;
-            NekoID3 = 8;
-            //GameObject.Find("AnimalItem3").GetComponent<Image>().sprite = puzzlePrefab.GetComponent<BlockData>().Sprites[NekoID3];
-            StatusData.AnimalTypeOK3 = (AnimalType)NekoID3;
-
-        }
-        else if (DataBase.playLevel == 6)
-        {
-            NekoID1 = 26;
-            //GameObject.Find("AnimalItem1").GetComponent<Image>().sprite = puzzlePrefab.GetComponent<BlockData>().Sprites[NekoID1];
-            StatusData.AnimalTypeOK1 = (AnimalType)NekoID1;
-            NekoID2 = 28;
-            //GameObject.Find("AnimalItem2").GetComponent<Image>().sprite = puzzlePrefab.GetComponent<BlockData>().Sprites[NekoID2];
-            StatusData.AnimalTypeOK2 = (AnimalType)NekoID2;
-            NekoID3 = 30;
-            //GameObject.Find("AnimalItem3").GetComponent<Image>().sprite = puzzlePrefab.GetComponent<BlockData>().Sprites[NekoID3];
-            StatusData.AnimalTypeOK3 = (AnimalType)NekoID3;
-
-        }
-        else if (DataBase.playLevel == 7)
-        {
-            NekoID1 = 4;
-            //GameObject.Find("AnimalItem1").GetComponent<Image>().sprite = puzzlePrefab.GetComponent<BlockData>().Sprites[NekoID1];
-            StatusData.AnimalTypeOK1 = (AnimalType)NekoID1;
-            NekoID2 = 8;
-            //GameObject.Find("AnimalItem2").GetComponent<Image>().sprite = puzzlePrefab.GetComponent<BlockData>().Sprites[NekoID2];
-            StatusData.AnimalTypeOK2 = (AnimalType)NekoID2;
-            NekoID3 = 12;
-            //GameObject.Find("AnimalItem3").GetComponent<Image>().sprite = puzzlePrefab.GetComponent<BlockData>().Sprites[NekoID3];
-            StatusData.AnimalTypeOK3 = (AnimalType)NekoID3;
-
-        }
-        else if (DataBase.playLevel == 8)
-        {
-            NekoID1 = 20;
-            //GameObject.Find("AnimalItem1").GetComponent<Image>().sprite = puzzlePrefab.GetComponent<BlockData>().Sprites[NekoID1];
-            StatusData.AnimalTypeOK1 = (AnimalType)NekoID1;
-            NekoID2 = 36;
-            //GameObject.Find("AnimalItem2").GetComponent<Image>().sprite = puzzlePrefab.GetComponent<BlockData>().Sprites[NekoID2];
-            StatusData.AnimalTypeOK2 = (AnimalType)NekoID2;
-            NekoID3 = 22;
-            //GameObject.Find("AnimalItem3").GetComponent<Image>().sprite = puzzlePrefab.GetComponent<BlockData>().Sprites[NekoID3];
-            StatusData.AnimalTypeOK3 = (AnimalType)NekoID3;
-
-        }
-        else if (DataBase.playLevel == 9)
-        {
-            NekoID1 = 4;
-            //GameObject.Find("AnimalItem1").GetComponent<Image>().sprite = puzzlePrefab.GetComponent<BlockData>().Sprites[NekoID1];
-            StatusData.AnimalTypeOK1 = (AnimalType)NekoID1;
-            NekoID2 = 8;
-            //GameObject.Find("AnimalItem2").GetComponent<Image>().sprite = puzzlePrefab.GetComponent<BlockData>().Sprites[NekoID2];
-            StatusData.AnimalTypeOK2 = (AnimalType)NekoID2;
-            NekoID3 = 18;
-            //GameObject.Find("AnimalItem3").GetComponent<Image>().sprite = puzzlePrefab.GetComponent<BlockData>().Sprites[NekoID3];
-            StatusData.AnimalTypeOK3 = (AnimalType)NekoID3;
-
-        }
-        else if (DataBase.playLevel == 10)
-        {
-            NekoID1 = 20;
-            //GameObject.Find("AnimalItem1").GetComponent<Image>().sprite = puzzlePrefab.GetComponent<BlockData>().Sprites[NekoID1];
-            StatusData.AnimalTypeOK1 = (AnimalType)NekoID1;
-            NekoID2 = 26;
-            //GameObject.Find("AnimalItem2").GetComponent<Image>().sprite = puzzlePrefab.GetComponent<BlockData>().Sprites[NekoID2];
-            StatusData.AnimalTypeOK2 = (AnimalType)NekoID2;
-            NekoID3 = 32;
-            //GameObject.Find("AnimalItem3").GetComponent<Image>().sprite = puzzlePrefab.GetComponent<BlockData>().Sprites[NekoID3];
-            StatusData.AnimalTypeOK3 = (AnimalType)NekoID3;
-
-        }
-        else
-        {
-            int randID = UnityEngine.Random.Range(0, 6);
-
-            if(randID < 3)
-            {
-                NekoID1 = NekoIDRand1[UnityEngine.Random.Range(0, NekoIDRand1.Length)];
-                //GameObject.Find("AnimalItem1").GetComponent<Image>().sprite = puzzlePrefab.GetComponent<BlockData>().Sprites[NekoID1];
-                StatusData.AnimalTypeOK1 = (AnimalType)NekoID1;
-
-                NekoID2 = NekoID1;
-                while (NekoID2 == NekoID1)
-                {
-                    NekoID2 = NekoIDRand1[UnityEngine.Random.Range(0, NekoIDRand1.Length)];
-                }
-                //GameObject.Find("AnimalItem2").GetComponent<Image>().sprite = puzzlePrefab.GetComponent<BlockData>().Sprites[NekoID2];
-                StatusData.AnimalTypeOK2 = (AnimalType)NekoID2;
-
-                NekoID3 = NekoID2;
-                while (NekoID3 == NekoID1 || NekoID3 == NekoID2)
-                {
-                    NekoID3 = NekoIDRand1[UnityEngine.Random.Range(0, NekoIDRand1.Length)];
-                }
-                //GameObject.Find("AnimalItem3").GetComponent<Image>().sprite = puzzlePrefab.GetComponent<BlockData>().Sprites[NekoID3];
-                StatusData.AnimalTypeOK3 = (AnimalType)NekoID3;
-
-            }
-            else if( 3 <= randID && randID < 5)
-            {
-                NekoID1 = NekoIDRand2[UnityEngine.Random.Range(0, NekoIDRand2.Length)];
-                //GameObject.Find("AnimalItem1").GetComponent<Image>().sprite = puzzlePrefab.GetComponent<BlockData>().Sprites[NekoID1];
-                StatusData.AnimalTypeOK1 = (AnimalType)NekoID1;
-
-                NekoID2 = NekoID1;
-                while (NekoID2 == NekoID1)
-                {
-                    NekoID2 = NekoIDRand2[UnityEngine.Random.Range(0, NekoIDRand2.Length)];
-                }
-                //GameObject.Find("AnimalItem2").GetComponent<Image>().sprite = puzzlePrefab.GetComponent<BlockData>().Sprites[NekoID2];
-                StatusData.AnimalTypeOK2 = (AnimalType)NekoID2;
-
-                NekoID3 = NekoID2;
-                while (NekoID3 == NekoID1 || NekoID3 == NekoID2)
-                {
-                    NekoID3 = NekoIDRand2[UnityEngine.Random.Range(0, NekoIDRand2.Length)];
-                }
-                //GameObject.Find("AnimalItem3").GetComponent<Image>().sprite = puzzlePrefab.GetComponent<BlockData>().Sprites[NekoID3];
-                StatusData.AnimalTypeOK3 = (AnimalType)NekoID3;
-            }
-            else
-            {
-                NekoID1 = NekoIDRandBest[UnityEngine.Random.Range(0, NekoIDRandBest.Length)];
-                //GameObject.Find("AnimalItem1").GetComponent<Image>().sprite = puzzlePrefab.GetComponent<BlockData>().Sprites[NekoID1];
-                StatusData.AnimalTypeOK1 = (AnimalType)NekoID1;
-
-                NekoID2 = NekoID1;
-                while (NekoID2 == NekoID1)
-                {
-                    NekoID2 = NekoIDRand[UnityEngine.Random.Range(0, NekoIDRand.Length)];
-                }
-                //GameObject.Find("AnimalItem2").GetComponent<Image>().sprite = puzzlePrefab.GetComponent<BlockData>().Sprites[NekoID2];
-                StatusData.AnimalTypeOK2 = (AnimalType)NekoID2;
-
-                NekoID3 = NekoID2;
-                while (NekoID3 == NekoID1 || NekoID3 == NekoID2)
-                {
-                    NekoID3 = NekoIDRand[UnityEngine.Random.Range(0, NekoIDRand.Length)];
-                }
-                //GameObject.Find("AnimalItem3").GetComponent<Image>().sprite = puzzlePrefab.GetComponent<BlockData>().Sprites[NekoID3];
-                StatusData.AnimalTypeOK3 = (AnimalType)NekoID3;
-            }
+        int NekoID1=4, NekoID2=4, NekoID3=4;
+        
+        StatusData.AnimalTypeOK1 = (AnimalType)NekoID1;
+        StatusData.AnimalTypeOK2 = (AnimalType)NekoID2;
+        StatusData.AnimalTypeOK3 = (AnimalType)NekoID3;
             
-
-
-        }
 
 
         // stageDataからPuzzleDataを作成する
@@ -1765,30 +1557,12 @@ public class PuzzleMain : MonoBehaviour
 
                     // スクリプトからインスタンス（動的にゲームオブジェクトを指定数だけ作る
                     PuzzleData[i, j] = Instantiate(puzzlePrefab, pos, Quaternion.identity);
-                    if (stageData[i, j] == "neko1")
+                    if (stageData[i, j] == "star")
                     {
                         PuzzleData[i, j].GetComponent<BlockData>().setup(BlockType.Animal, stageData[i, j], false, i, j);
                         PuzzleData[i, j].GetComponent<BlockData>().setAnimalInt(NekoID1);
-                        PuzzleData[i, j].name = "neko1"; // GameObjectの名前を決めている
+                        PuzzleData[i, j].name = "star"; // GameObjectの名前を決めている
                         StatusData.Animal1++;
-                        StatusData.AnimalSum++;
-
-                    }
-                    else if (stageData[i, j] == "neko2")
-                    {
-                        PuzzleData[i, j].GetComponent<BlockData>().setup(BlockType.Animal, stageData[i, j], false, i, j);
-                        PuzzleData[i, j].GetComponent<BlockData>().setAnimalInt(NekoID2);
-                        PuzzleData[i, j].name = "neko2"; // GameObjectの名前を決めている
-                        StatusData.Animal2++;
-                        StatusData.AnimalSum++;
-
-                    }
-                    else if (stageData[i, j] == "neko3")
-                    {
-                        PuzzleData[i, j].GetComponent<BlockData>().setup(BlockType.Animal, stageData[i, j], false, i, j);
-                        PuzzleData[i, j].GetComponent<BlockData>().setAnimalInt(NekoID3);
-                        PuzzleData[i, j].name = "neko3"; // GameObjectの名前を決めている
-                        StatusData.Animal3++;
                         StatusData.AnimalSum++;
 
                     }
@@ -1970,10 +1744,12 @@ public class PuzzleMain : MonoBehaviour
         }
 
         // 現在のアルファベットブロック数をDebugLogに表示
+        /*
         for (int i = 0; i < 26; i++)
         {
             Debug.Log(eigochar[i] + ":" + can_alphabet[i]);
         }
+        */
 
         GameObject.Find("CanWordText").GetComponent<CanWordController>().CopyCanAlphabet(can_alphabet);
 

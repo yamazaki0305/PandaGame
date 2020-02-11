@@ -193,5 +193,19 @@ public class BlockData : MonoBehaviour
 
     }
 
+    // ☆に触れた時
+    public void TouchStar()
+    {
+        AudioSource a1;
+        AudioClip audio = Resources.Load("SOUND/SE/Button", typeof(AudioClip)) as AudioClip;
+        a1 = gameObject.AddComponent<AudioSource>();
+        a1.clip = audio;
+        a1.Play();
+
+        DataBase.bRescueStarOutputFlg = true;
+        DataBase.RescueStarCount++;
+
+        GameObject.Destroy(this.gameObject);
+    }
 
 }
