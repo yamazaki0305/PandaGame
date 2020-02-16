@@ -2,7 +2,7 @@
 O,F,F,@,C,
 P,O,S,E,?,
 E,X,E,E,T,
-R,N,A,S,?,
+R,N,A,*,?,
 A,A,P,L,E,
 T,I,O,N,?,
 E,H,U,R,?,
