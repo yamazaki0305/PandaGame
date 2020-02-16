@@ -117,6 +117,7 @@ public class PuzzleMain : MonoBehaviour
 
     // リストを作っている
     private List<GameObject> PuzzleDataList = new List<GameObject>();
+    public List<GameObject> StarDataList = new List<GameObject>();
 
     // ゲームループフラグを管理
     GameLoopFlg GameFlg = GameLoopFlg.StartInfo;
@@ -275,7 +276,7 @@ public class PuzzleMain : MonoBehaviour
 
         if (DataBase.LangJapanese)
         {
-            StageText.text = "Level " + DataBase.playLevel.ToString() + "\r\nねこを" + StatusData.AnimalSum.ToString() + "匹助けよう";
+            StageText.text = "Level " + DataBase.playLevel.ToString() + "\r\nパンダの犬を助けよう";
             if (StatusData.timeflg)
                 StageText.text += "\r\n制限時間 " + (StatusData.time - 1) + "秒";
 
@@ -1263,6 +1264,7 @@ public class PuzzleMain : MonoBehaviour
     //PuzzleDataの空白を探す
     public bool CheckBlockSpace()
     {
+
         bool b=false;
 
         //PuzzleDataの空白を探す
@@ -1326,6 +1328,7 @@ public class PuzzleMain : MonoBehaviour
         }
 
         //地面に到着した猫を探す
+        /*
         for (int i = 0; i<columnLength; i++)
         {
             if (PuzzleData[i, DeathBlockHeight] != null)
@@ -1337,6 +1340,7 @@ public class PuzzleMain : MonoBehaviour
                 }
             }
         }
+        */
 
         return b;
     }
@@ -1564,6 +1568,9 @@ public class PuzzleMain : MonoBehaviour
                         PuzzleData[i, j].name = "star"; // GameObjectの名前を決めている
                         StatusData.Animal1++;
                         StatusData.AnimalSum++;
+
+                        // STARのObjectを追加
+                        StarDataList.Add(PuzzleData[i, j]);
 
                     }
                     // 障害ブロックの時

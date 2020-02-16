@@ -71,14 +71,32 @@ public class DogData : BlockData
             text.text += "\n" + "X:" + X + " Y:" + Y;
             text.text += " drop:" + drop_count;
         }
-
+        
+        if(iMove==false)
+        {
+            PuzzleMain main = GameObject.Find("GameRoot").GetComponent<PuzzleMain>();
+            Debug.Log("starcheck"+ main.StarDataList.Count);
+            starCheck();
+        }
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.name == "star")
         {
-            other.GetComponent<BlockData>().TouchStar();
+            //other.GetComponent<BlockData>().TouchStar();
+            /*
+            switch (arrowType)
+            {
+                case ArrowType.LEFT:
+                    arrowType = ArrowType.RIGHT;
+                    break;
+                case ArrowType.RIGHT:
+                    arrowType = ArrowType.LEFT;
+                    break;
+
+            }
+            */
 
         }
 
@@ -120,7 +138,7 @@ public class DogData : BlockData
             //左右下に移動できるか判定
             if (X == 0)
                 bLeftMove = false;
-            else if (_PuzzleData[X - 1, Y] == null)
+            else if (_PuzzleData[X - 1, Y] == null || _PuzzleData[X - 1, Y].GetComponent<BlockData>().animalType == AnimalType.STAR)
                 bLeftMove = true;
             else
                 bLeftMove = false;
@@ -129,7 +147,7 @@ public class DogData : BlockData
             {
                 bRightMove = false;
             }
-            else if (_PuzzleData[X + 1, Y] == null)
+            else if (_PuzzleData[X + 1, Y] == null || _PuzzleData[X + 1, Y].GetComponent<BlockData>().animalType == AnimalType.STAR)
                 bRightMove = true;
             else
                 bRightMove = false;
@@ -287,6 +305,63 @@ public class DogData : BlockData
 
 
     }
+
+    // 犬の上下左右に☆がないかチェック
+    public void starCheck()
+    {
+        PuzzleMain main = GameObject.Find("GameRoot").GetComponent<PuzzleMain>();
+        bool bb = false;
+
+        //starのList配列を探索
+        int i;
+        for(i=0; i<main.StarDataList.Count(); i++)
+        {
+            // 左をチェック
+            if (main.StarDataList[i].GetComponent<BlockData>().X == this.X-1 && main.StarDataList[i].GetComponent<BlockData>().Y == this.Y)
+            {
+                bb = true;
+                main.PuzzleData[this.X - 1, this.Y] = null;
+                break;
+
+            }
+            // 右をチェック
+            else if (main.StarDataList[i].GetComponent<BlockData>().X == this.X+1 && main.StarDataList[i].GetComponent<BlockData>().Y == this.Y)
+            {
+                bb = true;
+                main.PuzzleData[this.X + 1, this.Y] = null;
+                break;
+            }
+            //if　上下左右にstarがあったら、消す
+            // 右をチェック
+            else if (main.StarDataList[i].GetComponent<BlockData>().X == this.X && main.StarDataList[i].GetComponent<BlockData>().Y == this.Y-1)
+            {
+                bb = true;
+                main.PuzzleData[this.X, this.Y-1] = null;
+                break;
+            }
+        }
+
+        if(bb)
+        {
+            AudioSource a1;
+            AudioClip audio = Resources.Load("SOUND/SE/Button", typeof(AudioClip)) as AudioClip;
+            a1 = gameObject.AddComponent<AudioSource>();
+            a1.clip = audio;
+            a1.Play();
+
+            DataBase.bRescueStarOutputFlg = true;
+            DataBase.RescueStarCount++;
+
+            GameObject.Destroy(main.StarDataList[i]);
+            main.StarDataList.RemoveAt(i);
+            main.CheckBlockSpace();
+
+        }
+
+        // starを消すときは、消したあとの移動も行う
+
+    }
+
 
     // ブロックが落ちる時の落ちた位置の座標;toPos、何段落ちるか:k
     public void OnStart(Vector3 toPos, int k)

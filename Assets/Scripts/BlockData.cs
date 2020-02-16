@@ -24,6 +24,7 @@ public enum BlockType
 // 動物のタイプ
 public enum AnimalType
 {
+    STAR = 4,
     BIRD = 4,
     KAERU = 6,
     RABBIT = 8,
@@ -205,7 +206,11 @@ public class BlockData : MonoBehaviour
         DataBase.bRescueStarOutputFlg = true;
         DataBase.RescueStarCount++;
 
+        PuzzleMain main = GameObject.Find("GameRoot").GetComponent<PuzzleMain>();
+        main.PuzzleData[this.X, this.Y] = null;
         GameObject.Destroy(this.gameObject);
+        main.CheckBlockSpace();
+
     }
 
 }
