@@ -165,7 +165,7 @@ PlayerSettings:
   applicationIdentifier:
     Android: my.panda.test
     Standalone: com.MY.Nekotan
-    iPhone: com.MY.PandaTest
+    iPhone: MY.Panda.Debug
   buildNumber:
     iPhone: 1.0.0
   AndroidBundleVersionCode: 5
