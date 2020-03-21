@@ -63,7 +63,7 @@ public class ScoreLiner : MonoBehaviour
 
         int point = count * DataBase.STAR_TOUCH_SCORE;
 
-        ScoreText.text = "スター" + " +" + point;
+        ScoreText.text = "スタ-" + " +" + point;
         //ScoreText.text = "star" + count + " +" + point;
         startPosition = transform.localPosition;
         Vector3 toPos = new Vector3(startPosition.x + 0, startPosition.y + 400, 1);
