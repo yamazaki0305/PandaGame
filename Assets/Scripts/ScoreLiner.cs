@@ -39,7 +39,8 @@ public class ScoreLiner : MonoBehaviour
             point = point + 50 * i;
         }
 
-        ScoreText.text = "Letter " + score + " +" + point;
+        ScoreText.text = "文字数" + score + " +" + point;
+        //ScoreText.text = "Letter " + score + " +" + point;
         startPosition = transform.localPosition;
         Vector3 toPos = new Vector3(startPosition.x + 0, startPosition.y + 400, 1);
 
@@ -60,9 +61,10 @@ public class ScoreLiner : MonoBehaviour
         float duration = 2f;
         ScoreText = this.GetComponent<Text>();
 
-        int point = count * DataBase.STAR_TOUCH_SCORE; 
+        int point = count * DataBase.STAR_TOUCH_SCORE;
 
-        ScoreText.text = "Star " + count + " +" + point;
+        ScoreText.text = "スター" + " +" + point;
+        //ScoreText.text = "star" + count + " +" + point;
         startPosition = transform.localPosition;
         Vector3 toPos = new Vector3(startPosition.x + 0, startPosition.y + 400, 1);
 
@@ -83,7 +85,7 @@ public class ScoreLiner : MonoBehaviour
         ScoreText = this.GetComponent<Text>();
         int point = count * 100;
 
-        ScoreText.text = "Moves " + count + " +" + point;
+        ScoreText.text = "てかず" + count + " +" + point;
         startPosition = transform.localPosition;
 
         StartCoroutine(TransparentHalfOut(2));

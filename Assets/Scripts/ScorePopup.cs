@@ -60,6 +60,7 @@ namespace Ricimi
 
             popup.GetComponent<ScoreLiner>().MovesScore(count);
 
+
         }
 
         public virtual void ScoreOutput(int length)

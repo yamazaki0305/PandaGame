@@ -657,6 +657,10 @@ public class PuzzleMain : MonoBehaviour
             a1.clip = audio;
             a1.Play();
 
+            // パンダ画像を表示
+            GameObject pandaobj = GameObject.Find("panda_dog_img");
+            pandaobj.transform.localScale = new Vector3(1, 1, 1);
+
         }
         if(DataBase.bMovesOutputFlg)
         {
@@ -675,6 +679,8 @@ public class PuzzleMain : MonoBehaviour
                 a1 = gameObject.AddComponent<AudioSource>();
                 a1.clip = audio;
                 a1.Play();
+
+
             }
             else
             {
