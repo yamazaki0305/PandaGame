@@ -49,7 +49,7 @@ public class WinPopController : MonoBehaviour {
             Star3.SetActive(true);
         }
 
-        this.LevelText.text = "Level "+DataBase.playLevel.ToString();
+        this.LevelText.text = "Lesson "+DataBase.playLevel.ToString();
         this.YourScoreText.text = StatusData.Score.ToString();
         this.BestScoreText.text = DataBase.BestScore.ToString();
 

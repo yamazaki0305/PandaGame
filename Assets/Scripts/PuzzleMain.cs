@@ -204,7 +204,7 @@ public class PuzzleMain : MonoBehaviour
         /////////////////
 
         // ステージLevelを表示
-        GameObject.Find("LevelText").GetComponent<Text>().text = "レベル " + DataBase.playLevel;
+        GameObject.Find("LevelText").GetComponent<Text>().text = "レッスン " + DataBase.playLevel;
 
         // ゲームモードがハードの時
         if (!DataBase.GameMode_Easy)
@@ -213,7 +213,7 @@ public class PuzzleMain : MonoBehaviour
         // ステージによってBackPicture・ImgGround・GlassLineを変更する
 
 
-            // 画面に表示されない縦数を見つける
+        // 画面に表示されない縦数を見つける
         UnderArrow = GameObject.Find("UnderArrow");
 
         // 猫救出ラインのGlassLineを見つける
@@ -276,7 +276,7 @@ public class PuzzleMain : MonoBehaviour
 
         if (DataBase.LangJapanese)
         {
-            StageText.text = "Level " + DataBase.playLevel.ToString() + "\r\nパンダの犬を助けよう！";
+            StageText.text = "Lesson " + DataBase.playLevel.ToString() + "\r\nパンダの犬を助けよう！";
             if (StatusData.timeflg)
                 StageText.text += "\r\n制限時間 " + (StatusData.time - 1) + "秒";
 
