@@ -93,7 +93,7 @@ namespace Ricimi
                     case "HomeScenePortrait":
                         last_scene_name = now_scene_name;
                         break;
-                    case "LevelScenePortrait":
+                    case "LessonScenePortrait":
                         if (last_scene_name == "GameScenePortrait")
                         {
                             FadeOut();

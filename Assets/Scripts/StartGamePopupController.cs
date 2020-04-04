@@ -15,9 +15,6 @@ public class StartGamePopupController : MonoBehaviour {
 
     public Text HeadlineText;
     public Text BestScoreText;
-    public Text Mission1Text;
-    public Text Mission2Text;
-    public Text Mission3Text;
 
     public GameObject Star1Obj;
     public GameObject Star2Obj;
@@ -29,16 +26,12 @@ public class StartGamePopupController : MonoBehaviour {
     // Use this for initialization
     void Start () {
 
-        HeadlineText.text = "Play level " + DataBase.playLevel;
+        HeadlineText.text = "Lesson " + DataBase.playLevel;
         SaveDataBase.loadLevel(DataBase.playLevel);
         BestScoreText.text = "Best Score: " + DataBase.BestScore.ToString();
 
         // CSVReader
         csvDatas = CSVReader.import("CSV/StageListData");
-
-        Mission1Text.text = "Level Clear";
-        Mission2Text.text = "Letter " + csvDatas[DataBase.playLevel][(int)CSVColumn.m_letter];
-        Mission3Text.text = "Score " + csvDatas[DataBase.playLevel][(int)CSVColumn.m_score];
 
         switch (DataBase.level_star[DataBase.playLevel - 1])
         { 
