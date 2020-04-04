@@ -57,7 +57,7 @@ namespace Ricimi
                 {
                     case "HomeScenePortrait":
                         break;
-                    case "LevelScenePortrait":
+                    case "LessonScenePortrait":
                         m_audioSource.loop = true;
                         m_audioSource.clip = Resources.Load("Sound/happy-steps-sc1", typeof(AudioClip)) as AudioClip;
                         m_audioSource.Play();

@@ -8,7 +8,7 @@ public class LevelController : MonoBehaviour {
 
     public GameObject NowObj;
     public GameObject LockObj;
-    public GameObject AnimalObj;
+    //public GameObject AnimalObj;
     public GameObject OoenObj;
 
 
@@ -25,7 +25,7 @@ public class LevelController : MonoBehaviour {
             NowObj.SetActive(true);
             OoenObj.SetActive(false);
             LockObj.SetActive(false);
-            AnimalObj.SetActive(false);
+            //AnimalObj.SetActive(false);
         }
         // クリア済のLevelの時
         else if (DataBase.openLevel > Level)
@@ -33,7 +33,7 @@ public class LevelController : MonoBehaviour {
             NowObj.SetActive(false);
             OoenObj.SetActive(true);
             LockObj.SetActive(false);
-            AnimalObj.SetActive(false);
+            //AnimalObj.SetActive(false);
         }
         // 開放していないLevelの時
         else if (DataBase.openLevel < Level)
@@ -41,7 +41,7 @@ public class LevelController : MonoBehaviour {
             NowObj.SetActive(false);
             OoenObj.SetActive(false);
             LockObj.SetActive(true);
-            AnimalObj.SetActive(false);
+            //AnimalObj.SetActive(false);
         }
 
     }

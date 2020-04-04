@@ -20433,7 +20433,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55f7eaf6dd2a2478c939f6bb532e39ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scene: LevelScenePortrait
+  scene: LessonScenePortrait
   duration: 0.5
   color: {r: 0.6207288, g: 0.936206, b: 0.9485294, a: 1}
 --- !u!95 &1815773954

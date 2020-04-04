@@ -42,7 +42,7 @@ public class LevelSceneController : MonoBehaviour {
 
         Vector3 pos = new Vector3(0, posY[DataBase.openLevel - 1], 0);
         
-        ScrollViewContent.transform.localPosition = pos;
+        //ScrollViewContent.transform.localPosition = pos;
 
         // TopBarの情報を更新
         LevelCountText.text = DataBase.openLevel.ToString();

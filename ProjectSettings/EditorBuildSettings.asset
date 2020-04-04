@@ -14,7 +14,10 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scene/LevelScenePortrait.unity
     guid: 8d262f093428a4a49a6e8296cd13e0b5
+  - enabled: 1
+    path: Assets/Scene/LessonScenePortrait.unity
+    guid: 4180b1ef650e39a418f4e305ca944781
   m_configObjects: {}
