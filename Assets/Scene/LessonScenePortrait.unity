@@ -57979,7 +57979,7 @@ MonoBehaviour:
   popupPrefab: {fileID: 109706, guid: 5dd0d500f4b6d4f589d0fdce15f1a094, type: 3}
   bWindow: 0
   starsObtained: 2
-  level: 12
+  level: 15
 --- !u!114 &2078373695
 MonoBehaviour:
   m_ObjectHideFlags: 0
