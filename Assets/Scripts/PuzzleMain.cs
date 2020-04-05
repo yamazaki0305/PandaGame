@@ -256,6 +256,10 @@ public class PuzzleMain : MonoBehaviour
         pos = new Vector3(0, GlassLineHeight + UnderArrowHeight * -BlockSize + 400, 100);
         BackPicture.transform.localPosition = pos;
 
+        // クリア時のパンダの犬画像を今回のステージ画像にする
+        Image dogimg = GameObject.Find("panda_dog_img").GetComponent<Image>();
+        dogimg.sprite = Resources.Load<Sprite>("LessonIMG/"+DataBase.playLevel);
+
         //無視英単語リストを設定する
         //　テキストファイルから読み込んだデータ
         TextAsset textasset = new TextAsset(); //テキストファイルのデータを取得するインスタンスを作成
@@ -701,6 +705,8 @@ public class PuzzleMain : MonoBehaviour
             if (DataBase.level_star[DataBase.playLevel - 1] < StatusData.star)
                 DataBase.level_star[DataBase.playLevel - 1] = StatusData.star;
 
+
+            
             SaveDataBase.saveData();
             DataBase.bGameClearEnd = false;
 
