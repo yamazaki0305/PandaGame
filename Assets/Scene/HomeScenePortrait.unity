@@ -20435,7 +20435,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scene: LessonScenePortrait
   duration: 0.5
-  color: {r: 0.6207288, g: 0.936206, b: 0.9485294, a: 1}
+  color: {r: 0.36078432, g: 0.6117647, b: 0.8392157, a: 1}
 --- !u!95 &1815773954
 Animator:
   serializedVersion: 3

@@ -6100,7 +6100,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scene: GameScenePortrait
   duration: 0.5
-  color: {r: 0.19215688, g: 0.78823537, b: 0.8352942, a: 1}
+  color: {r: 0.36078432, g: 0.6117647, b: 0.8392157, a: 1}
 --- !u!82 &8211978
 AudioSource:
   m_ObjectHideFlags: 0
