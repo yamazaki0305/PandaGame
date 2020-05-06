@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class LevelStar : MonoBehaviour {
 
-    public int level;
+    private int level;
     public GameObject Star1Obj;
     public GameObject Star2Obj;
     public GameObject Star3Obj;
+    public GameObject LessonObj;
 
     // Use this for initialization
     void Start () {
+
+        level = LessonObj.GetComponent<LevelController>().Level;
 
         SaveDataBase.loadAllLevel();
 

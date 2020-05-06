@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LevelController : MonoBehaviour {
 
@@ -10,11 +11,12 @@ public class LevelController : MonoBehaviour {
     public GameObject LockObj;
     //public GameObject AnimalObj;
     public GameObject OoenObj;
-
+    public Text LessonNo;
 
     // Use this for initialization
     void Start () {
 
+        LessonNo.text = Level.ToString();
         SaveDataBase.loadData();
 
         Debug.Log("complete;" + DataBase.openLevel);
