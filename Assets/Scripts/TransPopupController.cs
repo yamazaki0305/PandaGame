@@ -36,7 +36,11 @@ public class TransPopupController : MonoBehaviour {
             EngText.text = (string)dr["word"];
             JapText.text = (string)dr["mean"];
 
-            string str = JapText.text.Replace(" ", "").Replace("　", "");
+            // 半角スペースで改行してしまう！？のを解決しよう（Unity）
+            // https://qiita.com/sharp_6/items/4001cd0b534226e0c287
+            string str = JapText.text.Replace(" ", "\u00A0").Replace("/", "/\r\n").Replace("〈C〉", "").Replace("〈U〉", "").Replace("〈", "<").Replace("〉", ">");
+
+            //string str = JapText.text;
 
             //先頭から16行✕3列分の文字列を取得
             if (str.Length < 120)
