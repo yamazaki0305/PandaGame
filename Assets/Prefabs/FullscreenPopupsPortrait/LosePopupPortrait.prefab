@@ -938,7 +938,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scene: LessonScenePortrait
   duration: 0.5
-  color: {r: 0, g: 0, b: 0, a: 1}
+  color: {r: 0.36078432, g: 0.6117647, b: 0.8392157, a: 1}
 --- !u!1 &137512
 GameObject:
   m_ObjectHideFlags: 0
