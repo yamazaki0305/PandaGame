@@ -184,7 +184,7 @@ public class CanWordController : MonoBehaviour
             // 上記処理を通過した英単語は作れる可能性のある英単語と判定する
             if (judge)
             {
-                Debug.Log("英単語:" + word);
+                //Debug.Log("英単語:" + word);
                 lastword = word.ToUpperInvariant();
                 moutch_count++;
             }
@@ -194,7 +194,7 @@ public class CanWordController : MonoBehaviour
                 break;
         }
 
-        Debug.Log("マッチ数:" + moutch_count);
+        //Debug.Log("マッチ数:" + moutch_count);
 
         // 言語判定をする
         if (DataBase.LangJapanese)

@@ -13,7 +13,7 @@ using System.Globalization;
 
 public class DataBase
 {
-    public static bool DebugFlg = true; // デバッグモードにするか
+    public static bool DebugFlg = false; // デバッグモードにするか
 
     public static int PLAY = 0;
     public static int CLEAR = 1;
@@ -21,7 +21,7 @@ public class DataBase
     public static int MISS = 3;
     public static int MAXSTAGE = 40;
 
-    public static int playLevel = 2;
+    public static int playLevel = 12;
     public static int openLevel = 1;
     public static int RecordWord = 0;
     public static bool NewWordBook = false; //WordBookにNewアイコンをつけるかのフラグ

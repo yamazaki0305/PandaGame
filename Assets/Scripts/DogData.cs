@@ -66,10 +66,13 @@ public class DogData : BlockData
         if (DataBase.DebugFlg)
         {
             Text text = GameObject.Find("DebugText").GetComponent<Text>();
+            /*
             text.text = "Arrow:" + arrowType +" ";text.text += "iMove:" + iMove;
             text.text += " bLeftMove:" + bLeftMove + " "; text.text += "bRightMove:" + bRightMove; text.text += " bUnderMove:" + bUnderMove;
             text.text += "\n" + "X:" + X + " Y:" + Y;
+
             text.text += " drop:" + drop_count;
+            */
         }
         
         if(iMove==false)

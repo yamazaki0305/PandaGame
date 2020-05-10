@@ -142,6 +142,9 @@ public class PuzzleMain : MonoBehaviour
     // Movesが0になった時一度だけAd動画視聴でMoveを増やせる
     public bool Moves0AdFlg = true;
 
+    // SaveAreaMaskをアタッチメント
+    public GameObject SaveAreaMask;
+
     // DogObjectのゲームオブジェクト
     GameObject DogObject;
 
@@ -321,6 +324,17 @@ public class PuzzleMain : MonoBehaviour
         // 犬の初期値をセット
         DogObject.GetComponent<DogData>();
         //DogMove();
+
+        // SaveAreaMaskの横サイズを変更
+        SaveAreaMask.transform.localScale = new Vector3(85*columnLength, 85, 1);
+        // SaveAreaMaskの表示判定
+        if (UnderArrowHeight == 0)
+        {
+            if (SaveAreaMask)
+            {
+                SaveAreaMask.SetActive(false);
+            }
+        }
     }
 
 
@@ -328,7 +342,16 @@ public class PuzzleMain : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
+        // DebugMode
+        if (DataBase.DebugFlg)
+        {
+            Text text = GameObject.Find("DebugText").GetComponent<Text>();
+            text.text = " ActiveBlockHeight:" + ActiveBlockHeight + "\n";
+            text.text += " UnderArrowHeight:" + UnderArrowHeight + "\n";
+            text.text += " DefaultBlockHeight:" + DefaultBlockHeight + "\n";
+        }
+
         // 広告中はゲームを止める
         if (DataBase.bGameAdStop)
             Time.timeScale = 0f;
@@ -522,7 +545,7 @@ public class PuzzleMain : MonoBehaviour
                             if (!blockData.Selected)
                             {
                                 // プレイヤーがタップできるPuzzleDataのマスの高さ
-                                if (blockData.Y >= ActiveBlockHeight)
+                                if (blockData.Y >= ActiveBlockHeight && blockData.Y < ActiveBlockHeight + DefaultBlockHeight)
                                 {
                                     //audioSource = this.GetComponent<AudioSource>();
                                     //audioSource.clip = soundTap;
@@ -589,6 +612,15 @@ public class PuzzleMain : MonoBehaviour
 
         // 犬の移動処理（Updateで実行）
         DogObject.GetComponent<DogData>().moveCheck(PuzzleData);
+
+        // SaveAreaMaskの表示判定
+        if( UnderArrowHeight == 0)
+        {
+            if( SaveAreaMask )
+            {
+                SaveAreaMask.SetActive(false);
+            }
+        }
 
     }
 
@@ -1426,9 +1458,9 @@ public class PuzzleMain : MonoBehaviour
         columnLength = columstr.Length - 1;
         rowLength = textMessage.Length;
 
-        // 画面に出すブロックの縦数は最大7にする
-        if (rowLength > 7)
-            DefaultBlockHeight = 7;
+        // 画面に出すブロック
+        if (rowLength > DefaultBlockHeight)
+            DefaultBlockHeight = DefaultBlockHeight;
         else
             DefaultBlockHeight = rowLength;
 
@@ -1771,6 +1803,8 @@ public class PuzzleMain : MonoBehaviour
         */
 
         GameObject.Find("CanWordText").GetComponent<CanWordController>().CopyCanAlphabet(can_alphabet);
+
+
 
     }
     void WinPopup()
