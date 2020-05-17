@@ -78,7 +78,7 @@ public class DogData : BlockData
         if(iMove==false)
         {
             PuzzleMain main = GameObject.Find("GameRoot").GetComponent<PuzzleMain>();
-            Debug.Log("starcheck"+ main.StarDataList.Count);
+            //Debug.Log("starcheck"+ main.StarDataList.Count);
             starCheck();
         }
     }
@@ -116,13 +116,20 @@ public class DogData : BlockData
         DefaultBlockHeight = _DefaultBlockHeight;
         BlockGroundHeight = _BlockGroundHeight;
 
-        Debug.Log("height:" + UnderArrowHeight);
+        //Debug.Log("height:" + UnderArrowHeight);
 
         Vector2 pos = new Vector2((X + 0) * BlockSize - (BlockSize * columnLength) / 2 + BlockSize / 2, (Y + 0) * BlockSize + BlockGroundHeight - (rowLength - DefaultBlockHeight) * BlockSize);
 
         this.transform.localPosition = pos;
         iStart = false;
 
+    }
+
+    // 位置を取得
+    public Vector2 getPos()
+    {
+        Vector2 pos = new Vector2(X, Y);
+        return pos;
     }
 
     // 移動できるかチェック
@@ -252,15 +259,6 @@ public class DogData : BlockData
                         arrowType = ArrowType.LEFT;
                     }
                 }
-                /*
-                else
-                {
-                    if (bLeftMove)
-                        arrowType = ArrowType.LEFT;
-                    else if (bRightMove)
-                        arrowType = ArrowType.RIGHT;
-                }
-                */
 
                 if (arrowType == ArrowType.RIGHT && bRightMove)
                 {

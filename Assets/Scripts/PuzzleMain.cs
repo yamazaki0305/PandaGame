@@ -1097,8 +1097,11 @@ public class PuzzleMain : MonoBehaviour
     {
         bool search = true;
 
+        Vector2 dogpos = DogObject.GetComponent<DogData>().getPos();
+        //Debug.Log("dogX:"+dogpos.x + " dogY:"+dogpos.y);
+
         // 手数が0以上の時のみ実行可能
-        if ( StatusData.Hand > 0)
+        if ( StatusData.Hand > 0 && DogObject.GetComponent<DogData>().arrowType != ArrowType.UPPER)
         {
             // Maskと英語ブロックを参照して空きスペースを探す
             for (int j = ActiveBlockHeight - UnderArrowHeight; j < rowLength; j++)
@@ -1109,35 +1112,50 @@ public class PuzzleMain : MonoBehaviour
                     //PuzzleDataが空白の時
                     if (PuzzleData[i, j] == null && MaskData[i, j] != null)
                     {
-
                         search = false;
+                        //////////////////////////////////////////////////
+                        // 座標（i,j）が犬の位置dogposの上にならないか探索
+                        //////////////////////////////////////////////////
+                        for (int k=(int)dogpos.y; k<rowLength; k++)
+                        {
+                            if(i == (int)dogpos.x && j== k)
+                            {
+                                search = true;
+                            }
 
-                        // パズルを落とす位置をセット
-                        //Vector2 pos = new Vector2(i * BlockSize - (BlockSize * columnLength) / 2 + BlockSize / 2, 1500);
-                        Vector2 pos = new Vector2(i * BlockSize - (BlockSize * columnLength) / 2 + BlockSize / 2, rowLength * BlockSize + BlockGroundHeight - (rowLength - DefaultBlockHeight) * BlockSize);
+                        }
+  
+                        if(!search)
+                        {
+                            // パズルを落とす位置をセット
+                            //Vector2 pos = new Vector2(i * BlockSize - (BlockSize * columnLength) / 2 + BlockSize / 2, 1500);
+                            Vector2 pos = new Vector2(i * BlockSize - (BlockSize * columnLength) / 2 + BlockSize / 2, rowLength * BlockSize + BlockGroundHeight - (rowLength - DefaultBlockHeight) * BlockSize);
 
-                        // スクリプトからインスタンス（動的にゲームオブジェクトを指定数だけ作る
-                        PuzzleData[i, j] = Instantiate(puzzlePrefab, pos, Quaternion.identity);
+                            // スクリプトからインスタンス（動的にゲームオブジェクトを指定数だけ作る
+                            PuzzleData[i, j] = Instantiate(puzzlePrefab, pos, Quaternion.identity);
 
-                        // アルファベットブロックにする
-                        PuzzleData[i, j].GetComponent<BlockData>().setup(BlockType.ALPHABET, RandomMake.alphabet(), false, i, j);
-                        PuzzleData[i, j].name = "Block"; // GameObjectの名前を決めている
-                        PuzzleData[i, j].transform.SetParent(puzzleTransform);
-                        PuzzleData[i, j].transform.localPosition = pos;
+                            // アルファベットブロックにする
+                            PuzzleData[i, j].GetComponent<BlockData>().setup(BlockType.ALPHABET, RandomMake.alphabet(), false, i, j);
+                            PuzzleData[i, j].name = "Block"; // GameObjectの名前を決めている
+                            PuzzleData[i, j].transform.SetParent(puzzleTransform);
+                            PuzzleData[i, j].transform.localPosition = pos;
 
-                        //アルフェベットブロックの位置をセット
-                        pos = new Vector2(i * BlockSize - (BlockSize * columnLength) / 2 + BlockSize / 2, j * BlockSize + BlockGroundHeight - (rowLength - DefaultBlockHeight) * BlockSize);
-                        PuzzleData[i, j].GetComponent<Liner>().OnUpper(pos, rowLength - j + 1);
-                        //PuzzleData[i, j].GetComponent<Liner>().OnStart(pos, k);
-                        //PuzzleData[i, j].transform.position = pos;
-                        //PuzzleData[i, j].transform.localScale = puzzlePrefab.transform.localScale;
+                            //アルフェベットブロックの位置をセット
+                            pos = new Vector2(i * BlockSize - (BlockSize * columnLength) / 2 + BlockSize / 2, j * BlockSize + BlockGroundHeight - (rowLength - DefaultBlockHeight) * BlockSize);
+                            PuzzleData[i, j].GetComponent<Liner>().OnUpper(pos, rowLength - j + 1);
+                            //PuzzleData[i, j].GetComponent<Liner>().OnStart(pos, k);
+                            //PuzzleData[i, j].transform.position = pos;
+                            //PuzzleData[i, j].transform.localScale = puzzlePrefab.transform.localScale;
 
-                        //アルファベットブロックを落としたので手数を１つ減らす
-                        StatusData.Hand--;
-                        StatusData.StatusUpdate();
+                            //アルファベットブロックを落としたので手数を１つ減らす
+                            StatusData.Hand--;
+                            StatusData.StatusUpdate();
 
-                        //パズルエリアの英語ブロック数を更新
-                        CheckPotentialPuzzle();
+                            //パズルエリアの英語ブロック数を更新
+                            CheckPotentialPuzzle();
+
+
+                        }
 
                     }
 
