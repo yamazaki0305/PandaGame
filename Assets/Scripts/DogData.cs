@@ -135,11 +135,13 @@ public class DogData : BlockData
     // 移動できるかチェック
     public void moveCheck(GameObject[,] _PuzzleData)
     {
+        GameObject main = GameObject.Find("GameRoot");
+
         //ゲーム開始時以外の時
         if (!iStart)
         {
             // 犬が地面についたらクリア
-            if (!bDogJimen && Y == UnderArrowHeight)
+            if (!bDogJimen && Y == UnderArrowHeight && main.GetComponent<PuzzleMain>().UnderArrowHeight == 0)
             {
                 arrowType = ArrowType.WAIT;
                 bDogJimen = true;
@@ -211,7 +213,6 @@ public class DogData : BlockData
                 {
                     Debug.Log("落ちた数;" + drop_count);
 
-                    GameObject main = GameObject.Find("GameRoot");
 
                     // 地面の下にブロックがある時の処理
                     int k = 0;
@@ -378,9 +379,13 @@ public class DogData : BlockData
             def = def * 0.4f;
         }
 
+        //犬が落下中だけスピードを上げる
+        if (arrowType == ArrowType.UNDER)
+            duration = duration / 1.5f;
+
         startPosition = transform.localPosition;
         // この関数を呼び出すとオブジェクトが移動する
-        StartCoroutine(MoveTo(startPosition, toPos, duration, true));
+        StartCoroutine(MoveTo(startPosition, toPos, duration));
     }
 
     // ブロックが上がる時の落ちた位置の座標;toPos、何段上がるか:k
@@ -399,11 +404,11 @@ public class DogData : BlockData
 
         startPosition = transform.localPosition;
         // この関数を呼び出すとオブジェクトが移動する
-        StartCoroutine(MoveTo(startPosition, toPos, duration, false));
+        StartCoroutine(MoveTo(startPosition, toPos, duration));
     }
 
     // fromPosが移動元の座標、toPosが移動先の座標、durationが移動の秒数
-    IEnumerator MoveTo(Vector3 fromPos, Vector3 toPos, float duration,bool drop)
+    IEnumerator MoveTo(Vector3 fromPos, Vector3 toPos, float duration)
     {
         float time = 0;
 

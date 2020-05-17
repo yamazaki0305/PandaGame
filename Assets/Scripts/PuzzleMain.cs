@@ -43,7 +43,7 @@ public class PuzzleMain : MonoBehaviour
     private int ActiveBlockHeight = 0;
 
     //UnderArrowの残りブロック数
-    private int UnderArrowHeight = 0;
+    public int UnderArrowHeight = 0;
 
     // PuzzleDataをPuzzleObjectGroup下に表示する
     public Transform puzzleTransform;
@@ -505,7 +505,7 @@ public class PuzzleMain : MonoBehaviour
             }
             */
             //ゲームオーバー判定
-            else if (StatusData.Hand == 0 || StatusData.currentTime <= 0.0f)
+            else if (StatusData.Hand <= 0 || StatusData.currentTime <= 0.0f)
             {
 
                 if (Moves0AdFlg)
@@ -1178,6 +1178,67 @@ public class PuzzleMain : MonoBehaviour
 
     }
 
+    // ハンマーボタンをドラッグして実行
+    public void DragHummerButton()
+    {
+        //ハンマーが実行されるか
+        bool bHammer = false;
+
+        EigoText = "";
+        EigoButton.GetComponentInChildren<Text>().text = EigoText;
+        SelectAllCanceled();
+        btnFlg = ButtonFlg.NORMAL;
+
+        var button = EigoButton.GetComponent<Button>();
+        ButtonColorChange(button);
+
+        //ブロックデータリストをクリア
+        PuzzleDataList.Clear();
+
+        Vector2 point = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Collider2D collition2d = Physics2D.OverlapPoint(point);
+
+        BlockData blockData;
+        // ここでRayが当たったGameObjectを取得できる
+        if (collition2d)
+        {
+            if (collition2d.tag == "Block")
+            {
+                blockData = collition2d.GetComponent<BlockData>();
+
+                if (blockData.blockType == BlockType.ALPHABET)
+                {
+                    if (!blockData.Selected)
+                    {
+                        // プレイヤーがタップできるPuzzleDataのマスの高さ
+                        if (blockData.Y >= ActiveBlockHeight && blockData.Y < ActiveBlockHeight + DefaultBlockHeight)
+                        {
+                            blockData.EigoFlg = true;
+                            bHammer = true;
+                        }
+                    }
+                }
+            }
+        }
+
+        if(bHammer)
+        {
+            AudioSource a1;
+            AudioClip audio = Resources.Load("SOUND/SE/swing1", typeof(AudioClip)) as AudioClip;
+            a1 = gameObject.AddComponent<AudioSource>();
+            a1.clip = audio;
+            a1.Play();
+
+            //ハンマーを使用したので手数を減らす
+            StatusData.Hand -=3;
+            StatusData.StatusUpdate();
+
+            SelectEigoDestroy();
+            GameFlg = GameLoopFlg.BlockMove;
+        }
+
+    }
+
     void ButtonColorChange(Button button)
     {
         if (btnFlg == ButtonFlg.PRESSED)
@@ -1410,7 +1471,7 @@ public class PuzzleMain : MonoBehaviour
     //現在選択中の英語ブロックを消す
     public void SelectEigoDestroy()
     {
-        List<BlockData> blockDataList = new List<BlockData>();
+        //List<BlockData> blockDataList = new List<BlockData>();
 
 
         for (int i = 0; i < columnLength; i++)
@@ -1421,7 +1482,7 @@ public class PuzzleMain : MonoBehaviour
                 {
                     if (PuzzleData[i, j].GetComponent<BlockData>().EigoFlg)
                     {
-                        blockDataList.Add(PuzzleData[i, j].GetComponent<BlockData>());
+                        //blockDataList.Add(PuzzleData[i, j].GetComponent<BlockData>());
                         Destroy(PuzzleData[i, j]);
                         PuzzleData[i, j] = null;
                         //yield return new WaitForSeconds(0.2f);
