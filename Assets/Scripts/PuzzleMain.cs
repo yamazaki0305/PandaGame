@@ -473,6 +473,27 @@ public class PuzzleMain : MonoBehaviour
             // UpdateScoreを非表示
             //UpdateScoreObj.SetActive(false);
         }
+        // 手数が0になった時
+        else if (GameFlg == GameLoopFlg.Hand0)
+        {
+
+            // 経過時間を減らす
+            StatusData.gameoverTime -= Time.deltaTime;
+
+            // 5秒経過したらゲームーバーにする
+            if (StatusData.gameoverTime <= 0)
+            {
+                StatusData.currentTime = 0f;
+                GameFlg = GameLoopFlg.PlayNow;
+                
+            }
+            //ゲームクリア判定
+            else if (DogObject.GetComponent<DogData>().bDogJimen)
+            {
+                DataBase.bGameClearFlg = true;
+                GameFlg = GameLoopFlg.PlayEnd;
+            }
+        }
         else if (GameFlg == GameLoopFlg.PlayEnd)
         {
             
@@ -492,22 +513,9 @@ public class PuzzleMain : MonoBehaviour
                 GameFlg = GameLoopFlg.PlayEnd;
 
             }
-            /*
-            if (StatusData.AnimalSum == 0)
+            // 手数がマイナス　or 制限時間0ですぐゲームオーバー
+            else if (StatusData.Hand < 0 || StatusData.currentTime <= 0.0f)
             {
-                DataBase.bGameClearFlg = true;
-
-                //GameOverObj.GetComponent<Text>().text = "GameClear!!\n次のステージへ";
-                //GameOverObj.SetActive(true);
-                //WinPopup();
-                GameFlg = GameLoopFlg.PlayEnd;
-
-            }
-            */
-            //ゲームオーバー判定
-            else if (StatusData.Hand <= 0 || StatusData.currentTime <= 0.0f)
-            {
-
                 if (Moves0AdFlg)
                 {
                     Moves0AdFlg = false;
@@ -522,6 +530,12 @@ public class PuzzleMain : MonoBehaviour
                     LosePopup();
                     GameFlg = GameLoopFlg.PlayEnd;
                 }
+            }
+            //手数が0になったら残り5秒
+            else if (StatusData.Hand == 0 )
+            {
+                StatusData.gameoverTime = 5f;
+                GameFlg = GameLoopFlg.Hand0;
 
             }
             // スマホのタッチと、PCのクリック判定

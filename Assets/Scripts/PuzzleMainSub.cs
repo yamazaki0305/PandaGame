@@ -27,7 +27,8 @@ public enum GameLoopFlg
     BlockMove,  //ブロック移動中
     UndderArrow, //地面の下にブロックがある時の処理
     PlayBefore, //ゲーム中処理に戻る前の処理
-    PlayEnd,    //プレイ終了（クリア、ゲームオーバー）
+    Hand0,      //手数が0になった時
+    PlayEnd,    //プレイ終了
     Pause,      //一時停止中
 }
 
@@ -48,6 +49,7 @@ public class StageStatus
     public bool timeflg = false;
     public int time; //カウントダウン前の残り時間タイマー
     public float currentTime; // 残り時間タイマー
+    public float gameoverTime; // 手数0になってからゲームオーバーまでのタイマー
     public AnimalType AnimalTypeOK1; // スコアのAnimal1のAnimalType
     public AnimalType AnimalTypeOK2; // スコアのAnimal2のAnimalType
     public AnimalType AnimalTypeOK3; // スコアのAnimal3のAnimalType
