@@ -29,7 +29,13 @@ public class WinPopController : MonoBehaviour {
 
         StatusData = GameObject.Find("GameRoot").GetComponent<PuzzleMain>().StatusData;
 
-        if (StatusData.star == 1)
+        if (StatusData.star == 0)
+        {
+            Star1.SetActive(false);
+            Star2.SetActive(false);
+            Star3.SetActive(false);
+        }
+        else if (StatusData.star == 1)
         {
             Star1.SetActive(true);
             Star2.SetActive(false);
