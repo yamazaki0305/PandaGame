@@ -3547,6 +3547,18 @@ RectTransform:
   m_AnchoredPosition: {x: 50, y: -100}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &867467678 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7194584558392734287, guid: 88e26665de0574090a1030e668425fb6,
+    type: 3}
+  m_PrefabInstance: {fileID: 1935020149}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &869836122
 GameObject:
   m_ObjectHideFlags: 0
@@ -4129,8 +4141,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
-  m_EffectDistance: {x: 3, y: 3}
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
+  m_EffectDistance: {x: 3, y: -3}
   m_UseGraphicAlpha: 1
 --- !u!1 &893676541
 GameObject:
@@ -5433,8 +5445,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
-  m_EffectDistance: {x: 3, y: 3}
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
+  m_EffectDistance: {x: 3, y: -3}
   m_UseGraphicAlpha: 1
 --- !u!1 &1319057149
 GameObject:
@@ -7058,8 +7070,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
-  m_EffectDistance: {x: 3, y: 3}
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
+  m_EffectDistance: {x: 3, y: -3}
   m_UseGraphicAlpha: 1
 --- !u!1 &1645267648
 GameObject:
@@ -8318,7 +8330,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 109460, guid: 88e26665de0574090a1030e668425fb6, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9518098, guid: 88e26665de0574090a1030e668425fb6, type: 3}
       propertyPath: m_Controller
@@ -8413,10 +8425,20 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 114386426199217390, guid: 88e26665de0574090a1030e668425fb6,
+        type: 3}
+      propertyPath: KuronekoEngText
+      value: 
+      objectReference: {fileID: 867467678}
+    - target: {fileID: 114386426199217390, guid: 88e26665de0574090a1030e668425fb6,
+        type: 3}
+      propertyPath: KuronekoJapText
+      value: 
+      objectReference: {fileID: 2013958909}
     - target: {fileID: 1231734579469347245, guid: 88e26665de0574090a1030e668425fb6,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -80
+      value: -100
       objectReference: {fileID: 0}
     - target: {fileID: 1231734579469347245, guid: 88e26665de0574090a1030e668425fb6,
         type: 3}
@@ -8472,6 +8494,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_FontData.m_FontStyle
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1522521003771825985, guid: 88e26665de0574090a1030e668425fb6,
+        type: 3}
+      propertyPath: m_Text
+      value: "\u30AF\u30ED\u30CD\u30B3\u30E4\u30DE\u30E2\u30C8\u306E\n\u82F1\u4F1A\u8A71\u8B1B\u5EA7\u3063\u30B9!!"
       objectReference: {fileID: 0}
     - target: {fileID: 4694216784887813259, guid: 88e26665de0574090a1030e668425fb6,
         type: 3}
@@ -9345,6 +9372,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2013958909 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1842688584752191335, guid: 88e26665de0574090a1030e668425fb6,
+    type: 3}
+  m_PrefabInstance: {fileID: 1935020149}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2018923572
 GameObject:
   m_ObjectHideFlags: 0

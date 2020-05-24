@@ -19,8 +19,14 @@ public class WinPopController : MonoBehaviour {
     public Text LevelText;
     public Text YourScoreText;
     public Text BestScoreText;
-   
+    public Text FukidashiText;
+    public Text KuronekoEngText;
+    public Text KuronekoJapText;
+
     private StageStatus StatusData;
+
+    // CSVデータ
+    List<string[]> csvDatas = new List<string[]>(); // CSVの中身を入れるリスト;
 
     // Use this for initialization
     void Start () {
@@ -59,12 +65,24 @@ public class WinPopController : MonoBehaviour {
         this.YourScoreText.text = StatusData.Score.ToString();
         this.BestScoreText.text = DataBase.BestScore.ToString();
 
-
+        LoadKuronekoText();
     }
 	
 	// Update is called once per frame
 	void Update () {
 
        
+    }
+
+    void LoadKuronekoText()
+    {
+        // CSVReader
+        csvDatas = CSVReader.import("CSV/KuronekoText");
+        int rand = UnityEngine.Random.Range(1, csvDatas.Count);
+        Debug.Log("rand:" + rand);
+        FukidashiText.text = csvDatas[rand][0]+"の英語の名言を教えるっス!!";
+        KuronekoEngText.text = csvDatas[rand][1].Replace("+", ",");
+        KuronekoJapText.text = csvDatas[rand][2];
+
     }
 }
