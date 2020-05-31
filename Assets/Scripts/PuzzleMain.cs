@@ -148,6 +148,9 @@ public class PuzzleMain : MonoBehaviour
     // DogObjectのゲームオブジェクト
     GameObject DogObject;
 
+    // GameOverのカウントダウン
+    public GameObject GameOverTimer;
+
     void Start()
     {
         DogObject = GameObject.Find("Dog");
@@ -335,6 +338,9 @@ public class PuzzleMain : MonoBehaviour
                 SaveAreaMask.SetActive(false);
             }
         }
+
+        //GameoverTimerのscaleを0
+        GameOverTimer.transform.localScale = new Vector2(0,0);
     }
 
 
@@ -480,6 +486,18 @@ public class PuzzleMain : MonoBehaviour
             // 経過時間を減らす
             StatusData.gameoverTime -= Time.deltaTime;
 
+            // ゼロ秒以下にならないようにする
+            if (StatusData.gameoverTime <= 0.0f)
+            {
+                StatusData.gameoverTime = 0.0f;
+            }
+            int minutes = Mathf.FloorToInt(StatusData.gameoverTime / 60F);
+            int seconds = Mathf.FloorToInt(StatusData.gameoverTime - minutes * 60);
+            int mseconds = Mathf.FloorToInt((StatusData.gameoverTime - minutes * 60 - seconds) * 1000);
+            //RemainTimerText.text = string.Format("{0:00}:{1:00}:{2:000}", minutes, seconds, mseconds);
+            GameOverTimer.GetComponent<Text>().text = string.Format("{0}", seconds+1);
+
+
             // 5秒経過したらゲームーバーにする
             if (StatusData.gameoverTime <= 0)
             {
@@ -492,6 +510,9 @@ public class PuzzleMain : MonoBehaviour
             {
                 DataBase.bGameClearFlg = true;
                 GameFlg = GameLoopFlg.PlayEnd;
+
+                //GameoverTimerのscaleを0
+                GameOverTimer.transform.localScale = new Vector2(0, 0);
             }
         }
         else if (GameFlg == GameLoopFlg.PlayEnd)
@@ -502,20 +523,13 @@ public class PuzzleMain : MonoBehaviour
         else if (GameFlg == GameLoopFlg.PlayNow)
         {
 
-            //ゲームクリア判定
-            if (DogObject.GetComponent<DogData>().bDogJimen)
-            {
-                DataBase.bGameClearFlg = true;
 
-                //GameOverObj.GetComponent<Text>().text = "GameClear!!\n次のステージへ";
-                //GameOverObj.SetActive(true);
-                //WinPopup();
-                GameFlg = GameLoopFlg.PlayEnd;
-
-            }
             // 手数がマイナス　or 制限時間0ですぐゲームオーバー
-            else if (StatusData.Hand < 0 || StatusData.currentTime <= 0.0f)
+            if (StatusData.Hand < 0 || StatusData.currentTime <= 0.0f)
             {
+                //GameoverTimerのscaleを0
+                GameOverTimer.transform.localScale = new Vector2(0f, 0f);
+
                 if (Moves0AdFlg)
                 {
                     Moves0AdFlg = false;
@@ -536,6 +550,21 @@ public class PuzzleMain : MonoBehaviour
             {
                 StatusData.gameoverTime = 5f;
                 GameFlg = GameLoopFlg.Hand0;
+
+                //GameoverTimerのscaleを0
+                GameOverTimer.transform.localScale = new Vector2(1f, 1f);
+                GameOverTimer.GetComponent<Text>().text = "5";
+
+            }
+            //ゲームクリア判定
+            else if (DogObject.GetComponent<DogData>().bDogJimen)
+            {
+                DataBase.bGameClearFlg = true;
+
+                //GameOverObj.GetComponent<Text>().text = "GameClear!!\n次のステージへ";
+                //GameOverObj.SetActive(true);
+                //WinPopup();
+                GameFlg = GameLoopFlg.PlayEnd;
 
             }
             // スマホのタッチと、PCのクリック判定
@@ -692,6 +721,7 @@ public class PuzzleMain : MonoBehaviour
             AudioClip audio = Resources.Load("SOUND/SE/Button", typeof(AudioClip)) as AudioClip;
             a1 = gameObject.AddComponent<AudioSource>();
             a1.clip = audio;
+            a1.volume = 0.7f;
             a1.Play();
 
         }
@@ -705,6 +735,7 @@ public class PuzzleMain : MonoBehaviour
             AudioClip audio = Resources.Load("SOUND/SE/Magical", typeof(AudioClip)) as AudioClip;
             a1 = gameObject.AddComponent<AudioSource>();
             a1.clip = audio;
+            a1.volume = 0.7f;
             a1.Play();
 
             // パンダ画像を表示
@@ -728,6 +759,7 @@ public class PuzzleMain : MonoBehaviour
                 AudioClip audio = Resources.Load("SOUND/SE/Button", typeof(AudioClip)) as AudioClip;
                 a1 = gameObject.AddComponent<AudioSource>();
                 a1.clip = audio;
+                a1.volume = 0.7f;
                 a1.Play();
 
 

@@ -56,18 +56,22 @@ namespace Ricimi
                 switch (now_scene_name)
                 {
                     case "HomeScenePortrait":
-                        break;
-                    case "LessonScenePortrait":
                         m_audioSource.loop = true;
-                        //m_audioSource.clip = Resources.Load("Sound/happy-steps-sc1", typeof(AudioClip)) as AudioClip;
                         m_audioSource.clip = Resources.Load("Sound/BGM/wave_14", typeof(AudioClip)) as AudioClip;
                         m_audioSource.Play();
                         FadeInVolume(1.0f);
                         break;
+                    case "LessonScenePortrait":
+                        m_audioSource.loop = true;
+                        m_audioSource.clip = Resources.Load("Sound/happy-steps-sc1", typeof(AudioClip)) as AudioClip;
+                        //m_audioSource.clip = Resources.Load("Sound/BGM/wave_14", typeof(AudioClip)) as AudioClip;
+                        m_audioSource.Play();
+                        FadeInVolume(1.0f);
+                        break;
                     case "GameScenePortrait":
-                        m_audioSource.clip = Resources.Load("Sound/BGM/water_bubble_01", typeof(AudioClip)) as AudioClip;
+                        //m_audioSource.clip = Resources.Load("Sound/BGM/hizashi", typeof(AudioClip)) as AudioClip;
                         m_audioSource.loop = false;
-                        /*
+                        
                         int random = Random.Range(0, 3);
                         if(random==0)
                             m_audioSource.clip = Resources.Load("Sound/african-huapangazo-sc1", typeof(AudioClip)) as AudioClip;
@@ -75,7 +79,7 @@ namespace Ricimi
                             m_audioSource.clip = Resources.Load("Sound/sunny-day", typeof(AudioClip)) as AudioClip;
                         else if (random == 2)
                             m_audioSource.clip = Resources.Load("Sound/Nightlight-sc1", typeof(AudioClip)) as AudioClip;
-                        */
+                        
 
                         // L’†‚ÍÄ¶‚µ‚È‚¢
                         if (!DataBase.bGameAdStop)
@@ -95,10 +99,18 @@ namespace Ricimi
                 switch (now_scene_name)
                 {
                     case "HomeScenePortrait":
+                        if (last_scene_name == "LessonScenePortrait")
+                        {
+                            FadeOut();
+                        }
                         last_scene_name = now_scene_name;
                         break;
                     case "LessonScenePortrait":
                         if (last_scene_name == "GameScenePortrait")
+                        {
+                            FadeOut();
+                        }
+                        else if(last_scene_name == "HomeScenePortrait")
                         {
                             FadeOut();
                         }
@@ -120,8 +132,8 @@ namespace Ricimi
                 //if((m_audioSource.time + Time.deltaTime) > m_audioSource.clip.length &&m_audioSource.isPlaying )
                 {
                     m_audioSource.Stop();
-                    m_audioSource.clip = Resources.Load("Sound/BGM/water_bubble_01", typeof(AudioClip)) as AudioClip;
-                    /*
+                    //m_audioSource.clip = Resources.Load("Sound/BGM/hizashi", typeof(AudioClip)) as AudioClip;
+                    
                     int random = Random.Range(0, 3);
                     if (random == 0)
                         m_audioSource.clip = Resources.Load("Sound/african-huapangazo-sc1", typeof(AudioClip)) as AudioClip;
@@ -129,7 +141,6 @@ namespace Ricimi
                         m_audioSource.clip = Resources.Load("Sound/sunny-day", typeof(AudioClip)) as AudioClip;
                     else 
                         m_audioSource.clip = Resources.Load("Sound/Nightlight-sc1", typeof(AudioClip)) as AudioClip;
-                    */
 
                     m_audioSource.Play();
                     FadeInVolume(0.5f);
