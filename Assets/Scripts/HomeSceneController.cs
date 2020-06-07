@@ -7,21 +7,27 @@ public class HomeSceneController : MonoBehaviour
 {
     int change_no = 0;
     public Text fukidashi_text;
-    string [] panda_text = {"パズルゲームで\nえいごをおぼえるYo！",
-                            "Learn English with puzzle games！",
+    int[] panda_no = { 19, 2, 5, 1, 30, 29, 12, 7 };
+    string [] panda_text = {"Dog cute！",
                             "いぬかわいいYo！",
-                            "Dog cute！",
-                            "だんだんねむくなる\nゲームだから",
-                            "ねむれないよるに\nオススメだYo！",
+                            "Learn English with puzzle games！",
+                            "パズルゲームで\nえいごをおぼえるYo！",
                             "It's a game that makes you sleepy,",
                             "Recommended for sleepless nights！",
+                            "だんだんねむくなる\nゲームだから",
+                            "ねむれないよるに\nオススメだYo！",
     };
 
+
+    Image dogimg;
     float change_time;
 
     // Start is called before the first frame update
     void Start()
     {
+        dogimg = GameObject.Find("PandaDogImg").GetComponent<Image>();
+        dogimg.sprite = Resources.Load<Sprite>("LessonIMG/" + panda_no[0]);
+
         change_time = 3.5f;
     }
 
@@ -39,6 +45,7 @@ public class HomeSceneController : MonoBehaviour
                 change_no = 0;
 
             fukidashi_text.text = panda_text[change_no];
+            dogimg.sprite = Resources.Load<Sprite>("LessonIMG/" + panda_no[change_no]);
         }
     }
 }

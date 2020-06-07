@@ -80,6 +80,7 @@ public class WinPopController : MonoBehaviour {
         csvDatas = CSVReader.import("CSV/KuronekoText");
         int rand = UnityEngine.Random.Range(1, csvDatas.Count);
         Debug.Log("rand:" + rand);
+        //rand = 3;
         FukidashiText.text = csvDatas[rand][0]+"の名言を教えるっス!!";
         KuronekoEngText.text = csvDatas[rand][1].Replace("+", ",");
         KuronekoJapText.text = csvDatas[rand][2];
