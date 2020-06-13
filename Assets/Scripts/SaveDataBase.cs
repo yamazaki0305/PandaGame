@@ -25,11 +25,12 @@ public class DataBase
     public static int openLevel = 1;
     public static int RecordWord = 0;
     public static bool NewWordBook = false; //WordBookにNewアイコンをつけるかのフラグ
-    public static float AdRate = 0.5f; // インステ広告を表示する
+    public static float AdRate = 1f; // インステ広告を表示する
     public static bool AdRewordOK = false; // 動画広告を最後まで見るとONになる
     public static bool AdRealTest = false; // trueのときは本番広告を使用する
     public static bool LangJapanese = true; // 言語が日本語:true 英語:false
     public static int STAR_TOUCH_SCORE = 1000; // スコアにタッチした時
+    public static int HammerCount = 3; // ハンマーが打てる回数
 
     public static int[] level_star = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -134,6 +135,7 @@ public class SaveDataBase : MonoBehaviour
     const string SAVE_CREATE_WORD = "CREATE_WORD";
     const string SAVE_NEW_WORDBOOK = "SAVE_NEW_WORDBOOK";
     const string SAVE_GAME_MODE = "SAVE_GAME_MODE"; //Easy 1 Hard 0
+    const string SAVE_HAMMER_COUNT = "SAVE_HAMMER_COUNT";
 
 
     public static void saveData()
@@ -300,6 +302,34 @@ public class SaveDataBase : MonoBehaviour
             }
             DataBase.RecordWord = wordlist.WordList.Count();
 
+        }
+    }
+
+    public static void loadHammerCount()
+    {
+        if (PlayerPrefs.HasKey(SAVE_HAMMER_COUNT))
+        {
+
+            DataBase.HammerCount = PlayerPrefs.GetInt(SAVE_HAMMER_COUNT, 3);
+
+        }
+        else
+        {
+            DataBase.HammerCount = 3;
+        }
+    }
+
+    public static void saveHammerCount()
+    {
+        if (PlayerPrefs.HasKey(SAVE_HAMMER_COUNT))
+        {
+            PlayerPrefs.SetInt(SAVE_HAMMER_COUNT, DataBase.HammerCount);
+            PlayerPrefs.Save();
+        }
+        else
+        {
+            PlayerPrefs.SetInt(SAVE_HAMMER_COUNT, DataBase.HammerCount);
+            PlayerPrefs.Save();
         }
     }
 

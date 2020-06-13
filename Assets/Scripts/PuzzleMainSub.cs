@@ -50,6 +50,8 @@ public class StageStatus
     public int time; //カウントダウン前の残り時間タイマー
     public float currentTime; // 残り時間タイマー
     public float gameoverTime; // 手数0になってからゲームオーバーまでのタイマー
+    public float hammerTime; // ハンマーのふきだしを表示するまでのタイマー
+
     public AnimalType AnimalTypeOK1; // スコアのAnimal1のAnimalType
     public AnimalType AnimalTypeOK2; // スコアのAnimal2のAnimalType
     public AnimalType AnimalTypeOK3; // スコアのAnimal3のAnimalType
@@ -169,13 +171,15 @@ public class StageStatus
 
         float fill = (float)this.Score / this.StarScore;
         BarObj.GetComponent<Image>().fillAmount = fill;
+
+        hammerTime = 30f;
     }
 
     // 動画広告を見た時の手数の更新
     public void AdRewordUpdate()
     {
-        if(this.Hand < 10)
-            this.Hand = 10;
+        if(this.Hand < 5)
+            this.Hand = 5;
 
         this.currentTime = this.time;
 

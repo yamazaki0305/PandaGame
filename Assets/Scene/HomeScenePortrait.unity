@@ -12617,7 +12617,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43128b875447cce48bd471eb77ada531, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  twitter: 0
+  twitter: 1
 --- !u!114 &1439056191
 MonoBehaviour:
   m_ObjectHideFlags: 0

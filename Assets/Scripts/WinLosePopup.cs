@@ -38,6 +38,17 @@ namespace Ricimi
         }
         */
 
+        public void LessonList()
+        {
+            // インステ広告を表示
+            RandomAd.ShowInterstitial();
+
+            // 取得したシーンへ移動
+            SceneManager.LoadScene("LessonScenePortrait");
+
+            Close();
+        }
+
         public void Reload()
         {
             // インステ広告を表示
@@ -53,6 +64,10 @@ namespace Ricimi
 
         public void Next()
         {
+
+            // インステ広告を表示
+            RandomAd.ShowInterstitial();
+
             DataBase.playLevel++;
             if (DataBase.playLevel > DataBase.MAXSTAGE)
                 DataBase.playLevel = 1;

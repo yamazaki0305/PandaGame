@@ -32,6 +32,9 @@ public class PuzzleMain : MonoBehaviour
     private int ImgGroundHeight = -520;
     private GameObject ImgGround;
 
+    //背景の高さ
+    private int ImgBackPictureHeight = 800;
+
 
     //デフォルトの高さのマス
     private int DefaultBlockHeight = 7;
@@ -151,6 +154,9 @@ public class PuzzleMain : MonoBehaviour
     // GameOverのカウントダウン
     public GameObject GameOverTimer;
 
+    // Hammerのふきだし
+    public GameObject HammerFukidashi;
+
     void Start()
     {
         DogObject = GameObject.Find("Dog");
@@ -224,42 +230,41 @@ public class PuzzleMain : MonoBehaviour
 
         // 猫救出ラインのGlassLineを見つける
         GlassLine = GameObject.Find("GlassLine");
-        if (DataBase.playLevel < 15)
+        if (DataBase.playLevel <= 9*1)
             GlassLine.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("StageIMG/green_glass");
-        else if (15 <= DataBase.playLevel && DataBase.playLevel < 20)
-            GlassLine.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("StageIMG/glass");
-        else if (20 <= DataBase.playLevel && DataBase.playLevel < 29) 
+        else if (9*1 < DataBase.playLevel && DataBase.playLevel <= 9*2)
+            GlassLine.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("StageIMG/cloud_glass");
+        else if (9*2 < DataBase.playLevel && DataBase.playLevel <= 9*3) 
             GlassLine.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("StageIMG/snow_glass");
-        else if (29 <= DataBase.playLevel)
+        else if (9*3 < DataBase.playLevel)
             GlassLine.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("StageIMG/cloud_glass");
         Vector3 pos = new Vector3(0, GlassLineHeight + UnderArrowHeight * -BlockSize, -1);
         GlassLine.transform.localPosition = pos;
 
-        // 下部草画像を見つける
-        ImgGround = GameObject.Find("ImgGround");
-        
-        if (DataBase.playLevel < 15)
+        // 下部草画像をセット
+        ImgGround = GameObject.Find("ImgGround");        
+        if (DataBase.playLevel <= 9*1)
             ImgGround.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("StageIMG/green_jimen");
-        else if (15 <= DataBase.playLevel && DataBase.playLevel < 20)
-            ImgGround.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("StageIMG/park_jimen4");
-        else if (20 <= DataBase.playLevel && DataBase.playLevel < 29)
-            ImgGround.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("StageIMG/snow_jimen");
-        else if (29 <= DataBase.playLevel)
+        else if (9*1 < DataBase.playLevel && DataBase.playLevel <= 9*2)
             ImgGround.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("StageIMG/cloud_jimen");
-
+        else if (9*2 < DataBase.playLevel && DataBase.playLevel <= 9*3)
+            ImgGround.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("StageIMG/snow_jimen");
+        else if (9*3 < DataBase.playLevel)
+            ImgGround.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("StageIMG/cloud_jimen");
         pos = new Vector3(0, rowLength * BlockSize + ImgGroundHeight - (rowLength - DefaultBlockHeight) * BlockSize - DefaultBlockHeight*BlockSize,-2);
         ImgGround.transform.localPosition = pos;
 
+        // 背景画像をセット
         BackPicture = GameObject.Find("BackPicture");
-        if (DataBase.playLevel < 15)
+        if (DataBase.playLevel <= 9*1)
             BackPicture.GetComponent<SpriteRenderer>().sprite =  Resources.Load<Sprite>("StageIMG/green_stage");
-        else if (15 <= DataBase.playLevel && DataBase.playLevel < 20)
-            BackPicture.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("StageIMG/park_sunset3");
-        else if ( 20 <= DataBase.playLevel && DataBase.playLevel < 29)
+        else if (9*1 < DataBase.playLevel && DataBase.playLevel <= 9*2)
+            BackPicture.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("StageIMG/cloud_stage");
+        else if (9*2 < DataBase.playLevel && DataBase.playLevel <= 9*3)
             BackPicture.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("StageIMG/snow_stage");
-        else if ( 29 <= DataBase.playLevel)
+        else if (9*3 < DataBase.playLevel)
             BackPicture.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("StageIMG/cloud_stage02");
-        pos = new Vector3(0, GlassLineHeight + UnderArrowHeight * -BlockSize + 400, 100);
+        pos = new Vector2(0, GlassLineHeight + UnderArrowHeight * -BlockSize + ImgBackPictureHeight);
         BackPicture.transform.localPosition = pos;
 
         // クリア時のパンダの犬画像を今回のステージ画像にする
@@ -341,6 +346,10 @@ public class PuzzleMain : MonoBehaviour
 
         //GameoverTimerのscaleを0
         GameOverTimer.transform.localScale = new Vector2(0,0);
+
+        //HammerCountを設定
+        UpdateHummerButton();
+        HammerFukidashi.transform.localScale = new Vector2(0, 0);
     }
 
 
@@ -523,6 +532,16 @@ public class PuzzleMain : MonoBehaviour
         else if (GameFlg == GameLoopFlg.PlayNow)
         {
 
+            StatusData.hammerTime -= Time.deltaTime; 
+
+            if(StatusData.hammerTime <= 0 )
+            {
+                HammerFukidashi.transform.localScale = new Vector2(1f, 1f);
+            }
+            else
+            {
+                HammerFukidashi.transform.localScale = new Vector2(0f, 0f);
+            }
 
             // 手数がマイナス　or 制限時間0ですぐゲームオーバー
             if (StatusData.Hand < 0 || StatusData.currentTime <= 0.0f)
@@ -1138,6 +1157,7 @@ public class PuzzleMain : MonoBehaviour
 
     }
 
+    /*
     // 手数を消費してアルファベットブロックを落とす
     public void DropBlockButton()
     {
@@ -1223,6 +1243,26 @@ public class PuzzleMain : MonoBehaviour
         //
 
     }
+    */
+
+    // ハンマーボタンの状況をアップデート
+    public void UpdateHummerButton()
+    {
+        SaveDataBase.loadHammerCount();
+        GameObject.Find("HammerCountText").GetComponent<Text>().text = DataBase.HammerCount.ToString();
+
+        if(DataBase.HammerCount > 0)
+        {
+            GameObject.Find("RewordMovieImg").transform.localScale = new Vector2(0, 0);
+
+        }
+        else
+        {
+            GameObject.Find("RewordMovieImg").transform.localScale = new Vector2(1f, 1f);
+
+        }
+
+    }
 
     // ハンマーボタンをドラッグして実行
     public void DragHummerButton()
@@ -1281,6 +1321,10 @@ public class PuzzleMain : MonoBehaviour
 
             SelectEigoDestroy();
             GameFlg = GameLoopFlg.BlockMove;
+
+            //ハンマーの使用回数を減らす
+            DataBase.HammerCount--;
+            SaveDataBase.saveHammerCount();
         }
 
     }
@@ -1871,7 +1915,7 @@ public class PuzzleMain : MonoBehaviour
             //ector3 glassimg_pos = new Vector3(0, ActiveBlockHeight * BlockSize + BlockGroundHeight - (rowLength - DefaultBlockHeight) * BlockSize,-1);
             //ImgGround.GetComponent<Liner>().OnUpper(glassimg_pos, 1);
 
-            Vector3 back_pos = new Vector3(0, GlassLineHeight + UnderArrowHeight * -BlockSize + 300, 100);
+            Vector2 back_pos = new Vector3(0, GlassLineHeight + UnderArrowHeight * -BlockSize + ImgBackPictureHeight);
             BackPicture.GetComponent<Liner>().OnUpper(back_pos, 1);
 
             return true;

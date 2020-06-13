@@ -2146,7 +2146,6 @@ GameObject:
   - component: {fileID: 1753369816712366320}
   - component: {fileID: 7523565193151795328}
   - component: {fileID: 5759688926220388426}
-  - component: {fileID: 5783334977861326941}
   m_Layer: 5
   m_Name: QuitButton
   m_TagString: Untagged
@@ -2212,18 +2211,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 114435544843256452}
-        m_MethodName: Close
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 5783334977861326941}
-        m_MethodName: PerformTransition
+        m_MethodName: LessonList
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2340,21 +2328,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &5783334977861326941
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7402382149424325423}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55f7eaf6dd2a2478c939f6bb532e39ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  scene: LessonScenePortrait
-  duration: 1
-  color: {r: 0.36078432, g: 0.6117647, b: 0.8392157, a: 1}
 --- !u!1 &7450422440879537986
 GameObject:
   m_ObjectHideFlags: 0

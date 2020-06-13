@@ -117,6 +117,8 @@ public class AdInterstitial : MonoBehaviour {
 #if UNITY_EDITOR
             IsClosed = true;
             this.interstitial.Show();
+            // 広告を終了するとBGMをON
+            DataBase.bGameAdStop = false;
 # else
             this.interstitial.Show();
 #endif

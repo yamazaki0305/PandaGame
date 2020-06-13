@@ -52,7 +52,8 @@ public class LevelSceneController : MonoBehaviour {
             star += DataBase.level_star[i];
 
         StarCountText.text = star.ToString();
-}
+
+    }
 
     // Update is called once per frame
     void Update () {

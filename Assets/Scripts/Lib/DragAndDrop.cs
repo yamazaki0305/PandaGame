@@ -23,8 +23,16 @@ public class DragAndDrop : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndD
     public void OnPointerDown(PointerEventData eventData)
     {
         // ドラッグアイテムのサイズを大きく
-        this.GetComponent<Image>().transform.localScale = new Vector2(1.5f, 1.5f);
+        this.GetComponent<Image>().transform.localScale = new Vector2(1.75f, 1.75f);
         Debug.Log("OnPointerDown");
+
+        if (DataBase.HammerCount <= 0)
+        {
+            Debug.Log("movie");
+            // 動画広告を表示
+            GameObject.Find("AdMob").GetComponent<AdReward>().UserOptToWatchAd();
+        }
+
     }
     public void OnPointerUp(PointerEventData eventData)
     {
@@ -36,6 +44,7 @@ public class DragAndDrop : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndD
 
     public void OnBeginDrag(PointerEventData eventData)
     {
+
         // ドラッグ前の位置を記憶しておく
         prevPos = transform.position;
 
@@ -60,6 +69,10 @@ public class DragAndDrop : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndD
         // ハンマー処理を行う
         GameObject.Find("GameRoot").GetComponent<PuzzleMain>().DragHummerButton();
 
+        // ハンマーを1回消費する
+        SaveDataBase.saveHammerCount();
+        GameObject.Find("GameRoot").GetComponent<PuzzleMain>().UpdateHummerButton();
+
     }
 
     public void OnDrop(PointerEventData eventData)
@@ -77,6 +90,19 @@ public class DragAndDrop : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndD
                 this.enabled = false;
             }
             */
+        }
+    }
+
+
+    private void Update()
+    {
+        if (DataBase.AdRewordOK)
+        {
+            DataBase.AdRewordOK = false;
+            DataBase.HammerCount = 3;
+            SaveDataBase.saveHammerCount();
+            //GameObject.Find("GameRoot").GetComponent<PuzzleMain>().StatusData.AdRewordUpdate();
+            GameObject.Find("GameRoot").GetComponent<PuzzleMain>().UpdateHummerButton();
         }
     }
 }

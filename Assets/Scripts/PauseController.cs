@@ -27,6 +27,7 @@ namespace Ricimi
 
         public new void Close()
         {
+
             var animator = GetComponent<Animator>();
             if (animator.GetCurrentAnimatorStateInfo(0).IsName("Open"))
                 animator.Play("Close");
@@ -35,6 +36,26 @@ namespace Ricimi
             StartCoroutine(RunPopupDestroy());
 
             DataBase.bGamePause = false;
+
+        }
+
+        public void LessonList()
+        {
+            // インステ広告を表示
+            RandomAd.ShowInterstitial();
+
+            // 取得したシーンへ移動
+            SceneManager.LoadScene("LessonScenePortrait");
+
+            var animator = GetComponent<Animator>();
+            if (animator.GetCurrentAnimatorStateInfo(0).IsName("Open"))
+                animator.Play("Close");
+
+            RemoveBackground();
+            StartCoroutine(RunPopupDestroy());
+
+            DataBase.bGamePause = false;
+
         }
         public void ReloadButton()
         {

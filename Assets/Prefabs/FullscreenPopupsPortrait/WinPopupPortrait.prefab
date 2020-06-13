@@ -10535,8 +10535,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 114286819888177638}
-        m_MethodName: PerformTransition
+      - m_Target: {fileID: 114947256023979182}
+        m_MethodName: LessonList
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

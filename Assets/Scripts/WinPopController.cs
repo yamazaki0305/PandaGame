@@ -31,7 +31,7 @@ public class WinPopController : MonoBehaviour {
     // Use this for initialization
     void Start () {
 
-        RandomAd.ShowInterstitial();
+        //RandomAd.ShowInterstitial();
 
         StatusData = GameObject.Find("GameRoot").GetComponent<PuzzleMain>().StatusData;
 
