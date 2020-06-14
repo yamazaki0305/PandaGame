@@ -20,6 +20,10 @@ public class StarRewordButton : MonoBehaviour
     public GameObject MovieIcon;
     public Text StarCountText;
 
+    public string scene = "<Insert scene name>";
+    public float duration = 1.0f;
+    public Color color = Color.black;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -67,7 +71,8 @@ public class StarRewordButton : MonoBehaviour
         else
         {
             // 取得したシーンへ移動
-            SceneManager.LoadScene("RewordScenePortrait");
+            //SceneManager.LoadScene("RewordScenePortrait");
+            Transition.LoadLevel(scene, duration, color);
         }
 
         
@@ -86,7 +91,8 @@ public class StarRewordButton : MonoBehaviour
             SaveDataBase.saveEp();
 
             // 取得したシーンへ移動
-            SceneManager.LoadScene("RewordScenePortrait");
+            //SceneManager.LoadScene("RewordScenePortrait");
+            Transition.LoadLevel(scene, duration, color);
         }
     }
 }

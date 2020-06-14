@@ -37,6 +37,9 @@ namespace Ricimi
             StartCoroutine(RunPopupDestroy());
         }
         */
+        public string scene = "<Insert scene name>";
+        public float duration = 1.0f;
+        public Color color = Color.black;
 
         public void LessonList()
         {
@@ -46,8 +49,8 @@ namespace Ricimi
             RandomAd.ShowInterstitial();
 
             // 取得したシーンへ移動
-            SceneManager.LoadScene("LessonScenePortrait");
-
+            //SceneManager.LoadScene("LessonScenePortrait");
+            Transition.LoadLevel(scene, duration, color);
         }
 
         public void Reload()

@@ -11,8 +11,13 @@ namespace Ricimi
 {
     // This class is responsible for popup management. Popups follow the traditional behavior of
     // automatically blocking the input on elements behind it and adding a background texture.
+
+
     public class PauseController : Popup
     {
+        public string scene = "<Insert scene name>";
+        public float duration = 1.0f;
+        public Color color = Color.black;
 
         void Start()
         {
@@ -55,7 +60,8 @@ namespace Ricimi
             RandomAd.ShowInterstitial();
 
             // 取得したシーンへ移動
-            SceneManager.LoadScene("LessonScenePortrait");
+            //SceneManager.LoadScene("LessonScenePortrait");
+            Transition.LoadLevel(scene, duration, color);
 
         }
         public void ReloadButton()

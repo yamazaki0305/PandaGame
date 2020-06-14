@@ -450,6 +450,9 @@ MonoBehaviour:
   backgroundColor: {r: 0.039215688, g: 0.039215688, b: 0.039215688, a: 0.6}
   backgroundColor2: {r: 0.039215688, g: 0.039215688, b: 0.039215688, a: 0.6}
   destroyTime: 0.5
+  scene: LessonScenePortrait
+  duration: 0.5
+  color: {r: 0.36078432, g: 0.6117647, b: 0.8392157, a: 1}
 --- !u!1 &117888
 GameObject:
   m_ObjectHideFlags: 0
