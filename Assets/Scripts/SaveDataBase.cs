@@ -431,6 +431,14 @@ public class SaveDataBase : MonoBehaviour
                 DataBase.ep_movie[i] = int.Parse(chArray1[i].ToString());
             }
         }
+        else
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                DataBase.ep_movie[i] = 0;
+            }
+
+        }
 
     }
 

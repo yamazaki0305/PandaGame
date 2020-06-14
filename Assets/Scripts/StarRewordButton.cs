@@ -63,6 +63,8 @@ public class StarRewordButton : MonoBehaviour
 
         DataBase.SelectEpNo = this.EpNo;
 
+        Debug.Log("selectep" + this.EpNo);
+
         if (DataBase.ep_movie[EpNo] == 0)
         {
             // 動画広告を表示
@@ -82,11 +84,12 @@ public class StarRewordButton : MonoBehaviour
     void Update()
     {
 
-        if (DataBase.AdRewordOK)
+        if (DataBase.AdRewordOK && DataBase.SelectEpNo == EpNo)
         {
 
             DataBase.AdRewordOK = false;
 
+            Debug.Log("EPP" + EpNo);
             DataBase.ep_movie[EpNo] = 1; // エピソード開放
             SaveDataBase.saveEp();
 
