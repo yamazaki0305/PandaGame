@@ -11,7 +11,7 @@ public class HomeSceneController : MonoBehaviour
     string [] panda_text = {"Dog cute！",
                             "いぬかわいいYo！",
                             "Learn English with puzzle games！",
-                            "パズルゲームで\nえいごをおぼえるYo！",
+                            "パズルゲームで\nえいごがまねべるYo！",
                             "It's a game that makes you sleepy,",
                             "Recommended for sleepless nights！",
                             "だんだんねむくなる\nゲームだから",

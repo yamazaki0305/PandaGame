@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scene/LessonScenePortrait.unity
     guid: 4180b1ef650e39a418f4e305ca944781
+  - enabled: 1
+    path: Assets/Scene/RewordScenePortrait.unity
+    guid: a765292a69419784599722ff7ebf00da
   m_configObjects: {}

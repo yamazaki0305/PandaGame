@@ -41,11 +41,6 @@ namespace Ricimi
 
         public void LessonList()
         {
-            // インステ広告を表示
-            RandomAd.ShowInterstitial();
-
-            // 取得したシーンへ移動
-            SceneManager.LoadScene("LessonScenePortrait");
 
             var animator = GetComponent<Animator>();
             if (animator.GetCurrentAnimatorStateInfo(0).IsName("Open"))
@@ -55,6 +50,12 @@ namespace Ricimi
             StartCoroutine(RunPopupDestroy());
 
             DataBase.bGamePause = false;
+
+            // インステ広告を表示
+            RandomAd.ShowInterstitial();
+
+            // 取得したシーンへ移動
+            SceneManager.LoadScene("LessonScenePortrait");
 
         }
         public void ReloadButton()

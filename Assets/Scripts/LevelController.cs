@@ -19,8 +19,6 @@ public class LevelController : MonoBehaviour {
         LessonNo.text = Level.ToString();
         SaveDataBase.loadData();
 
-        Debug.Log("complete;" + DataBase.openLevel);
-
         // OpenLevelとこのLevelが同じ時
         if( DataBase.openLevel == Level )
         {

@@ -130,6 +130,9 @@ public class AdInterstitial : MonoBehaviour {
             RequestInterstitial();
             MonoBehaviour.print("Interstitial is not ready yet");
             IsClosed = true;
+
+            // 広告を終了するとBGMをON
+            DataBase.bGameAdStop = false;
         }
     }
 }

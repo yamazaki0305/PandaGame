@@ -31,12 +31,15 @@ public class DataBase
     public static bool LangJapanese = true; // 言語が日本語:true 英語:false
     public static int STAR_TOUCH_SCORE = 1000; // スコアにタッチした時
     public static int HammerCount = 3; // ハンマーが打てる回数
+    public static int SelectEpNo = 1; // LessonListで選択されたEpNo
 
     public static int[] level_star = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+
+    public static int[] ep_movie = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }; // 1:視聴
 
     //スコアoutputの一時的な保存
     public static bool bScoreOutputFlg = false;
@@ -136,7 +139,7 @@ public class SaveDataBase : MonoBehaviour
     const string SAVE_NEW_WORDBOOK = "SAVE_NEW_WORDBOOK";
     const string SAVE_GAME_MODE = "SAVE_GAME_MODE"; //Easy 1 Hard 0
     const string SAVE_HAMMER_COUNT = "SAVE_HAMMER_COUNT";
-
+    const string SAVE_EP_MOVIE = "SAVE_EP_MOVIE"; 
 
     public static void saveData()
     {
@@ -305,20 +308,6 @@ public class SaveDataBase : MonoBehaviour
         }
     }
 
-    public static void loadHammerCount()
-    {
-        if (PlayerPrefs.HasKey(SAVE_HAMMER_COUNT))
-        {
-
-            DataBase.HammerCount = PlayerPrefs.GetInt(SAVE_HAMMER_COUNT, 3);
-
-        }
-        else
-        {
-            DataBase.HammerCount = 3;
-        }
-    }
-
     public static void saveHammerCount()
     {
         if (PlayerPrefs.HasKey(SAVE_HAMMER_COUNT))
@@ -330,6 +319,20 @@ public class SaveDataBase : MonoBehaviour
         {
             PlayerPrefs.SetInt(SAVE_HAMMER_COUNT, DataBase.HammerCount);
             PlayerPrefs.Save();
+        }
+    }
+
+    public static void loadHammerCount()
+    {
+        if (PlayerPrefs.HasKey(SAVE_HAMMER_COUNT))
+        {
+
+            DataBase.HammerCount = PlayerPrefs.GetInt(SAVE_HAMMER_COUNT, 3);
+
+        }
+        else
+        {
+            DataBase.HammerCount = 3;
         }
     }
 
@@ -399,6 +402,36 @@ public class SaveDataBase : MonoBehaviour
         {
             DataBase.BestScore = 0;
         }
+    }
+
+    public static void saveEp()
+    {
+
+        string str = "";
+        for (int i = 0; i < 10; i++)
+        {
+            str += DataBase.ep_movie[i].ToString();
+        }
+
+        PlayerPrefs.SetString(SAVE_EP_MOVIE, str);
+        PlayerPrefs.Save();
+
+    }
+
+    public static void loadEp()
+    {
+
+        if (PlayerPrefs.HasKey(SAVE_EP_MOVIE))
+        {
+            string stTarget = PlayerPrefs.GetString(SAVE_EP_MOVIE, "");
+            // stTarget を Char 型の 1 次元配列に変換する
+            char[] chArray1 = stTarget.ToCharArray();
+            for (int i = 0; i < 10; i++)
+            {
+                DataBase.ep_movie[i] = int.Parse(chArray1[i].ToString());
+            }
+        }
+
     }
 
     public static void loadAllLevel()

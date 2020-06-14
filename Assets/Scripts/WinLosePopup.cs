@@ -40,13 +40,14 @@ namespace Ricimi
 
         public void LessonList()
         {
+            Close();
+
             // インステ広告を表示
             RandomAd.ShowInterstitial();
 
             // 取得したシーンへ移動
             SceneManager.LoadScene("LessonScenePortrait");
 
-            Close();
         }
 
         public void Reload()
