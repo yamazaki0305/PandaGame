@@ -1941,21 +1941,26 @@ public class PuzzleMain : MonoBehaviour
             can_alphabet[i] = 0;
         }
 
+        //DefaultBlockHeight
         // パズルエリアのアルファベットの数を格納する
         for (int i = 0; i < columnLength; i++)
         {
-            for (int j = ActiveBlockHeight; j < rowLength; j++)
+            for (int j = ActiveBlockHeight; j < ActiveBlockHeight + DefaultBlockHeight; j++)
+            //for (int j = ActiveBlockHeight; j < rowLength-1; j++)
             {
 
                 if (PuzzleData[i, j] != null)
                 {
-                    for (int k = 0; k < 26; k++)
+                    if (PuzzleData[i, j].GetComponent<BlockData>().blockType == BlockType.ALPHABET)
                     {
-                        char eigo = PuzzleData[i, j].GetComponent<BlockData>().Alphabet[0];
-                        if (eigochar[k] == eigo)
+                        for (int k = 0; k < 26; k++)
                         {
-                            can_alphabet[k]++;
-                            k = 100;
+                            char eigo = PuzzleData[i, j].GetComponent<BlockData>().Alphabet[0];
+                            if (eigochar[k] == eigo)
+                            {
+                                can_alphabet[k]++;
+                                k = 100;
+                            }
                         }
                     }
 
@@ -1964,12 +1969,12 @@ public class PuzzleMain : MonoBehaviour
         }
 
         // 現在のアルファベットブロック数をDebugLogに表示
-        /*
+        
         for (int i = 0; i < 26; i++)
         {
             Debug.Log(eigochar[i] + ":" + can_alphabet[i]);
         }
-        */
+        
 
         GameObject.Find("CanWordText").GetComponent<CanWordController>().CopyCanAlphabet(can_alphabet);
 

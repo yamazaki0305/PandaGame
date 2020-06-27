@@ -99,7 +99,6 @@ public class Liner : MonoBehaviour
                 if (this.GetComponent<BlockData>().blockType == BlockType.Dog )
                 {
                     this.GetComponent<DogData>().iMove = false;
-                    Debug.Log("abcdefg");
                 }
 
                 yield break;

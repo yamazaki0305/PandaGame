@@ -237,6 +237,8 @@ public class DogData : BlockData
                             break;
                     }
 
+                    main.GetComponent<PuzzleMain>().CheckPotentialPuzzle();
+
                     _PuzzleData[X, Y] = null;
                     
                     drop_count = 0;
@@ -255,9 +257,11 @@ public class DogData : BlockData
 
                 if (arrowType == ArrowType.UPPER)
                 {
+
                     if (!iMove)
                     {
                         arrowType = ArrowType.LEFT;
+                        
                     }
                 }
 
