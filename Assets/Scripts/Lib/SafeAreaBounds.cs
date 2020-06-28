@@ -46,7 +46,8 @@ public class SafeAreaBounds : MonoBehaviour
 
         if (Screen.width == 1125 && Screen.height == 2436 || Screen.width == 2436 && Screen.height == 1125
             || Screen.width == 1792 && Screen.height == 828 || Screen.width == 828 && Screen.height == 1792
-            || Screen.width == 2688 && Screen.height == 1242 || Screen.width == 1242 && Screen.height == 2688)
+            || Screen.width == 2688 && Screen.height == 1242 || Screen.width == 1242 && Screen.height == 2688
+            || Screen.width == 2160 && Screen.height == 1080 || Screen.width == 1080 && Screen.height == 2160)
 
         {
 
