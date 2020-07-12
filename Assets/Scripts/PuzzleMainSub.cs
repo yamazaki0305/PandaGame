@@ -186,7 +186,10 @@ public class StageStatus
         GameObject StatusHand = GameObject.Find("Text Moves Amount");
         StatusHand.GetComponent<Text>().text = this.Hand.ToString();
 
-        this.Score = 0 + (this.Animal1OK + this.Animal2OK + this.Animal3OK) * 300;
+        //this.Score = 0 + (this.Animal1OK + this.Animal2OK + this.Animal3OK) * 300;
+        this.Score = this.Score -1000;
+        if (this.Score < 0)
+            this.Score = 0;
 
         GameObject StatusScore = GameObject.Find("Score Amount");
         StatusScore.GetComponent<Text>().text = this.Score.ToString();

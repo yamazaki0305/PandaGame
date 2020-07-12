@@ -65,14 +65,14 @@ public class DogData : BlockData
     {
         if (DataBase.DebugFlg)
         {
-            Text text = GameObject.Find("DebugText").GetComponent<Text>();
-            /*
+            Text text = GameObject.Find("DebugText2").GetComponent<Text>();
+            
             text.text = "Arrow:" + arrowType +" ";text.text += "iMove:" + iMove;
             text.text += " bLeftMove:" + bLeftMove + " "; text.text += "bRightMove:" + bRightMove; text.text += " bUnderMove:" + bUnderMove;
             text.text += "\n" + "X:" + X + " Y:" + Y;
 
             text.text += " drop:" + drop_count;
-            */
+            
         }
         
         if(iMove==false)
@@ -150,7 +150,8 @@ public class DogData : BlockData
             //左右下に移動できるか判定
             if (X == 0)
                 bLeftMove = false;
-            else if (_PuzzleData[X - 1, Y] == null || _PuzzleData[X - 1, Y].GetComponent<BlockData>().animalType == AnimalType.STAR)
+            //else if (_PuzzleData[X - 1, Y] == null || _PuzzleData[X - 1, Y].GetComponent<BlockData>().animalType == AnimalType.STAR)
+            else if (_PuzzleData[X - 1, Y] == null)
                 bLeftMove = true;
             else
                 bLeftMove = false;
@@ -159,8 +160,9 @@ public class DogData : BlockData
             {
                 bRightMove = false;
             }
-            else if (_PuzzleData[X + 1, Y] == null || _PuzzleData[X + 1, Y].GetComponent<BlockData>().animalType == AnimalType.STAR)
-                bRightMove = true;
+            //else if (_PuzzleData[X + 1, Y] == null || _PuzzleData[X + 1, Y].GetComponent<BlockData>().animalType == AnimalType.STAR)
+            else if (_PuzzleData[X + 1, Y] == null)
+            bRightMove = true;
             else
                 bRightMove = false;
 
@@ -326,7 +328,8 @@ public class DogData : BlockData
             // 左をチェック
             if (main.StarDataList[i].GetComponent<BlockData>().X == this.X - 1 && main.StarDataList[i].GetComponent<BlockData>().Y == this.Y)
             {
-                if (!(arrowType == ArrowType.UNDER || arrowType == ArrowType.UPPER))
+                // 犬が落ちている時、上がっている時は星を取らない
+                if (!(arrowType == ArrowType.UNDER || arrowType == ArrowType.UPPER || bUnderMove == true))
                 {
 
                     bb = true;
@@ -338,7 +341,8 @@ public class DogData : BlockData
             // 右をチェック
             else if (main.StarDataList[i].GetComponent<BlockData>().X == this.X + 1 && main.StarDataList[i].GetComponent<BlockData>().Y == this.Y)
             {
-                if (!(arrowType == ArrowType.UNDER || arrowType == ArrowType.UPPER))
+                // 犬が落ちている時、上がっている時は星を取らない
+                if (!(arrowType == ArrowType.UNDER || arrowType == ArrowType.UPPER || bUnderMove == true))
                 {
 
                     bb = true;

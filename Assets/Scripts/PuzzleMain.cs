@@ -123,7 +123,7 @@ public class PuzzleMain : MonoBehaviour
     public List<GameObject> StarDataList = new List<GameObject>();
 
     // ゲームループフラグを管理
-    GameLoopFlg GameFlg = GameLoopFlg.StartInfo;
+    public GameLoopFlg GameFlg = GameLoopFlg.StartInfo;
 
     bool isRunning = true;
 
