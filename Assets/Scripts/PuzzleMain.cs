@@ -248,9 +248,9 @@ public class PuzzleMain : MonoBehaviour
         else if (9*1 < DataBase.playLevel && DataBase.playLevel <= 9*2)
             ImgGround.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("StageIMG/cloud_jimen");
         else if (9*2 < DataBase.playLevel && DataBase.playLevel <= 9*3)
-            ImgGround.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("StageIMG/snow_jimen");
-        else if (9*3 < DataBase.playLevel)
             ImgGround.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("StageIMG/cloud_jimen");
+        else if (9*3 < DataBase.playLevel)
+            ImgGround.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("StageIMG/snow_jimen");
         pos = new Vector3(0, rowLength * BlockSize + ImgGroundHeight - (rowLength - DefaultBlockHeight) * BlockSize - DefaultBlockHeight*BlockSize,-2);
         ImgGround.transform.localPosition = pos;
 
@@ -261,7 +261,7 @@ public class PuzzleMain : MonoBehaviour
         else if (9*1 < DataBase.playLevel && DataBase.playLevel <= 9*2)
             BackPicture.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("StageIMG/cloud_stage");
         else if (9*2 < DataBase.playLevel && DataBase.playLevel <= 9*3)
-            BackPicture.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("StageIMG/snow_stage");
+            BackPicture.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("StageIMG/cloud_stage02");
         else if (9*3 < DataBase.playLevel)
             BackPicture.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("StageIMG/cloud_stage02");
         pos = new Vector2(0, GlassLineHeight + UnderArrowHeight * -BlockSize + ImgBackPictureHeight);

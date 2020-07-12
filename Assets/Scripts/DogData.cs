@@ -183,6 +183,7 @@ public class DogData : BlockData
         }
         else if (arrowType == ArrowType.RIGHT)
         {
+
             this.transform.localScale = new Vector3(84, transform.localScale.y, transform.localScale.z);
             GetComponent<Animator>().SetTrigger("walkTrigger");
         }
@@ -323,26 +324,34 @@ public class DogData : BlockData
         for(i=0; i<main.StarDataList.Count(); i++)
         {
             // 左をチェック
-            if (main.StarDataList[i].GetComponent<BlockData>().X == this.X-1 && main.StarDataList[i].GetComponent<BlockData>().Y == this.Y)
+            if (main.StarDataList[i].GetComponent<BlockData>().X == this.X - 1 && main.StarDataList[i].GetComponent<BlockData>().Y == this.Y)
             {
-                bb = true;
-                main.PuzzleData[this.X - 1, this.Y] = null;
-                break;
+                if (!(arrowType == ArrowType.UNDER || arrowType == ArrowType.UPPER))
+                {
 
+                    bb = true;
+                    main.PuzzleData[this.X - 1, this.Y] = null;
+                    break;
+
+                }
             }
             // 右をチェック
-            else if (main.StarDataList[i].GetComponent<BlockData>().X == this.X+1 && main.StarDataList[i].GetComponent<BlockData>().Y == this.Y)
+            else if (main.StarDataList[i].GetComponent<BlockData>().X == this.X + 1 && main.StarDataList[i].GetComponent<BlockData>().Y == this.Y)
             {
-                bb = true;
-                main.PuzzleData[this.X + 1, this.Y] = null;
-                break;
+                if (!(arrowType == ArrowType.UNDER || arrowType == ArrowType.UPPER))
+                {
+
+                    bb = true;
+                    main.PuzzleData[this.X + 1, this.Y] = null;
+                    break;
+                }
             }
             //if　上下左右にstarがあったら、消す
             // 右をチェック
-            else if (main.StarDataList[i].GetComponent<BlockData>().X == this.X && main.StarDataList[i].GetComponent<BlockData>().Y == this.Y-1)
+            else if (main.StarDataList[i].GetComponent<BlockData>().X == this.X && main.StarDataList[i].GetComponent<BlockData>().Y == this.Y - 1)
             {
                 bb = true;
-                main.PuzzleData[this.X, this.Y-1] = null;
+                main.PuzzleData[this.X, this.Y - 1] = null;
                 break;
             }
         }

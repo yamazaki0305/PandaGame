@@ -13661,7 +13661,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Episode 2 \uFF5EDog Very Cute\uFF5E\n"
+  m_Text: "Episode 2 \uFF5EDog Dream\uFF5E\n"
 --- !u!222 &382328529
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -38710,7 +38710,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1760648701}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.46867374
+  m_Size: 0.46996188
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
