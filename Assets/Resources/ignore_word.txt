@@ -74,7 +74,6 @@ Mn
 MN
 Mo
 mu
-mus
 MO
 Na
 Nb

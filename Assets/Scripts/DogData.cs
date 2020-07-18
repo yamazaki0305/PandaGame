@@ -222,6 +222,8 @@ public class DogData : BlockData
                     upper_timer = 0;
                     if (drop_count > 0)
                     {
+                        main.GetComponent<PuzzleMain>().EigoButtonCancel();
+
                         while (drop_count > 0)
                         {
                             if (main.GetComponent<PuzzleMain>().UndderArrowCheck())
