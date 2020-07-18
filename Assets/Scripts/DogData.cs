@@ -29,6 +29,7 @@ public class DogData : BlockData
     public bool bDogJimen; //true:未クリア、false:true
     public bool bRightMove, bLeftMove, bUnderMove;
     public int drop_count; //落ちたマスの数を記録
+    float upper_timer; //上に上がるまでの時間
 
     // PuzzleMainから情報をSET
     private int BlockSize, rowLength, columnLength, DefaultBlockHeight, BlockGroundHeight;
@@ -214,31 +215,38 @@ public class DogData : BlockData
                 // 下への移動が終了した時
                 else if (!bUnderMove && arrowType == ArrowType.UNDER)
                 {
-                    Debug.Log("落ちた数;" + drop_count);
 
 
                     // 地面の下にブロックがある時の処理
                     int k = 0;
-                    while (drop_count > 0)
+                    upper_timer = 0;
+                    if (drop_count > 0)
                     {
-                        if (main.GetComponent<PuzzleMain>().UndderArrowCheck())
+                        while (drop_count > 0)
                         {
+                            if (main.GetComponent<PuzzleMain>().UndderArrowCheck())
+                            {
 
-                            arrowType = ArrowType.UPPER;
+                                arrowType = ArrowType.UPPER;
 
-                            //startPosition = new Vector2(X * BlockSize - (BlockSize * columnLength) / 2 + BlockSize / 2, (Y + k) * BlockSize + BlockGroundHeight - (rowLength - DefaultBlockHeight) * BlockSize);
-                            //Vector2 pos = new Vector2(X * BlockSize - (BlockSize * columnLength) / 2 + BlockSize / 2, (Y + k+1) * BlockSize + BlockGroundHeight - (rowLength - DefaultBlockHeight) * BlockSize);
 
-                            // 落ちる時
-                            //犬を上に動かす
-                            //OnUpper(pos, k);
 
-                            drop_count--;
+                                //startPosition = new Vector2(X * BlockSize - (BlockSize * columnLength) / 2 + BlockSize / 2, (Y + k) * BlockSize + BlockGroundHeight - (rowLength - DefaultBlockHeight) * BlockSize);
+                                //Vector2 pos = new Vector2(X * BlockSize - (BlockSize * columnLength) / 2 + BlockSize / 2, (Y + k+1) * BlockSize + BlockGroundHeight - (rowLength - DefaultBlockHeight) * BlockSize);
 
+                                // 落ちる時
+                                //犬を上に動かす
+                                //OnUpper(pos, k);
+
+                                drop_count--;
+
+                            }
+                            else
+                                break;
                         }
-                        else
-                            break;
                     }
+                    else
+                        arrowType = ArrowType.WAIT;
 
                     main.GetComponent<PuzzleMain>().CheckPotentialPuzzle();
 
@@ -246,7 +254,6 @@ public class DogData : BlockData
                     
                     drop_count = 0;
 
-                    arrowType = ArrowType.WAIT;
                     /*
                     {
                         if (bLeftMove)
@@ -261,11 +268,20 @@ public class DogData : BlockData
                 if (arrowType == ArrowType.UPPER)
                 {
 
+                
+                    upper_timer += (Time.deltaTime / 1);
+
+                    if (upper_timer > 1)
+                    {
+                        arrowType = ArrowType.LEFT;
+                    }
+                    /*
                     if (!iMove)
                     {
                         arrowType = ArrowType.LEFT;
                         
                     }
+                    */
                 }
 
                 if (arrowType == ArrowType.RIGHT && bRightMove)
@@ -293,9 +309,10 @@ public class DogData : BlockData
                 }
 
                 // 全て移動不可の時
-                if(!bRightMove && !bLeftMove && !bUnderMove)
+                if(arrowType != ArrowType.UPPER & !bRightMove && !bLeftMove && !bUnderMove)
                 {
                     arrowType = ArrowType.WAIT;
+                    Debug.Log("wat");
                 }
 
                 // ArrowType.Waitの時

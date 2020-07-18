@@ -37,6 +37,7 @@ Cu
 Dy
 dl
 dm
+dup
 Er
 er
 Es
@@ -73,6 +74,7 @@ Mn
 MN
 Mo
 mu
+mus
 MO
 Na
 Nb

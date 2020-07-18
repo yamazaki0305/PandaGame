@@ -235,8 +235,12 @@ public class PuzzleMain : MonoBehaviour
         else if (9*1 < DataBase.playLevel && DataBase.playLevel <= 9*2)
             GlassLine.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("StageIMG/cloud_glass");
         else if (9*2 < DataBase.playLevel && DataBase.playLevel <= 9*3) 
+            GlassLine.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("StageIMG/cloud_glass");
+        else if (9*3 < DataBase.playLevel && DataBase.playLevel <= 9*4)
+            GlassLine.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("StageIMG/green_glass");
+        else if (9*4 < DataBase.playLevel && DataBase.playLevel <= 9*5)
             GlassLine.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("StageIMG/snow_glass");
-        else if (9*3 < DataBase.playLevel)
+        else if (9*5 < DataBase.playLevel)
             GlassLine.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("StageIMG/cloud_glass");
         Vector3 pos = new Vector3(0, GlassLineHeight + UnderArrowHeight * -BlockSize, -1);
         GlassLine.transform.localPosition = pos;
@@ -249,8 +253,13 @@ public class PuzzleMain : MonoBehaviour
             ImgGround.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("StageIMG/cloud_jimen");
         else if (9*2 < DataBase.playLevel && DataBase.playLevel <= 9*3)
             ImgGround.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("StageIMG/cloud_jimen");
-        else if (9*3 < DataBase.playLevel)
+        else if (9*3 < DataBase.playLevel && DataBase.playLevel <= 9*4)
+            ImgGround.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("StageIMG/green_jimen");
+        else if (9*4 < DataBase.playLevel && DataBase.playLevel <= 9*5)
             ImgGround.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("StageIMG/snow_jimen");
+        else if (9*5 < DataBase.playLevel)
+            ImgGround.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("StageIMG/snow_jimen");
+
         pos = new Vector3(0, rowLength * BlockSize + ImgGroundHeight - (rowLength - DefaultBlockHeight) * BlockSize - DefaultBlockHeight*BlockSize,-2);
         ImgGround.transform.localPosition = pos;
 
@@ -262,8 +271,13 @@ public class PuzzleMain : MonoBehaviour
             BackPicture.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("StageIMG/cloud_stage");
         else if (9*2 < DataBase.playLevel && DataBase.playLevel <= 9*3)
             BackPicture.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("StageIMG/cloud_stage02");
-        else if (9*3 < DataBase.playLevel)
+        else if (9*3 < DataBase.playLevel && DataBase.playLevel <= 9*4)
+            BackPicture.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("StageIMG/green_stage");
+        else if (9*4 < DataBase.playLevel && DataBase.playLevel <= 9*5)
+            BackPicture.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("StageIMG/snow_stage");
+        else if (9*5 < DataBase.playLevel)
             BackPicture.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("StageIMG/cloud_stage02");
+
         pos = new Vector2(0, GlassLineHeight + UnderArrowHeight * -BlockSize + ImgBackPictureHeight);
         BackPicture.transform.localPosition = pos;
 
@@ -1812,6 +1826,7 @@ public class PuzzleMain : MonoBehaviour
     }
 
     /// <returns></returns>
+
 
     public bool UndderArrowCheck()
     {
