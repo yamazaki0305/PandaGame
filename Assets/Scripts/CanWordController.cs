@@ -196,31 +196,34 @@ public class CanWordController : MonoBehaviour
 
         //Debug.Log("マッチ数:" + moutch_count);
 
-        // 言語判定をする
-        if (DataBase.LangJapanese)
+        if (DataBase.GameMode_Easy)
         {
+            // 言語判定をする
+            if (DataBase.LangJapanese)
+            {
 
-            // 作れる可能性のある英単語が多すぎる場合、処理が重くなるので最大10単語で打ち止めする
-            if (moutch_count > 10)
-                this.GetComponent<Text>().text = "10単語以上作れます";
-            else if (moutch_count > 1)
-                this.GetComponent<Text>().text = moutch_count + "単語作れます";
-            else if (moutch_count == 1)
-                this.GetComponent<Text>().text = moutch_count + "単語作れます";
-            else if (moutch_count == 0)
-                this.GetComponent<Text>().text = "作成不可";
-        }
-        else
-        {            // 作れる可能性のある英単語が多すぎる場合、処理が重くなるので最大10単語で打ち止めする
-            if (moutch_count > 10)
-                this.GetComponent<Text>().text = "10+ words hit!";
-            else if (moutch_count > 1)
-                this.GetComponent<Text>().text = moutch_count + " words hit!";
-            else if (moutch_count == 1)
-                this.GetComponent<Text>().text = moutch_count + " word hit!";
-            else if (moutch_count == 0)
-                this.GetComponent<Text>().text = "Unable to create.";
+                // 作れる可能性のある英単語が多すぎる場合、処理が重くなるので最大10単語で打ち止めする
+                if (moutch_count > 10)
+                    this.GetComponent<Text>().text = "10単語以上作れます";
+                else if (moutch_count > 1)
+                    this.GetComponent<Text>().text = moutch_count + "単語作れます";
+                else if (moutch_count == 1)
+                    this.GetComponent<Text>().text = moutch_count + "単語作れます";
+                else if (moutch_count == 0)
+                    this.GetComponent<Text>().text = "作成不可";
+            }
+            else
+            {            // 作れる可能性のある英単語が多すぎる場合、処理が重くなるので最大10単語で打ち止めする
+                if (moutch_count > 10)
+                    this.GetComponent<Text>().text = "10+ words hit!";
+                else if (moutch_count > 1)
+                    this.GetComponent<Text>().text = moutch_count + " words hit!";
+                else if (moutch_count == 1)
+                    this.GetComponent<Text>().text = moutch_count + " word hit!";
+                else if (moutch_count == 0)
+                    this.GetComponent<Text>().text = "Unable to create.";
 
+            }
         }
         /*
         if (moutch_count > 20)

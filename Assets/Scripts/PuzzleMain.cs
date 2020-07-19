@@ -220,7 +220,10 @@ public class PuzzleMain : MonoBehaviour
 
         // ゲームモードがハードの時
         if (!DataBase.GameMode_Easy)
-            GameObject.Find("CanWordText").SetActive(false);
+        {
+
+            GameObject.Find("CanWordText").GetComponent<Text>().text = "";
+        }
 
         // ステージによってBackPicture・ImgGround・GlassLineを変更する
 
@@ -2007,9 +2010,11 @@ public class PuzzleMain : MonoBehaviour
         {
             Debug.Log(eigochar[i] + ":" + can_alphabet[i]);
         }
-        
 
-        GameObject.Find("CanWordText").GetComponent<CanWordController>().CopyCanAlphabet(can_alphabet);
+
+        // ゲームモードがハード以外の時
+        if (DataBase.GameMode_Easy)
+            GameObject.Find("CanWordText").GetComponent<CanWordController>().CopyCanAlphabet(can_alphabet);
 
 
 
