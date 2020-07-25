@@ -16,7 +16,7 @@ public class MaskPrefab : MonoBehaviour {
 	void Start () {
 
         var color = this.GetComponent<SpriteRenderer>().color;
-        color.a = 0.3f;
+        color.a = 0.1f;
         this.GetComponent<SpriteRenderer>().color = color;
     }
 	
