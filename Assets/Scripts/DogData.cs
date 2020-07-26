@@ -220,7 +220,7 @@ public class DogData : BlockData
                     // 地面の下にブロックがある時の処理
                     int k = 0;
                     upper_timer = 0;
-                    if (drop_count > 0)
+                    if (drop_count > 0 && main.GetComponent<PuzzleMain>().UnderArrowHeight > 0)
                     {
                         main.GetComponent<PuzzleMain>().EigoButtonCancel();
 

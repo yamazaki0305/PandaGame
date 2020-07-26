@@ -388,13 +388,14 @@ GameObject:
   - component: {fileID: 222043070867022626}
   - component: {fileID: 114473157861212760}
   - component: {fileID: 225403778375296442}
+  - component: {fileID: 2760589423932420620}
   m_Layer: 5
   m_Name: Cloud Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &224354411572042330
 RectTransform:
   m_ObjectHideFlags: 0
@@ -462,6 +463,21 @@ CanvasGroup:
   m_Interactable: 0
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
+--- !u!114 &2760589423932420620
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1141946775650850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
+  m_EffectDistance: {x: 10, y: -10}
+  m_UseGraphicAlpha: 1
 --- !u!1 &1168948447793016
 GameObject:
   m_ObjectHideFlags: 0
@@ -1010,7 +1026,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &224193782828741062
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1603,7 +1619,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 730b07898e17449c9afcf39a4b02966a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: fa4424b8ecdaaca44910c04371b9d3c7, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1996,7 +2012,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 61554175bc5d2441e8c1a32cc1585972, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 414b973fe8cec7b4b825b258b88c3a0f, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2018,6 +2034,7 @@ GameObject:
   - component: {fileID: 222858986082033860}
   - component: {fileID: 114206048291204978}
   - component: {fileID: 114232764439172522}
+  - component: {fileID: 6527238445392428694}
   m_Layer: 5
   m_Name: Blue Background mask
   m_TagString: Untagged
@@ -2094,6 +2111,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ShowMaskGraphic: 1
+--- !u!114 &6527238445392428694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1961579742868562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
+  m_EffectDistance: {x: 10, y: -10}
+  m_UseGraphicAlpha: 1
 --- !u!1 &549541854135511831
 GameObject:
   m_ObjectHideFlags: 0

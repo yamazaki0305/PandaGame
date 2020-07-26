@@ -13,7 +13,7 @@ using System.Globalization;
 
 public class DataBase
 {
-    public static bool DebugFlg = false; // デバッグモードにするか
+    public static bool DebugFlg = true; // デバッグモードにするか
 
     public static int PLAY = 0;
     public static int CLEAR = 1;
