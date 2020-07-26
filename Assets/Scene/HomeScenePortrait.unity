@@ -11152,13 +11152,13 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 903092971}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1439056188}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -4, y: 3}
@@ -12426,6 +12426,39 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 11464320, guid: bf38aa1a676af4fc885aa9b8a529e016, type: 3}
+      propertyPath: m_EffectColor.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11464320, guid: bf38aa1a676af4fc885aa9b8a529e016, type: 3}
+      propertyPath: m_EffectColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11464320, guid: bf38aa1a676af4fc885aa9b8a529e016, type: 3}
+      propertyPath: m_EffectColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11464320, guid: bf38aa1a676af4fc885aa9b8a529e016, type: 3}
+      propertyPath: m_EffectColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11464320, guid: bf38aa1a676af4fc885aa9b8a529e016, type: 3}
+      propertyPath: m_EffectDistance.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11464320, guid: bf38aa1a676af4fc885aa9b8a529e016, type: 3}
+      propertyPath: m_EffectDistance.y
+      value: -3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11472360, guid: bf38aa1a676af4fc885aa9b8a529e016, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: fa4424b8ecdaaca44910c04371b9d3c7,
+        type: 3}
+    - target: {fileID: 11472360, guid: bf38aa1a676af4fc885aa9b8a529e016, type: 3}
+      propertyPath: m_Type
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 22410054, guid: bf38aa1a676af4fc885aa9b8a529e016, type: 3}
       propertyPath: m_AnchorMin.x
       value: 1
@@ -12496,7 +12529,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 22470294, guid: bf38aa1a676af4fc885aa9b8a529e016, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 22470294, guid: bf38aa1a676af4fc885aa9b8a529e016, type: 3}
       propertyPath: m_AnchoredPosition.x
