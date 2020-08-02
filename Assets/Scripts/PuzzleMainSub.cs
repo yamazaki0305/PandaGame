@@ -178,6 +178,8 @@ public class StageStatus
     // 動画広告を見た時の手数の更新
     public void AdRewordUpdate()
     {
+        Debug.Log("tttttttttttttttt");
+
         if(this.Hand < 5)
             this.Hand = 5;
 

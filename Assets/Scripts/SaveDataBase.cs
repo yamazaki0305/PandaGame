@@ -27,6 +27,15 @@ public class DataBase
     public static bool NewWordBook = false; //WordBookにNewアイコンをつけるかのフラグ
     public static float AdRate = 1f; // インステ広告を表示する
     public static bool AdRewordOK = false; // 動画広告を最後まで見るとONになる
+    public  enum AdRewordFlg
+    {
+        None,
+        Moves0,
+        Hummer,
+        Comic
+    }
+    public static AdRewordFlg AdFlg = AdRewordFlg.None;
+
     public static bool AdRealTest = false; // trueのときは本番広告を使用する
     public static bool LangJapanese = true; // 言語が日本語:true 英語:false
     public static int STAR_TOUCH_SCORE = 1000; // スコアにタッチした時

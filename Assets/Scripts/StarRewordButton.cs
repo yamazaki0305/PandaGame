@@ -67,6 +67,7 @@ public class StarRewordButton : MonoBehaviour
 
         if (DataBase.ep_movie[EpNo] == 0)
         {
+            DataBase.AdFlg = DataBase.AdRewordFlg.Comic;
             // 動画広告を表示
             GameObject.Find("AdMob").GetComponent<AdReward>().UserOptToWatchAd();
         }
@@ -84,8 +85,10 @@ public class StarRewordButton : MonoBehaviour
     void Update()
     {
 
-        if (DataBase.AdRewordOK && DataBase.SelectEpNo == EpNo)
+        if (DataBase.AdRewordOK && DataBase.SelectEpNo == EpNo && DataBase.AdFlg == DataBase.AdRewordFlg.Comic)
         {
+
+            DataBase.AdFlg = DataBase.AdRewordFlg.None;
 
             DataBase.AdRewordOK = false;
 

@@ -22,8 +22,10 @@ namespace Ricimi
 
         private void Update()
         {
-            if (DataBase.AdRewordOK)
+            if (DataBase.AdRewordOK && DataBase.AdFlg == DataBase.AdRewordFlg.Moves0)
             {
+                Debug.Log("bbbbbbbbbbbb");
+
                 DataBase.AdRewordOK = false;
                 GameObject.Find("GameRoot").GetComponent<PuzzleMain>().StatusData.AdRewordUpdate();
                 Close();
@@ -33,23 +35,14 @@ namespace Ricimi
         public void AdButton()
         {
 
+            DataBase.AdFlg = DataBase.AdRewordFlg.Moves0;
+
             // 動画広告を表示
             GameObject.Find("AdMob").GetComponent<AdReward>().UserOptToWatchAd();
             GameObject.Find("YesButton").SetActive(false);
-            //GameObject obj = GameObject.Find("YesButton");
-            //obj.GetComponent<Renderer>().enabled = false;
-
-            // 動画広告を見た時のりワード処理
-            //GameObject.Find("GameRoot").GetComponent<PuzzleMain>().StatusData.AdRewordUpdate();
 
             var animator = GetComponent<Animator>();
-            //if (animator.GetCurrentAnimatorStateInfo(0).IsName("Open"))
-            //    animator.Play("Close");
 
-            //DataBase.bGamePause = false;
-
-            //RemoveBackground();
-            //StartCoroutine(RunPopupDestroy());
         }
 
         public new void Close()

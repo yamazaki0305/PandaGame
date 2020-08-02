@@ -29,6 +29,9 @@ public class DragAndDrop : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndD
         if (DataBase.HammerCount <= 0)
         {
             Debug.Log("movie");
+
+            DataBase.AdFlg = DataBase.AdRewordFlg.Hummer;
+
             // 動画広告を表示
             GameObject.Find("AdMob").GetComponent<AdReward>().UserOptToWatchAd();
         }
@@ -96,8 +99,9 @@ public class DragAndDrop : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndD
 
     private void Update()
     {
-        if (DataBase.AdRewordOK)
+        if (DataBase.AdRewordOK && DataBase.AdFlg == DataBase.AdRewordFlg.Hummer)
         {
+            DataBase.AdFlg = DataBase.AdRewordFlg.None;
             DataBase.AdRewordOK = false;
             DataBase.HammerCount = 3;
             SaveDataBase.saveHammerCount();
