@@ -233,21 +233,53 @@ public class PuzzleMain : MonoBehaviour
 
         // 猫救出ラインのGlassLineを見つける
         GlassLine = GameObject.Find("GlassLine");
-        if (DataBase.playLevel <= 9 * 1)
+        // 下部草画像をセット
+        ImgGround = GameObject.Find("ImgGround");
+        // 背景画像をセット
+        BackPicture = GameObject.Find("BackPicture");
+
+        if (DataBase.playLevel <= 3)
+        {
             GlassLine.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("StageIMG/green_glass");
-        else if (9 * 1 < DataBase.playLevel && DataBase.playLevel <= 9 * 2)
-            GlassLine.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("StageIMG/cloud_glass");
-        else if (9 * 2 < DataBase.playLevel && DataBase.playLevel <= 9 * 3)
-            GlassLine.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("StageIMG/cloud_glass");
-        else if (9 * 3 < DataBase.playLevel && DataBase.playLevel <= 9 * 4)
+            ImgGround.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("StageIMG/green_jimen");
+            BackPicture.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("StageIMG/green_stage");
+        }
+        else if (4 <= DataBase.playLevel && DataBase.playLevel <= 9)
+        {
             GlassLine.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("StageIMG/green_glass");
-        else if (9 * 4 < DataBase.playLevel && DataBase.playLevel <= 9 * 5)
+            ImgGround.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("StageIMG/green_jimen");
+            BackPicture.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("StageIMG/green_stage");
+
+        }
+        else if (10 <= DataBase.playLevel && DataBase.playLevel <= 18)
+        {
+            GlassLine.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("StageIMG/cloud_glass");
+            ImgGround.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("StageIMG/cloud_jimen");
+            BackPicture.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("StageIMG/cloud_stage");
+
+        }
+        else if (19 <= DataBase.playLevel && DataBase.playLevel <= 27)
+        {
             GlassLine.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("StageIMG/snow_glass");
-        else if (9 * 5 < DataBase.playLevel)
+            ImgGround.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("StageIMG/snow_jimen");
+            BackPicture.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("StageIMG/snow_stage");
+        }
+        else if (28 <= DataBase.playLevel && DataBase.playLevel <= 36)
+        {
+            GlassLine.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("StageIMG/green_glass");
+            ImgGround.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("StageIMG/green_jimen");
+            BackPicture.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("StageIMG/green_stage");
+        }
+        else if (37 <= DataBase.playLevel && DataBase.playLevel <= 45)
+        {
             GlassLine.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("StageIMG/cloud_glass");
+            ImgGround.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("StageIMG/snow_jimen");
+            BackPicture.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("StageIMG/cloud_stage02");
+        }
         Vector3 pos = new Vector3(0, GlassLineHeight + UnderArrowHeight * -BlockSize, -1);
         GlassLine.transform.localPosition = pos;
 
+        /*
         // 下部草画像をセット
         ImgGround = GameObject.Find("ImgGround");
         if (DataBase.playLevel <= 9 * 1)
@@ -280,6 +312,7 @@ public class PuzzleMain : MonoBehaviour
             BackPicture.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("StageIMG/snow_stage");
         else if (9 * 5 < DataBase.playLevel)
             BackPicture.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("StageIMG/cloud_stage02");
+            */
 
         pos = new Vector2(0, GlassLineHeight + UnderArrowHeight * -BlockSize + ImgBackPictureHeight);
         BackPicture.transform.localPosition = pos;

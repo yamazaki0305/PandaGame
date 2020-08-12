@@ -28,7 +28,70 @@ public class StarRewordButton : MonoBehaviour
     void Start()
     {
         SaveDataBase.loadAllLevel();
+        int star = 0;
+        int star_max = 0;
+        int ep_fst = 0;
+        int ep_end = 0;
 
+        switch (EpNo)
+        {
+            case 1:
+                ep_fst = 1;
+                ep_end = 3;
+                break;
+            case 2:
+                ep_fst = 4;
+                ep_end = 9;
+                break;
+            case 3:
+                ep_fst = 10;
+                ep_end = 18;
+                break;
+            case 4:
+                ep_fst = 19;
+                ep_end = 27;
+                break;
+            case 5:
+                ep_fst = 28;
+                ep_end = 36;
+                break;
+            case 6:
+                ep_fst = 37;
+                ep_end = 45;
+                break;
+            default:
+                break;
+        }
+
+        for (int i = ep_fst - 1; i < ep_end; i++)
+        {
+            star += DataBase.level_star[i];
+            star_max += 3;
+        }
+
+        StarCountText.text = "★ " + star.ToString() + "/" + star_max;
+
+        if (star >= star_max)
+        {
+            SaveDataBase.loadEp();
+
+            if (DataBase.ep_movie[EpNo] == 0)
+            {
+
+            }
+            else
+            {
+                MovieIcon.SetActive(false);
+            }
+
+            lockButton.transform.localScale = new Vector2(0f, 0f);
+        }
+
+        /*
+        if(EpNo==1)
+        {
+
+        }
         int star = 0;
         for (int i = 9 * (EpNo - 1); i < 9 * EpNo; i++)
         {
@@ -52,6 +115,7 @@ public class StarRewordButton : MonoBehaviour
 
             lockButton.transform.localScale = new Vector2(0f, 0f);
         }
+        */
     }
 
     public void CompleteButton()

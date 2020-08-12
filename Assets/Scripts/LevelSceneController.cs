@@ -40,7 +40,7 @@ public class LevelSceneController : MonoBehaviour {
         if (!DataBase.NewWordBook)
             GameObject.Find("NewIcon").SetActive(false);
 
-        Vector3 pos = new Vector3(0, posY[DataBase.openLevel - 1], 0);
+        //Vector3 pos = new Vector3(0, posY[DataBase.openLevel - 1], 0);
         
         //ScrollViewContent.transform.localPosition = pos;
 
