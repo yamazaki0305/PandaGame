@@ -42,7 +42,23 @@ public class DataBase
     public static int HammerCount = 3; // ハンマーが打てる回数
     public static int SelectEpNo = 1; // LessonListで選択されたEpNo
 
+    // 200ステージ分用意
     public static int[] level_star = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                                       0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                                       0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                                       0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                                       0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                                       0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                                       0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                                       0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                                       0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                                       0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                                       0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                                       0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                                       0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                                       0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                                       0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                                       0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -166,7 +182,7 @@ public class SaveDataBase : MonoBehaviour
         PlayerPrefs.Save();
 
         string str = "";
-        for (int i = 0; i < 50; i++)
+        for (int i = 0; i < 200; i++)
             str += DataBase.level_star[i].ToString();
 
         PlayerPrefs.SetString(SAVE_STAR_LEVEL, str);
@@ -289,7 +305,7 @@ public class SaveDataBase : MonoBehaviour
             string stTarget = PlayerPrefs.GetString(SAVE_STAR_LEVEL, "");
             // stTarget を Char 型の 1 次元配列に変換する
             char[] chArray1 = stTarget.ToCharArray();
-            for (int i = 0; i < 50; i++)
+            for (int i = 0; i < 200; i++)
             {
                 DataBase.level_star[i] = int.Parse(chArray1[i].ToString());
             }
@@ -458,7 +474,7 @@ public class SaveDataBase : MonoBehaviour
             string stTarget = PlayerPrefs.GetString(SAVE_STAR_LEVEL, "");
             // stTarget を Char 型の 1 次元配列に変換する
             char[] chArray1 = stTarget.ToCharArray();
-            for (int i = 0; i < 30; i++)
+            for (int i = 0; i < 200; i++)
             {
                 DataBase.level_star[i] = int.Parse(chArray1[i].ToString());
             }

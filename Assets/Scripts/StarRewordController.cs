@@ -58,6 +58,7 @@ public class StarRewordController : MonoBehaviour
                 Jap2.text = csvDatas[DataBase.SelectEpNo][11];
                 Jap3.text = csvDatas[DataBase.SelectEpNo][12];
                 Jap4.text = csvDatas[DataBase.SelectEpNo][13];
+
             }
 
         }
