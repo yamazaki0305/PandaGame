@@ -145,21 +145,21 @@ public class HomeSceneController : MonoBehaviour
             wave_img.sprite = Resources.Load<Sprite>("StageIMG/beach_m");
 
             panda_no[0] = 34;
-            panda_no[1] = 40;
-            panda_no[2] = 41;
-            panda_no[3] = 43;
+            panda_no[1] = 41;
+            panda_no[2] = 43;
+            panda_no[3] = 4;
             panda_no[4] = 34;
-            panda_no[5] = 40;
-            panda_no[6] = 41;
-            panda_no[7] = 43;
+            panda_no[5] = 41;
+            panda_no[6] = 43;
+            panda_no[7] = 4;
             panda_text[0] = "Hello,dog cute!";
-            panda_text[1] = "It's lunch time.";
-            panda_text[2] = "GRR";
-            panda_text[3] = "Haha!I'm hungry.";
+            panda_text[1] = "GRR";
+            panda_text[2] = "Haha!I'm hungry.";
+            panda_text[3] = "I'll prepare lunch.";
             panda_text[4] = "こんにちは、犬かわいい!";
-            panda_text[5] = "お昼の時間だよ。";
-            panda_text[6] = "グー";
-            panda_text[7] = "あはは、お腹空いてきた。";
+            panda_text[5] = "グー";
+            panda_text[6] = "あはは、お腹空いてきた。";
+            panda_text[7] = "お昼ごはんの準備をするよ。";
         }
         else if (14 <= now_hour && now_hour < 16)
         {
@@ -245,20 +245,20 @@ public class HomeSceneController : MonoBehaviour
             wave_img = GameObject.Find("Wave_anime").GetComponent<Image>();
             wave_img.sprite = Resources.Load<Sprite>("StageIMG/beach_night");
 
-            panda_no[0] = 5;
-            panda_no[1] = 20;
+            panda_no[0] = 20;
+            panda_no[1] = 5;
             panda_no[2] = 8;
             panda_no[3] = 42;
-            panda_no[4] = 5;
-            panda_no[5] = 20;
+            panda_no[4] = 20;
+            panda_no[5] = 5;
             panda_no[6] = 8;
             panda_no[7] = 42;
-            panda_text[0] = "I'm taking a bath in my dog right now.";
-            panda_text[1] = "(It's bath time)";
+            panda_text[0] = "(It's bath time)"; 
+            panda_text[1] = "I'm taking a bath in my dog right now.";
             panda_text[2] = "My dog was cute all day long,";
             panda_text[3] = "Good night.";
-            panda_text[4] = "今、犬をお風呂に入れているよ。";
-            panda_text[5] = "(お風呂タイム)";
+            panda_text[4] = "(お風呂タイム)";
+            panda_text[5] = "今、犬をお風呂に入れているよ。";
             panda_text[6] = "今日も一日、犬かわいかったよ。";
             panda_text[7] = "おやすみなさい。";
         }

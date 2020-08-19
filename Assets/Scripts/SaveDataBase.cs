@@ -25,7 +25,7 @@ public class DataBase
     public static int openLevel = 1;
     public static int RecordWord = 0;
     public static bool NewWordBook = false; //WordBookにNewアイコンをつけるかのフラグ
-    public static float AdRate = 1f; // インステ広告を表示する
+    public static float AdRate = 0.5f; // インステ広告を表示する
     public static bool AdRewordOK = false; // 動画広告を最後まで見るとONになる
     public  enum AdRewordFlg
     {
