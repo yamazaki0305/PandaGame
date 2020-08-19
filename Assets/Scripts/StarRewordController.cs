@@ -29,7 +29,7 @@ public class StarRewordController : MonoBehaviour
         // CSVReader
         csvDatas = CSVReader.import("CSV/EpisodeText");
 
-        Title.text = "Episode " + DataBase.SelectEpNo + "\r\n～" +csvDatas[DataBase.SelectEpNo][1]+"～";
+        Title.text =  csvDatas[DataBase.SelectEpNo][1];
         Img1.sprite = Resources.Load<Sprite>("LessonIMG/"+csvDatas[DataBase.SelectEpNo][2]);
         Img2.sprite = Resources.Load<Sprite>("LessonIMG/" + csvDatas[DataBase.SelectEpNo][3]);
         Img3.sprite = Resources.Load<Sprite>("LessonIMG/" + csvDatas[DataBase.SelectEpNo][4]);

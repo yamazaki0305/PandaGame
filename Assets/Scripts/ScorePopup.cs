@@ -34,9 +34,11 @@ namespace Ricimi
             popup.SetActive(true);
 
             var rect = popup.GetComponent<RectTransform>();
-            rect.SetAnchor(AnchorPresets.BottonCenter);
+            //rect.SetAnchor(AnchorPresets.BottonCenter);
+            rect.SetAnchor(AnchorPresets.MiddleCenter);
+            startPosition = new Vector3(0, 560, 1);
 
-            startPosition = new Vector3(0, 1700, 1);
+            //startPosition = new Vector3(0, 1700, 1);
 
             popup.transform.localPosition = startPosition;
             popup.transform.SetParent(m_canvas.transform, false);
@@ -51,9 +53,11 @@ namespace Ricimi
             popup.SetActive(true);
 
             var rect = popup.GetComponent<RectTransform>();
-            rect.SetAnchor(AnchorPresets.BottonCenter);
+            //rect.SetAnchor(AnchorPresets.BottonCenter);
 
-            startPosition = new Vector3(0, 1400, 1);
+            rect.SetAnchor(AnchorPresets.MiddleCenter);
+            startPosition = new Vector3(0, 260, 1);
+            //startPosition = new Vector3(0, 1400, 1);
 
             popup.transform.localPosition = startPosition;
             popup.transform.SetParent(m_canvas.transform, false);
@@ -69,10 +73,13 @@ namespace Ricimi
             popup.SetActive(true);
 
             var rect = popup.GetComponent<RectTransform>();
-            rect.SetAnchor(AnchorPresets.BottonCenter);
+            //rect.SetAnchor(AnchorPresets.BottonCenter);
 
-            startPosition = new Vector3(0, 1400, 1);
-            
+            rect.SetAnchor(AnchorPresets.MiddleCenter);
+            startPosition = new Vector3(0, 260, 1);
+
+            //startPosition = new Vector3(0, 1400, 1);
+
             popup.transform.localPosition = startPosition;
             popup.transform.SetParent(m_canvas.transform, false);
 
@@ -86,9 +93,12 @@ namespace Ricimi
             popup.SetActive(true);
 
             var rect = popup.GetComponent<RectTransform>();
-            rect.SetAnchor(AnchorPresets.BottonCenter);
+            //rect.SetAnchor(AnchorPresets.BottonCenter);
 
-            startPosition = new Vector3(0, 1400, 1);
+            //startPosition = new Vector3(0, 1400, 1);
+
+            rect.SetAnchor(AnchorPresets.MiddleCenter);
+            startPosition = new Vector3(0, 260, 1);
 
             popup.transform.localPosition = startPosition;
             popup.transform.SetParent(m_canvas.transform, false);

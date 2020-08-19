@@ -32,9 +32,9 @@ public class AdReward : MonoBehaviour {
     {
 
 #if UNITY_ANDROID
-        string appId = "ca-app-pub-4228179100830730~2084688814"; //NekotanAndroid Admob AppID
+        string appId = "ca-app-pub-4228179100830730~6015219838"; //PandaAndroid Admob AppID
 #elif UNITY_IPHONE
-        string appId = "ca-app-pub-4228179100830730~9684855854";//NekotaniPhone Admob AppID
+        string appId = "ca-app-pub-4228179100830730~7244541025";//PandaiPhone Admob AppID
 #else
             string appId = "unexpected_platform";
 #endif
@@ -71,12 +71,12 @@ public class AdReward : MonoBehaviour {
         string adUnitId;
 #if UNITY_ANDROID
         if (DataBase.AdRealTest)
-            adUnitId = "ca-app-pub-4228179100830730/6265931815";//正しい
+            adUnitId = "ca-app-pub-4228179100830730/6753586431";//正しい
         else
             adUnitId = "ca-app-pub-3940256099942544/5224354917"; //サンプル
 #elif UNITY_IPHONE
         if (DataBase.AdRealTest)
-            adUnitId = "ca-app-pub-4228179100830730/8343854021";//正しい
+            adUnitId = "ca-app-pub-4228179100830730/2887822608";//正しい
         else
             adUnitId = "ca-app-pub-3940256099942544/1712485313";//サンプル
 #else
