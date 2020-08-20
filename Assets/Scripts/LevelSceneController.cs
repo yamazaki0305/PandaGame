@@ -25,10 +25,11 @@ public class LevelSceneController : MonoBehaviour {
     // Use this for initialization
     void Start () {
 
-        int[] posY = { 4430, 4430, 4430, 4430, 4430, 3974, 3664, 3403, 3142, 2911,
-                        2714, 2420, 2175, 1940, 1705, 1590, 1360, 1210, 1077, 656,
-                         340, 190, -74, -330, -595, -800, -1105, -1165, -1728, -1981,
-                          -2186, -2375, -2811, -3128, -3325, -3710, -3950, -4160, -4430, -4430,-4430};
+        int[] posY = { 0,0,0,728,728,728,1228,1228,1228,1868,
+                       1868,1868,2436,2436,2436,2864,2864,2864,3550,3550,
+                       3550,4035,4035,4035,4463,4463,4463,5138,5138,5138,
+                       5641,5641,5641,6060,6060,6060,6721,6721,6721,6721,
+                       6721,6721,6721,6721,6721,6721,6721,6721,6721,6721};
 
     //TextLevel = GameObject.Find("TextLevel").GetComponent<Text>();
     //TextWord = GameObject.Find("TextWord").GetComponent<Text>();
@@ -40,9 +41,9 @@ public class LevelSceneController : MonoBehaviour {
         if (!DataBase.NewWordBook)
             GameObject.Find("NewIcon").SetActive(false);
 
-        //Vector3 pos = new Vector3(0, posY[DataBase.openLevel - 1], 0);
+        Vector3 pos = new Vector3(0, posY[DataBase.LastPlayLevel - 1], 0);
         
-        //ScrollViewContent.transform.localPosition = pos;
+        ScrollViewContent.transform.localPosition = pos;
 
         // TopBarの情報を更新
         LevelCountText.text = DataBase.openLevel.ToString();
@@ -52,6 +53,8 @@ public class LevelSceneController : MonoBehaviour {
             star += DataBase.level_star[i];
 
         StarCountText.text = star.ToString();
+
+        Debug.Log("lastplaylevel" + DataBase.LastPlayLevel);
 
     }
 

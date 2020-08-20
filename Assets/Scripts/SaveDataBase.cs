@@ -22,6 +22,7 @@ public class DataBase
     public static int MAXSTAGE = 40;
 
     public static int playLevel = 22;
+    public static int LastPlayLevel = 1;
     public static int openLevel = 1;
     public static int RecordWord = 0;
     public static bool NewWordBook = false; //WordBookにNewアイコンをつけるかのフラグ
@@ -158,6 +159,7 @@ public class SaveDataBase : MonoBehaviour
 
     // セーブデータの情報など
     const string SAVE_OPEN_LEVEL = "SAVE_OPEN_LEVEL";
+    const string SAVE_LASTPLAY_LEVEL = "SAVE_LASTPLAY_LEVEL";
     const string SAVE_STAR_LEVEL = "SAVE_STAR_LEVEL";
     const string SAVE_LEVEL_MANAGE = "SAVE_LEVEL_MANAGE";
     const string SAVE_CREATE_WORD = "CREATE_WORD";
@@ -179,6 +181,7 @@ public class SaveDataBase : MonoBehaviour
 
         //********** 開始 **********//
         PlayerPrefs.SetInt(SAVE_OPEN_LEVEL, level);
+        PlayerPrefs.SetInt(SAVE_LASTPLAY_LEVEL, DataBase.LastPlayLevel);
         PlayerPrefs.Save();
 
         string str = "";
@@ -298,6 +301,11 @@ public class SaveDataBase : MonoBehaviour
         if (PlayerPrefs.HasKey(SAVE_OPEN_LEVEL))
         {
             DataBase.openLevel = PlayerPrefs.GetInt(SAVE_OPEN_LEVEL, 1);
+
+        }
+        if (PlayerPrefs.HasKey(SAVE_LASTPLAY_LEVEL))
+        {
+            DataBase.LastPlayLevel = PlayerPrefs.GetInt(SAVE_LASTPLAY_LEVEL, 1);
 
         }
         if (PlayerPrefs.HasKey(SAVE_STAR_LEVEL))

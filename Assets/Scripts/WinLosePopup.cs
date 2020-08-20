@@ -72,16 +72,27 @@ namespace Ricimi
             // インステ広告を表示
             RandomAd.ShowInterstitial();
 
-            DataBase.playLevel++;
-            if (DataBase.playLevel > DataBase.MAXSTAGE)
-                DataBase.playLevel = 1;
+            if (DataBase.playLevel == 3 || DataBase.playLevel == 9 || DataBase.playLevel == 18 ||
+                DataBase.playLevel == 27 || DataBase.playLevel == 36 || DataBase.playLevel == 45)
+            {
+                Close();
 
-            // 現在読み込んでいるシーンのインデックスを取得
-            int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-            // 取得したシーンインデックスで再読込み
-            SceneManager.LoadScene(currentSceneIndex);
+                Transition.LoadLevel(scene, duration, color);
+            }
+            else
+            {
 
-            Close();
+                DataBase.playLevel++;
+                if (DataBase.playLevel > DataBase.MAXSTAGE)
+                    DataBase.playLevel = 1;
+
+                // 現在読み込んでいるシーンのインデックスを取得
+                int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+                // 取得したシーンインデックスで再読込み
+                SceneManager.LoadScene(currentSceneIndex);
+
+                Close();
+            }
         }
 
 

@@ -69,12 +69,21 @@ public class StarRewordButton : MonoBehaviour
             star_max += 3;
         }
 
-        StarCountText.text = "★ " + star.ToString() + "/" + star_max;
+        StarCountText.text = "<color=#ffe983>★ </color>" + star.ToString() + "/" + star_max;
 
         if (star >= star_max)
         {
             SaveDataBase.loadEp();
 
+            // Ep1は広告なし
+            if (EpNo == 1)
+            {
+                MovieIcon.SetActive(false);
+                DataBase.ep_movie[EpNo] = 1; // エピソード開放
+                SaveDataBase.saveEp();
+            }
+
+            // 動画リワードを視聴しているか
             if (DataBase.ep_movie[EpNo] == 0)
             {
 

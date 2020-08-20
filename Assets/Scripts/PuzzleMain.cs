@@ -853,6 +853,7 @@ public class PuzzleMain : MonoBehaviour
                 DataBase.level_star[DataBase.playLevel - 1] = StatusData.star;
 
 
+            DataBase.LastPlayLevel = DataBase.playLevel;
 
             SaveDataBase.saveData();
             DataBase.bGameClearEnd = false;
