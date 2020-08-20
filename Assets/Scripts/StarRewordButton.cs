@@ -41,23 +41,31 @@ public class StarRewordButton : MonoBehaviour
                 break;
             case 2:
                 ep_fst = 4;
-                ep_end = 9;
+                ep_end = 6;
                 break;
             case 3:
-                ep_fst = 10;
-                ep_end = 18;
+                ep_fst = 7;
+                ep_end = 12;
                 break;
             case 4:
+                ep_fst = 13;
+                ep_end = 18;
+                break;
+            case 5:
                 ep_fst = 19;
                 ep_end = 27;
                 break;
-            case 5:
+            case 6:
                 ep_fst = 28;
                 ep_end = 36;
                 break;
-            case 6:
+            case 7:
                 ep_fst = 37;
                 ep_end = 45;
+                break;
+            case 8:
+                ep_fst = 46;
+                ep_end = 54;
                 break;
             default:
                 break;

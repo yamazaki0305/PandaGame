@@ -72,8 +72,8 @@ namespace Ricimi
             // インステ広告を表示
             RandomAd.ShowInterstitial();
 
-            if (DataBase.playLevel == 3 || DataBase.playLevel == 9 || DataBase.playLevel == 18 ||
-                DataBase.playLevel == 27 || DataBase.playLevel == 36 || DataBase.playLevel == 45)
+            if (DataBase.playLevel == 3 || DataBase.playLevel == 6 || DataBase.playLevel == 12 || DataBase.playLevel == 18 ||
+                DataBase.playLevel == 27 || DataBase.playLevel == 36 || DataBase.playLevel == 45 || DataBase.playLevel == 54)
             {
                 Close();
 

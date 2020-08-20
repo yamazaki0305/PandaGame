@@ -65,7 +65,7 @@ public class DataBase
                                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 
-    public static int[] ep_movie = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }; // 1:視聴
+    public static int[] ep_movie = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }; // 1:視聴
 
     //スコアoutputの一時的な保存
     public static bool bScoreOutputFlg = false;
@@ -441,7 +441,7 @@ public class SaveDataBase : MonoBehaviour
     {
 
         string str = "";
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < 20; i++)
         {
             str += DataBase.ep_movie[i].ToString();
         }
@@ -459,14 +459,14 @@ public class SaveDataBase : MonoBehaviour
             string stTarget = PlayerPrefs.GetString(SAVE_EP_MOVIE, "");
             // stTarget を Char 型の 1 次元配列に変換する
             char[] chArray1 = stTarget.ToCharArray();
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 20; i++)
             {
                 DataBase.ep_movie[i] = int.Parse(chArray1[i].ToString());
             }
         }
         else
         {
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 20; i++)
             {
                 DataBase.ep_movie[i] = 0;
             }
