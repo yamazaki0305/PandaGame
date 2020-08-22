@@ -62,6 +62,16 @@ namespace Ricimi
             StartCoroutine(RunPopupDestroy());
         }
 
+        // TransWindow‚ÌClose
+        public void ResumeClose()
+        {
+            var animator = GetComponent<Animator>();
+            if (animator.GetCurrentAnimatorStateInfo(0).IsName("Open"))
+                animator.Play("Close");
+
+            StartCoroutine(RunPopupDestroy());
+        }
+
         // We destroy the popup automatically 0.5 seconds after closing it.
         // The destruction is performed asynchronously via a coroutine. If you
         // want to destroy the popup at the exact time its closing animation is

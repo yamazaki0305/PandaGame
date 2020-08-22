@@ -41,8 +41,16 @@ namespace Ricimi
         public float duration = 1.0f;
         public Color color = Color.black;
 
+        private void Start()
+        {
+            if (!DataBase.AdRectangleFlg)
+                GameObject.Find("AdMob").GetComponent<AdRectangle>().AdBannerShow();
+        }
         public void LessonList()
         {
+            DataBase.AdRectangleFlg = false;
+            GameObject.Find("AdMob").GetComponent<AdRectangle>().AdBannerHide();
+
             Close();
 
             // インステ広告を表示
@@ -55,6 +63,9 @@ namespace Ricimi
 
         public void Reload()
         {
+            DataBase.AdRectangleFlg = false;
+            GameObject.Find("AdMob").GetComponent<AdRectangle>().AdBannerHide();
+
             // インステ広告を表示
             RandomAd.ShowInterstitial();
 
@@ -68,6 +79,8 @@ namespace Ricimi
 
         public void Next()
         {
+            DataBase.AdRectangleFlg = false;
+            GameObject.Find("AdMob").GetComponent<AdRectangle>().AdBannerHide();
 
             // インステ広告を表示
             RandomAd.ShowInterstitial();

@@ -14,6 +14,7 @@ using System.Globalization;
 public class DataBase
 {
     public static bool DebugFlg = false; // デバッグモードにするか
+    public static bool AdRectangleFlg = false; // レクラングルバナーを表示中か
 
     public static int PLAY = 0;
     public static int CLEAR = 1;

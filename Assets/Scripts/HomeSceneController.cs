@@ -38,7 +38,7 @@ public class HomeSceneController : MonoBehaviour
 
         if ( 0 <= now_hour && now_hour < 5 )
         {
-            bg_img = GameObject.Find("Background").GetComponent<Image>();
+            bg_img = GameObject.Find("Beach").GetComponent<Image>();
             bg_img.sprite = Resources.Load<Sprite>("StageIMG/beach_night");
 
             wave_img = GameObject.Find("Wave_anime").GetComponent<Image>();
@@ -65,7 +65,7 @@ public class HomeSceneController : MonoBehaviour
         }
         else if (5 <= now_hour && now_hour < 7)
         {
-            bg_img = GameObject.Find("Background").GetComponent<Image>();
+            bg_img = GameObject.Find("Beach").GetComponent<Image>();
             bg_img.sprite = Resources.Load<Sprite>("StageIMG/beach_sunset");
 
             wave_img = GameObject.Find("Wave_anime").GetComponent<Image>();
@@ -90,7 +90,7 @@ public class HomeSceneController : MonoBehaviour
         }
         else if (7 <= now_hour && now_hour < 10)
         {
-            bg_img = GameObject.Find("Background").GetComponent<Image>();
+            bg_img = GameObject.Find("Beach").GetComponent<Image>();
             bg_img.sprite = Resources.Load<Sprite>("StageIMG/beach_m");
 
             wave_img = GameObject.Find("Wave_anime").GetComponent<Image>();
@@ -115,7 +115,7 @@ public class HomeSceneController : MonoBehaviour
         }
         else if (10 <= now_hour && now_hour < 12)
         {
-            bg_img = GameObject.Find("Background").GetComponent<Image>();
+            bg_img = GameObject.Find("Beach").GetComponent<Image>();
             bg_img.sprite = Resources.Load<Sprite>("StageIMG/beach_m");
 
             wave_img = GameObject.Find("Wave_anime").GetComponent<Image>();
@@ -140,7 +140,7 @@ public class HomeSceneController : MonoBehaviour
         }
         else if (12 <= now_hour && now_hour < 14)
         {
-            bg_img = GameObject.Find("Background").GetComponent<Image>();
+            bg_img = GameObject.Find("Beach").GetComponent<Image>();
             bg_img.sprite = Resources.Load<Sprite>("StageIMG/beach_m");
 
             wave_img = GameObject.Find("Wave_anime").GetComponent<Image>();
@@ -165,7 +165,7 @@ public class HomeSceneController : MonoBehaviour
         }
         else if (14 <= now_hour && now_hour < 16)
         {
-            bg_img = GameObject.Find("Background").GetComponent<Image>();
+            bg_img = GameObject.Find("Beach").GetComponent<Image>();
             bg_img.sprite = Resources.Load<Sprite>("StageIMG/beach_m");
 
             wave_img = GameObject.Find("Wave_anime").GetComponent<Image>();
@@ -190,7 +190,7 @@ public class HomeSceneController : MonoBehaviour
         }
         else if (16 <= now_hour && now_hour < 19)
         {
-            bg_img = GameObject.Find("Background").GetComponent<Image>();
+            bg_img = GameObject.Find("Beach").GetComponent<Image>();
             bg_img.sprite = Resources.Load<Sprite>("StageIMG/beach_sunset");
 
             wave_img = GameObject.Find("Wave_anime").GetComponent<Image>();
@@ -216,7 +216,7 @@ public class HomeSceneController : MonoBehaviour
         }
         else if (19 <= now_hour && now_hour < 21)
         {
-            bg_img = GameObject.Find("Background").GetComponent<Image>();
+            bg_img = GameObject.Find("Beach").GetComponent<Image>();
             bg_img.sprite = Resources.Load<Sprite>("StageIMG/beach_night");
 
             wave_img = GameObject.Find("Wave_anime").GetComponent<Image>();
@@ -241,7 +241,7 @@ public class HomeSceneController : MonoBehaviour
         }
         else if (21 <= now_hour && now_hour <= 24)
         {
-            bg_img = GameObject.Find("Background").GetComponent<Image>();
+            bg_img = GameObject.Find("Beach").GetComponent<Image>();
             bg_img.sprite = Resources.Load<Sprite>("StageIMG/beach_night");
 
             wave_img = GameObject.Find("Wave_anime").GetComponent<Image>();

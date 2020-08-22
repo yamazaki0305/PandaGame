@@ -61,11 +61,12 @@ public class WinPopController : MonoBehaviour {
             Star3.SetActive(true);
         }
 
-        this.LevelText.text = "Lesson "+DataBase.playLevel.ToString();
+        this.LevelText.text = "レッスン "+DataBase.playLevel.ToString();
         this.YourScoreText.text = StatusData.Score.ToString();
         this.BestScoreText.text = DataBase.BestScore.ToString();
 
         LoadKuronekoText();
+
     }
 	
 	// Update is called once per frame
@@ -81,9 +82,9 @@ public class WinPopController : MonoBehaviour {
         int rand = UnityEngine.Random.Range(1, csvDatas.Count);
         Debug.Log("rand:" + rand);
         //rand = 3;
-        FukidashiText.text = csvDatas[DataBase.playLevel][0]+"の名言を教えるっス!!";
+        //FukidashiText.text = csvDatas[DataBase.playLevel][0]+"の名言を教えるっス!!";
         KuronekoEngText.text = csvDatas[DataBase.playLevel][1].Replace("+", ",");
-        KuronekoJapText.text = csvDatas[DataBase.playLevel][2];
+        KuronekoJapText.text = csvDatas[DataBase.playLevel][2]+"\r\n"+ "by"+csvDatas[DataBase.playLevel][0];
 
     }
 }
