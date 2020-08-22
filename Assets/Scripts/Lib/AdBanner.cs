@@ -22,10 +22,11 @@ public class AdBanner : MonoBehaviour {
         // Initialize the Google Mobile Ads SDK.
         MobileAds.Initialize(appId);
 
-        this.RequestBanner();
+        RequestBanner();
+
     }
 
-    private void RequestBanner()
+    public void RequestBanner()
     {
         string adUnitId;
 #if UNITY_ANDROID
@@ -86,5 +87,13 @@ public class AdBanner : MonoBehaviour {
     public void HandleOnAdLeavingApplication(object sender, EventArgs args)
     {
         MonoBehaviour.print("HandleAdLeavingApplication event received");
+    }
+
+    public void AdBannerHide()
+    {
+        Debug.Log("bannerけす");
+        RequestBanner();
+        bannerView.Hide();
+        bannerView.Destroy();
     }
 }

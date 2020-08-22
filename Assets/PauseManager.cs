@@ -13,10 +13,6 @@ public class PauseManager : MonoBehaviour
         if (status)
         {
             Debug.Log("pause!");
-        }
-        else
-        {
-            Debug.Log("resume!");
 
             if (GameObject.Find("ResumePortrait(Clone)"))
             {
@@ -24,6 +20,9 @@ public class PauseManager : MonoBehaviour
             }
             else
             {
+
+                GameObject.Find("AdMob").GetComponent<AdRectangle>().AdBannerShow();
+
                 Canvas m_canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
 
                 var popup = Instantiate(popupPausePrefab) as GameObject;
@@ -32,6 +31,11 @@ public class PauseManager : MonoBehaviour
                 popup.transform.SetParent(m_canvas.transform, false);
                 popup.GetComponent<Popup>().Open();
             }
+        }
+        else
+        {
+            Debug.Log("resume!");
+
 
         }
     }

@@ -60,6 +60,8 @@ public class HomeSceneController : MonoBehaviour
             panda_text[5] = "(犬の夢を見ているよ)";
             panda_text[6] = "タイトル画面がビーチなのは、";
             panda_text[7] = "波の音を聞きながら寝るためっス!";
+
+            //GameObject.Find("AdMob").GetComponent<AdBanner>().RequestBanner();
         }
         else if (5 <= now_hour && now_hour < 7)
         {
