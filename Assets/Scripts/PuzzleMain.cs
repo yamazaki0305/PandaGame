@@ -276,6 +276,18 @@ public class PuzzleMain : MonoBehaviour
             ImgGround.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("StageIMG/snow_jimen");
             BackPicture.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("StageIMG/cloud_stage02");
         }
+        else if (46 <= DataBase.playLevel && DataBase.playLevel <= 54)
+        {
+            GlassLine.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("StageIMG/snow_glass");
+            ImgGround.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("StageIMG/snow_jimen");
+            BackPicture.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("StageIMG/snow_stage");
+        }
+        else if (55 <= DataBase.playLevel && DataBase.playLevel <= 63)
+        {
+            GlassLine.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("StageIMG/green_glass");
+            ImgGround.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("StageIMG/green_jimen");
+            BackPicture.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("StageIMG/green_stage");
+        }
         Vector3 pos = new Vector3(0, GlassLineHeight + UnderArrowHeight * -BlockSize, -1);
         GlassLine.transform.localPosition = pos;
 
