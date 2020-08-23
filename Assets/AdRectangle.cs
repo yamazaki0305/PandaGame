@@ -95,7 +95,7 @@ public class AdRectangle : MonoBehaviour
     {
         Debug.Log("banner_close");
         bannerView.Hide();
-        //bannerView.Destroy();
+        bannerView.Destroy();
         DataBase.AdRectangleFlg = false;
 
         //GameObject.Find("AdMob").GetComponent<AdBanner>().RequestBanner();

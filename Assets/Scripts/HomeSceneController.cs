@@ -34,7 +34,7 @@ public class HomeSceneController : MonoBehaviour
         now_hour = DateTime.Now.Hour;
         Debug.Log("hour:" + now_hour);
 
-        now_hour = UnityEngine.Random.Range(0, 24);
+        //now_hour = UnityEngine.Random.Range(0, 24);
 
         if ( 0 <= now_hour && now_hour < 5 )
         {

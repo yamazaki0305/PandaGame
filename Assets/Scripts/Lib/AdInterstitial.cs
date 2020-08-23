@@ -38,6 +38,8 @@ public class AdInterstitial : MonoBehaviour {
             // 広告を終了するとBGMをON
             DataBase.bGameAdStop = false;
 
+            // 動画を終了したらDestroyする
+            interstitial.Destroy();
         }
     }
 
