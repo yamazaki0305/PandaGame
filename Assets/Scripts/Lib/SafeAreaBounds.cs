@@ -49,7 +49,7 @@ public class SafeAreaBounds : MonoBehaviour
             || Screen.width == 2688 && Screen.height == 1242 || Screen.width == 1242 && Screen.height == 2688
             || Screen.width == 2160 && Screen.height == 1080 || Screen.width == 1080 && Screen.height == 2160
             || Screen.width == 1440 && Screen.height == 2960 || Screen.width == 2960 && Screen.height == 1440
-
+            || Screen.width == 1080 && Screen.height == 2400 || Screen.width == 2400 && Screen.height == 1080
             )
 
         {

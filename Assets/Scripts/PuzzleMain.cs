@@ -396,7 +396,7 @@ public class PuzzleMain : MonoBehaviour
         //DogMove();
 
         // SaveAreaMaskの横サイズを変更
-        SaveAreaMask.transform.localScale = new Vector3(85 * columnLength, 85, 1);
+        SaveAreaMask.transform.localScale = new Vector3(85 * columnLength, 85*2, 1);
         // SaveAreaMaskの表示判定
         if (UnderArrowHeight == 0)
         {
