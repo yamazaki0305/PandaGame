@@ -314,7 +314,6 @@ public class DogData : BlockData
                 if(arrowType != ArrowType.UPPER & !bRightMove && !bLeftMove && !bUnderMove)
                 {
                     arrowType = ArrowType.WAIT;
-                    Debug.Log("wat");
                 }
 
                 // ArrowType.Waitの時

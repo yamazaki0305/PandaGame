@@ -20,9 +20,9 @@ public class DataBase
     public static int CLEAR = 1;
     public static int CLEAR_AFTER = 2;
     public static int MISS = 3;
-    public static int MAXSTAGE = 40;
+    public static int MAXSTAGE = 64;
 
-    public static int playLevel = 22;
+    public static int playLevel = 62;
     public static int LastPlayLevel = 1;
     public static int openLevel = 1;
     public static int RecordWord = 0;

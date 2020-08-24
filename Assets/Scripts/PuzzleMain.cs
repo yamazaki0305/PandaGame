@@ -39,7 +39,7 @@ public class PuzzleMain : MonoBehaviour
     private int DefaultBlockHeight = 7;
 
     // 8段目をタップ可能にする、英単語作成数にもカウント
-    private int Add8danme = 1;
+    private int Add8danme = 0;
 
     //地面に到着して猫を消すマスの高さ
     public int DeathBlockHeight = 0;
@@ -67,7 +67,7 @@ public class PuzzleMain : MonoBehaviour
     public GameObject[,] MaskData;
 
     // PuzzleDataやMaskの余白の高さ
-    public int margin_height = 20;
+    public int margin_height = 50; // 20
 
     public string[,] stageData;
 
@@ -980,6 +980,7 @@ public class PuzzleMain : MonoBehaviour
 
                     TransJapText += str;
                     DataBase.Word_item_id = Int32.Parse(id);
+
                 }
             }
 
@@ -1380,7 +1381,7 @@ public class PuzzleMain : MonoBehaviour
                     if (!blockData.Selected)
                     {
                         // プレイヤーがタップできるPuzzleDataのマスの高さ
-                        if (blockData.Y >= ActiveBlockHeight && blockData.Y < ActiveBlockHeight + DefaultBlockHeight)
+                        if (blockData.Y >= ActiveBlockHeight && blockData.Y < ActiveBlockHeight + DefaultBlockHeight + Add8danme)
                         {
                             blockData.EigoFlg = true;
                             bHammer = true;
