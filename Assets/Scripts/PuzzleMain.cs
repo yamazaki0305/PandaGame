@@ -35,9 +35,11 @@ public class PuzzleMain : MonoBehaviour
     //背景の高さ
     private int ImgBackPictureHeight = 800;
 
-
     //デフォルトの高さのマス
     private int DefaultBlockHeight = 7;
+
+    // 8段目をタップ可能にする、英単語作成数にもカウント
+    private int Add8danme = 1;
 
     //地面に到着して猫を消すマスの高さ
     public int DeathBlockHeight = 0;
@@ -669,7 +671,7 @@ public class PuzzleMain : MonoBehaviour
                             if (!blockData.Selected)
                             {
                                 // プレイヤーがタップできるPuzzleDataのマスの高さ
-                                if (blockData.Y >= ActiveBlockHeight && blockData.Y < ActiveBlockHeight + DefaultBlockHeight)
+                                if (blockData.Y >= ActiveBlockHeight && blockData.Y < ActiveBlockHeight + DefaultBlockHeight + Add8danme)
                                 {
                                     //audioSource = this.GetComponent<AudioSource>();
                                     //audioSource.clip = soundTap;
@@ -2027,7 +2029,7 @@ public class PuzzleMain : MonoBehaviour
         // パズルエリアのアルファベットの数を格納する
         for (int i = 0; i < columnLength; i++)
         {
-            for (int j = ActiveBlockHeight; j < ActiveBlockHeight + DefaultBlockHeight; j++)
+            for (int j = ActiveBlockHeight; j < ActiveBlockHeight + DefaultBlockHeight + Add8danme; j++)
             //for (int j = ActiveBlockHeight; j < rowLength-1; j++)
             {
 
