@@ -257,12 +257,12 @@ public class HomeSceneController : MonoBehaviour
             panda_no[7] = 42;
             panda_text[0] = "(It's bath time)"; 
             panda_text[1] = "I'm taking a bath in my dog right now.";
-            panda_text[2] = "My dog was cute all day long,";
-            panda_text[3] = "Good night.";
+            panda_text[2] = "When I get out of the bath,I wipe my dog's body.";
+            panda_text[3] = "It's time to go to bed now.Good night.";
             panda_text[4] = "(お風呂タイム)";
             panda_text[5] = "今、犬をお風呂に入れているよ。";
-            panda_text[6] = "今日も一日、犬かわいかったよ。";
-            panda_text[7] = "おやすみなさい。";
+            panda_text[6] = "お風呂から出たら、犬の体をふくよ。";
+            panda_text[7] = "そろそろ寝る時間だよ。おやすみなさい。";
         }
 
         dogimg = GameObject.Find("PandaDogImg").GetComponent<Image>();
