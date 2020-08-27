@@ -7,7 +7,7 @@ using System;
 public class AdRectangle : MonoBehaviour
 {
 
-    private BannerView bannerView;
+    private BannerView bannerView = null;
 
     public void AdBannerShow()
     {
@@ -94,8 +94,14 @@ public class AdRectangle : MonoBehaviour
     public void AdBannerHide()
     {
         Debug.Log("banner_close");
-        bannerView.Hide();
+        //bannerView.Hide();
+
+#if UNITY_EDITOR
+
+# else
         bannerView.Destroy();
+#endif
+
         DataBase.AdRectangleFlg = false;
 
         //GameObject.Find("AdMob").GetComponent<AdBanner>().RequestBanner();

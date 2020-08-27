@@ -11,6 +11,8 @@ public class AdReward : MonoBehaviour {
     bool IsRewarded = false;
     bool IsClosed = false;
 
+    float ResumeOpenTime = 5.0f;
+
     void Update()
     {
         if (IsRewarded && IsClosed)
@@ -25,7 +27,26 @@ public class AdReward : MonoBehaviour {
             // 広告を終了するとBGMをON
             DataBase.bGameAdStop = false;
 
+            // 動画広告終了5秒間はResumeしない
+            DataBase.AdResumeFlg = false;
+            ResumeOpenTime = 5.0f;
+
         }
+
+        // 動画広告終了直後はResumeしない処理
+        if (DataBase.AdResumeFlg == false)
+        {
+
+            // 残り時間を計算する
+            ResumeOpenTime -= Time.deltaTime;
+            // ゼロ秒以下にならないようにする
+            if (ResumeOpenTime <= 0.0f)
+            {
+                Debug.Log("resumeok");
+                DataBase.AdResumeFlg = true;
+            }
+        }
+
     }
 
     public void Start()

@@ -11,6 +11,8 @@ public class AdInterstitial : MonoBehaviour {
     // 広告読み込むフラグ
     float AdFlgTime = 10f;
 
+    float ResumeOpenTime = 5.0f;
+
     private void Start()
     {
         RequestInterstitial();
@@ -40,6 +42,22 @@ public class AdInterstitial : MonoBehaviour {
 
             // 動画を終了したらDestroyする
             interstitial.Destroy();
+
+            // 動画広告終了5秒間はResumeしない
+            DataBase.AdResumeFlg = false;
+            ResumeOpenTime = 5.0f;
+        }
+
+        // 動画広告終了直後はResumeしない処理
+        if (DataBase.AdResumeFlg == false)
+        {
+            // 残り時間を計算する
+            ResumeOpenTime -= Time.deltaTime;
+            // ゼロ秒以下にならないようにする
+            if (ResumeOpenTime <= 0.0f)
+            {
+                DataBase.AdResumeFlg = true;
+            }
         }
     }
 
