@@ -43,8 +43,7 @@ namespace Ricimi
 
         private void Start()
         {
-            if (!DataBase.AdRectangleFlg)
-                GameObject.Find("AdMob").GetComponent<AdRectangle>().AdBannerShow();
+
         }
         public void LessonList()
         {

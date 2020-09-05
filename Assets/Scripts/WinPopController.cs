@@ -31,6 +31,10 @@ public class WinPopController : MonoBehaviour {
     // Use this for initialization
     void Start () {
 
+        // 結果画面にレクタングル広告を出す
+        if (!DataBase.AdRectangleFlg)
+            GameObject.Find("AdMob").GetComponent<AdRectangle>().AdBannerShow();
+
         //RandomAd.ShowInterstitial();
 
         StatusData = GameObject.Find("GameRoot").GetComponent<PuzzleMain>().StatusData;
