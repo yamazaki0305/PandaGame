@@ -44,11 +44,16 @@ namespace Ricimi
         private void Start()
         {
 
+                // 結果画面にレクタングル広告を出す
+                if (!DataBase.AdRectangleFlg)
+                    GameObject.Find("AdMob").GetComponent<AdRectangle>().AdBannerShow();
+
         }
         public void LessonList()
         {
-            DataBase.AdRectangleFlg = false;
-            GameObject.Find("AdMob").GetComponent<AdRectangle>().AdBannerHide();
+
+                DataBase.AdRectangleFlg = false;
+                GameObject.Find("AdMob").GetComponent<AdRectangle>().AdBannerHide();
 
             Close();
 
@@ -62,8 +67,9 @@ namespace Ricimi
 
         public void Reload()
         {
-            DataBase.AdRectangleFlg = false;
-            GameObject.Find("AdMob").GetComponent<AdRectangle>().AdBannerHide();
+
+                DataBase.AdRectangleFlg = false;
+                GameObject.Find("AdMob").GetComponent<AdRectangle>().AdBannerHide();
 
             // インステ広告を表示
             RandomAd.ShowInterstitial();
@@ -78,8 +84,9 @@ namespace Ricimi
 
         public void Next()
         {
-            DataBase.AdRectangleFlg = false;
-            GameObject.Find("AdMob").GetComponent<AdRectangle>().AdBannerHide();
+
+                DataBase.AdRectangleFlg = false;
+                GameObject.Find("AdMob").GetComponent<AdRectangle>().AdBannerHide();
 
             // インステ広告を表示
             RandomAd.ShowInterstitial();

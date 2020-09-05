@@ -2070,6 +2070,7 @@ public class PuzzleMain : MonoBehaviour
     }
     void WinPopup()
     {
+
         Canvas m_canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
 
         var popup = Instantiate(popupWinPrefab) as GameObject;
@@ -2082,6 +2083,7 @@ public class PuzzleMain : MonoBehaviour
 
     void LosePopup()
     {
+
         Canvas m_canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
 
         var popup = Instantiate(popupLosePrefab) as GameObject;

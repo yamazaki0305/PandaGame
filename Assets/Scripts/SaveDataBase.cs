@@ -16,6 +16,7 @@ public class DataBase
     public static bool DebugFlg = false; // デバッグモードにするか
     public static bool AdRectangleFlg = false; // レクラングルバナーを表示中か
     public static bool AdResumeFlg = true; // true=resume可能、false=動画広告中、動画広告終了5秒間はResumeしない
+    //public static bool ResultWin = true; // true=win, false=lose
 
     public static int PLAY = 0;
     public static int CLEAR = 1;
