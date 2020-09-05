@@ -38,9 +38,16 @@ public class LevelSceneController : MonoBehaviour {
     //TextLevel = GameObject.Find("TextLevel").GetComponent<Text>();
     //TextWord = GameObject.Find("TextWord").GetComponent<Text>();
 
-    SaveDataBase.loadData();
+        SaveDataBase.loadData();
         //TextLevel.text = "Level:"+DataBase.openLevel;
         //TextWord.text = "Create Word:" + DataBase.RecordWord;
+
+        if (DataBase.openLevel > 1)
+        {
+            GameObject.Find("tutorial").SetActive(false);
+            GameObject.Find("tutorial2").SetActive(false);
+        }
+
 
         if (!DataBase.NewWordBook)
             GameObject.Find("NewIcon").SetActive(false);
