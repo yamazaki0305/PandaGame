@@ -470,6 +470,9 @@ MonoBehaviour:
   scene: LessonScenePortrait
   duration: 0.5
   color: {r: 0.36078432, g: 0.6117647, b: 0.8392157, a: 1}
+  LevelsButton: {fileID: 135764}
+  RepeatButton: {fileID: 159786}
+  NextButton: {fileID: 159786}
 --- !u!1 &117888
 GameObject:
   m_ObjectHideFlags: 0

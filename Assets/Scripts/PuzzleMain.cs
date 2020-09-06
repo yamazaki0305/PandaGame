@@ -164,6 +164,7 @@ public class PuzzleMain : MonoBehaviour
         DogObject = GameObject.Find("Dog");
         DogObject.transform.SetParent(puzzleTransform);
 
+
         // 言語を判定する
         if (Application.systemLanguage == SystemLanguage.Japanese)
         {
@@ -2070,6 +2071,9 @@ public class PuzzleMain : MonoBehaviour
     }
     void WinPopup()
     {
+
+        if (!DataBase.AdRectangleFlg)
+            GameObject.Find("AdMob").GetComponent<AdRectangle>().AdBannerShow();
 
         Canvas m_canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
 

@@ -24,6 +24,7 @@ public class LevelSceneController : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        
 
         int[] posY = { 0,0,0,
                        728,728,728,

@@ -15,28 +15,7 @@ namespace Ricimi
     // automatically blocking the input on elements behind it and adding a background texture.
     public class WinLosePopup : Popup
     {
-        //public Color backgroundColor = new Color(10.0f / 255.0f, 10.0f / 255.0f, 10.0f / 255.0f, 0.6f);
 
-        //public float destroyTime = 0.5f;
-
-        //private GameObject m_background;
-
-        /*
-        public new void Open()
-        {
-            AddBackground();
-        }
-
-        public new void Close()
-        {
-            var animator = GetComponent<Animator>();
-            if (animator.GetCurrentAnimatorStateInfo(0).IsName("Open"))
-                animator.Play("Close");
-
-            RemoveBackground();
-            StartCoroutine(RunPopupDestroy());
-        }
-        */
         public string scene = "<Insert scene name>";
         public float duration = 1.0f;
         public Color color = Color.black;
@@ -44,11 +23,14 @@ namespace Ricimi
         private void Start()
         {
 
+            /*
                 // 結果画面にレクタングル広告を出す
                 if (!DataBase.AdRectangleFlg)
                     GameObject.Find("AdMob").GetComponent<AdRectangle>().AdBannerShow();
+             */
 
         }
+
         public void LessonList()
         {
 
