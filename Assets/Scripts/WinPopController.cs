@@ -27,7 +27,6 @@ public class WinPopController : MonoBehaviour {
 
     // CSVデータ
     List<string[]> csvDatas = new List<string[]>(); // CSVの中身を入れるリスト;
-    float currentTime = 1f;
 
     // Use this for initialization
     void Start () {
@@ -71,21 +70,7 @@ public class WinPopController : MonoBehaviour {
 
     }
 
-    // Update is called once per frame
-    void Update() {
 
-        /*
-        // 残り時間を計算する
-        currentTime -= Time.deltaTime;
-
-        // ゼロ秒以下にならないようにする
-        if (currentTime <= 0.0f)
-        {
-            Debug.Log("aeseeeeeeeeeeeeeeee");
-
-        }
-        */
-    }
 
     void LoadKuronekoText()
     {

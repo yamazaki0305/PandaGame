@@ -20,14 +20,44 @@ namespace Ricimi
         public float duration = 1.0f;
         public Color color = Color.black;
 
+        float currentTime = 2f;
+
         private void Start()
         {
 
-            /*
-                // 結果画面にレクタングル広告を出す
-                if (!DataBase.AdRectangleFlg)
-                    GameObject.Find("AdMob").GetComponent<AdRectangle>().AdBannerShow();
-             */
+            
+             // 結果画面にレクタングル広告を出す
+             if (!DataBase.AdRectangleFlg)
+                GameObject.Find("AdMob").GetComponent<AdRectangle>().AdBannerShow();
+             
+
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+
+
+            // 残り時間を計算する
+            currentTime -= Time.deltaTime;
+
+            // ゼロ秒以下にならないようにする
+
+            GameObject mask1 = GameObject.Find("whitemask1");
+            GameObject mask2 = GameObject.Find("whitemask2");
+            GameObject mask3 = GameObject.Find("whitemask3");
+
+            if (mask1)
+            {
+
+                if (currentTime <= 0.0f)
+                {
+                    mask1.SetActive(false);
+                    mask2.SetActive(false);
+                    mask3.SetActive(false);
+
+                }
+            }
 
         }
 

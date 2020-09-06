@@ -7,7 +7,7 @@ using System;
 public class AdRectangle : MonoBehaviour
 {
 
-    private BannerView bannerView = null;
+    public BannerView bannerView = null;
 
     public void AdBannerShow()
     {

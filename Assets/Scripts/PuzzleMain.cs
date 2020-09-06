@@ -161,6 +161,8 @@ public class PuzzleMain : MonoBehaviour
 
     void Start()
     {
+
+
         DogObject = GameObject.Find("Dog");
         DogObject.transform.SetParent(puzzleTransform);
 
@@ -2072,8 +2074,6 @@ public class PuzzleMain : MonoBehaviour
     void WinPopup()
     {
 
-        if (!DataBase.AdRectangleFlg)
-            GameObject.Find("AdMob").GetComponent<AdRectangle>().AdBannerShow();
 
         Canvas m_canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
 
