@@ -1,5 +1,6 @@
 <dependencies>
   <packages>
+    <package>com.google.ads.mediation:applovin:9.13.1.0</package>
     <package>com.google.android.gms:play-services-ads:15.0.1</package>
   </packages>
   <files />
