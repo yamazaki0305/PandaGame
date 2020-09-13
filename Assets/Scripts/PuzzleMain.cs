@@ -358,7 +358,7 @@ public class PuzzleMain : MonoBehaviour
 
         if (DataBase.LangJapanese)
         {
-            StageText.text = "Lesson " + DataBase.playLevel.ToString() + "\r\nパンダの犬を助けよう！";
+            StageText.text = "Lesson " + DataBase.playLevel.ToString() + "\r\n犬を助けよう！";
             if (StatusData.timeflg)
                 StageText.text += "\r\n制限時間 " + (StatusData.time - 1) + "秒";
 

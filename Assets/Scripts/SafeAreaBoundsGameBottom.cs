@@ -62,7 +62,7 @@ public class SafeAreaBoundsGameBottom : MonoBehaviour
             //縦持ち
 
             if (Screen.width * 2 <= Screen.height)
-                this.transform.localPosition = new Vector2(0, -1060);
+                this.transform.localPosition = new Vector2(0, -1040);
 
             //横持ち
 
@@ -73,7 +73,7 @@ public class SafeAreaBoundsGameBottom : MonoBehaviour
 
 
         if (Screen.width * 2 <= Screen.height)
-            this.transform.localPosition = new Vector2(0,-1060);
+            this.transform.localPosition = new Vector2(0,-1040);
 
             /*
             var anchorMin = area.position;
