@@ -14,11 +14,9 @@ public class GameModeManager : MonoBehaviour
 
     void Start()
     {
-        // 言語判定をする
-        if (DataBase.LangJapanese)
-            assist_help_text.text = "※Hardにすると英単語\r\nアシスト機能がOFF";
-        else
-            assist_help_text.text = "※When set to Hard, the English word assist function is off.";
+
+        assist_help_text.text = "※Hardにすると英単語\r\nアシスト機能がOFF";
+
 
         toggle1 = GetComponent<Toggle>();
         toggleGroup1 = GetComponent<ToggleGroup>();

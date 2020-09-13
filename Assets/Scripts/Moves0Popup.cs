@@ -16,8 +16,7 @@ namespace Ricimi
 
         void Start()
         {
-            if(DataBase.LangJapanese)
-                RecommendText.text = "動画を視聴して、残り回数や\r\n時間を回復しますか？";            else                RecommendText.text = "Do you watch videos and\r\nrecover time with Moves?";
+                RecommendText.text = "動画を視聴して、残り回数や\r\n時間を回復しますか？";
         }
 
         private void Update()

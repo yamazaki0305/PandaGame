@@ -168,6 +168,7 @@ public class PuzzleMain : MonoBehaviour
 
 
         // 言語を判定する
+        /*
         if (Application.systemLanguage == SystemLanguage.Japanese)
         {
             DataBase.LangJapanese = true;
@@ -176,6 +177,7 @@ public class PuzzleMain : MonoBehaviour
         {
             DataBase.LangJapanese = false;
         }
+        */
 
 
         //Scene名を格納
@@ -356,24 +358,12 @@ public class PuzzleMain : MonoBehaviour
         StartWindow.SetActive(true);
         Text StageText = GameObject.Find("StageText").GetComponent<Text>();
 
-        if (DataBase.LangJapanese)
-        {
-            StageText.text = "Lesson " + DataBase.playLevel.ToString() + "\r\n犬を助けよう！";
-            if (StatusData.timeflg)
-                StageText.text += "\r\n制限時間 " + (StatusData.time - 1) + "秒";
+        StageText.text = "Lesson " + DataBase.playLevel.ToString() + "\r\n犬を助けよう！";
+        if (StatusData.timeflg)
+            StageText.text += "\r\n制限時間 " + (StatusData.time - 1) + "秒";
 
-            if (DataBase.playLevel == 1)
-                StageText.text += "\r\n画面タップでスタート!";
-        }
-        else
-        {
-            StageText.text = "Level " + DataBase.playLevel.ToString() + "\r\nLet's rescue " + StatusData.AnimalSum.ToString() + " cats.";
-            if (StatusData.timeflg)
-                StageText.text += "\r\nTime limit " + (StatusData.time - 1) + " seconds";
-
-            if (DataBase.playLevel == 1)
-                StageText.text += "\r\nStart with screen tap!";
-        }
+        if (DataBase.playLevel == 1)
+            StageText.text += "\r\n画面タップでスタート!";
 
         btnFlg = ButtonFlg.NORMAL;
 

@@ -40,8 +40,7 @@ public class DataBase
     }
     public static AdRewordFlg AdFlg = AdRewordFlg.None;
 
-    public static bool AdRealTest = false; // trueのときは本番広告を使用する
-    public static bool LangJapanese = true; // 言語が日本語:true 英語:false
+    public static bool AdRealTest = true; // trueのときは本番広告を使用する
     public static int STAR_TOUCH_SCORE = 1000; // スコアにタッチした時
     public static int HammerCount = 3; // ハンマーが打てる回数
     public static int SelectEpNo = 1; // LessonListで選択されたEpNo
