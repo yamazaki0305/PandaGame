@@ -7,17 +7,6 @@ public class SetLanguage : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-        // 言語を判定する
-        if (Application.systemLanguage == SystemLanguage.Japanese)
-        {
-            Debug.Log("Jap");
-            DataBase.LangJapanese = true;
-        }
-        else
-        {
-            Debug.Log("Eng");
-            DataBase.LangJapanese = false;
-        }
 
     }
 	

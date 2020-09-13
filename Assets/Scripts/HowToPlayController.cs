@@ -28,10 +28,8 @@ public class HowToPlayController : MonoBehaviour {
 
         DataBase.bGamePause = true;
 
-        if (DataBase.LangJapanese)
-            EngObject.SetActive(false);
-        else
-            JapObject.SetActive(false);
+        EngObject.SetActive(false);
+
 
     }
 	
@@ -46,71 +44,37 @@ public class HowToPlayController : MonoBehaviour {
         page_no++;
         pagenotext.text = page_no.ToString() + "/8";
 
-        if (DataBase.LangJapanese)
+        if (page_no == 2)
         {
-            if (page_no == 2)
-            {
-                GameObject.Find("PlayJap1").SetActive(false);
-            }
-            else if (page_no == 3)
-            {
-                GameObject.Find("PlayJap2").SetActive(false);
-            }
-            else if (page_no == 4)
-            {
-                GameObject.Find("PlayJap3").SetActive(false);
-            }
-            else if (page_no == 5)
-            {
-                GameObject.Find("PlayJap4").SetActive(false);
-            }
-            else if (page_no == 6)
-            {
-                GameObject.Find("PlayJap5").SetActive(false);
-            }
-            else if (page_no == 7)
-            {
-                GameObject.Find("PlayJap6").SetActive(false);
-            }
-            else if (page_no == 8)
-            {
-                GameObject.Find("PlayJap7").SetActive(false);
-                GameObject.Find("Button Next").SetActive(false);
-            }
+            GameObject.Find("PlayJap1").SetActive(false);
+        }
+        else if (page_no == 3)
+        {
+            GameObject.Find("PlayJap2").SetActive(false);
+        }
+        else if (page_no == 4)
+        {
+            GameObject.Find("PlayJap3").SetActive(false);
+        }
+        else if (page_no == 5)
+        {
+            GameObject.Find("PlayJap4").SetActive(false);
+        }
+        else if (page_no == 6)
+        {
+            GameObject.Find("PlayJap5").SetActive(false);
+        }
+        else if (page_no == 7)
+        {
+            GameObject.Find("PlayJap6").SetActive(false);
+        }
+        else if (page_no == 8)
+        {
+            GameObject.Find("PlayJap7").SetActive(false);
+            GameObject.Find("Button Next").SetActive(false);
+        }
 
-        }
-        else
-        {
-            if (page_no == 2)
-            {
-                GameObject.Find("PlayEng1").SetActive(false);
-            }
-            else if (page_no == 3)
-            {
-                GameObject.Find("PlayEng2").SetActive(false);
-            }
-            else if (page_no == 4)
-            {
-                GameObject.Find("PlayEng3").SetActive(false);
-            }
-            else if (page_no == 5)
-            {
-                GameObject.Find("PlayEng4").SetActive(false);
-            }
-            else if (page_no == 6)
-            {
-                GameObject.Find("PlayEng5").SetActive(false);
-            }
-            else if (page_no == 7)
-            {
-                GameObject.Find("PlayEng6").SetActive(false);
-            }
-            else if (page_no == 8)
-            {
-                GameObject.Find("PlayEng7").SetActive(false);
-                GameObject.Find("Button Next").SetActive(false);
-            }
-        }
+
 
 
     }
