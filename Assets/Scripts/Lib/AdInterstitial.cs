@@ -66,12 +66,12 @@ public class AdInterstitial : MonoBehaviour {
         string adUnitId;
 #if UNITY_ANDROID
         if (DataBase.AdRealTest)
-            adUnitId = "ca-app-pub-4228179100830730/2667851820"; //正しい
+            adUnitId = "ca-app-pub-4228179100830730/9624539192"; //正しい
         else
             adUnitId = "ca-app-pub-3940256099942544/1033173712"; //サンプル
 #elif UNITY_IPHONE
         if (DataBase.AdRealTest)
-            adUnitId = "ca-app-pub-4228179100830730/1225927587"; //正しい
+            adUnitId = "ca-app-pub-4228179100830730/8886172593"; //正しい
         else
             adUnitId = "ca-app-pub-3940256099942544/4411468910"; //サンプル
 #else

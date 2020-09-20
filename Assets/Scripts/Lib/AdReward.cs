@@ -92,12 +92,12 @@ public class AdReward : MonoBehaviour {
         string adUnitId;
 #if UNITY_ANDROID
         if (DataBase.AdRealTest)
-            adUnitId = "ca-app-pub-4228179100830730/6753586431";//正しい
+            adUnitId = "ca-app-pub-4228179100830730/4563784203";//正しい
         else
             adUnitId = "ca-app-pub-3940256099942544/5224354917"; //サンプル
 #elif UNITY_IPHONE
         if (DataBase.AdRealTest)
-            adUnitId = "ca-app-pub-4228179100830730/2887822608";//正しい
+            adUnitId = "ca-app-pub-4228179100830730/8694600901";//正しい
         else
             adUnitId = "ca-app-pub-3940256099942544/1712485313";//サンプル
 #else

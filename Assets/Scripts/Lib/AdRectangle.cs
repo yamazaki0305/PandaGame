@@ -33,12 +33,12 @@ public class AdRectangle : MonoBehaviour
         string adUnitId;
 #if UNITY_ANDROID
         if (DataBase.AdRealTest)
-            adUnitId = "ca-app-pub-4228179100830730/2954081841";  //正しい
+            adUnitId = "ca-app-pub-4228179100830730/3442274222";  //正しい
         else
             adUnitId = "ca-app-pub-3940256099942544/6300978111";  //サンプル
 #elif UNITY_IPHONE
         if (DataBase.AdRealTest)
-            adUnitId = "ca-app-pub-4228179100830730/8944775121";  //正しい
+            adUnitId = "ca-app-pub-4228179100830730/2895479311";  //正しい
         else
             adUnitId = "ca-app-pub-3940256099942544/2934735716";  //サンプル
 #else
