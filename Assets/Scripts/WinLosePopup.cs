@@ -94,6 +94,20 @@ namespace Ricimi
             Close();
         }
 
+        public void Reload_Lose()
+        {
+
+            DataBase.AdRectangleFlg = false;
+            GameObject.Find("AdMob").GetComponent<AdRectangle>().AdBannerHide();
+            
+            // 現在読み込んでいるシーンのインデックスを取得
+            int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+            // 取得したシーンインデックスで再読込み
+            SceneManager.LoadScene(currentSceneIndex);
+
+            Close();
+        }
+
         public void Next()
         {
 
