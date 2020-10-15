@@ -65,6 +65,11 @@ namespace Ricimi
         // TransWindow‚ÌClose
         public void ResumeClose()
         {
+            DataBase.AdResumeNowFlg = false;
+
+            GameObject mask1 = GameObject.Find("whitemask1");
+            mask1.GetComponent<RectTransform>().sizeDelta = new Vector2(200, 200);
+
             var animator = GetComponent<Animator>();
             if (animator.GetCurrentAnimatorStateInfo(0).IsName("Open"))
                 animator.Play("Close");

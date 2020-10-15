@@ -27,6 +27,8 @@ public class PauseManager : MonoBehaviour
                     if (DataBase.AdResumeFlg)
                     {
                         Debug.Log("resumeひらくと");
+                        DataBase.AdResumeNowFlg = true;
+
                         GameObject.Find("AdMob").GetComponent<AdRectangle>().AdBannerShow();
 
                         Canvas m_canvas = GameObject.Find("Canvas").GetComponent<Canvas>();

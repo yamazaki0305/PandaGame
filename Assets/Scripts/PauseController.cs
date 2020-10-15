@@ -67,9 +67,9 @@ namespace Ricimi
         public void ReloadButton()
         {
             // インステ広告を表示
-            RandomAd.ShowInterstitial();
+            //RandomAd.ShowInterstitial();
 
-            DataBase.bGamePause = false;
+            //DataBase.bGamePause = false;
 
             // 現在読み込んでいるシーンのインデックスを取得
             int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;

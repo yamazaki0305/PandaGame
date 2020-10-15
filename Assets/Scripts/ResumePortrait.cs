@@ -16,13 +16,18 @@ public class ResumePortrait : MonoBehaviour
     public Text EngText;
     public Text JapText;
     public Image dogimg;
+    public GameObject mask1;
 
     // CSVデータ
     List<string[]> csvDatas = new List<string[]>(); // CSVの中身を入れるリスト;
 
+    float currentTime = 2f;
+
     // Start is called before the first frame update
     void Start()
     {
+        currentTime = 2f;
+
         int rand = UnityEngine.Random.Range(1, DataBase.MAXSTAGE+1);
         dogimg.sprite = Resources.Load<Sprite>("LessonIMG/" + rand);
 
@@ -36,4 +41,27 @@ public class ResumePortrait : MonoBehaviour
         JapText.text = csvDatas[rand][2] + "\r\n" + "by " + csvDatas[rand][0];
     }
 
+    private void Update()
+    {
+        // 残り時間を計算する
+        if(DataBase.AdResumeNowFlg)
+            currentTime -= Time.deltaTime;
+
+        if (!DataBase.AdResumeNowFlg)
+            currentTime = 2f;
+
+
+        //Debug.Log("curent_time:" + currentTime);
+
+        if (mask1)
+        {
+
+            if (currentTime <= 0.0f)
+            {
+                //mask1.SetActive(false);
+                mask1.GetComponent<RectTransform>().sizeDelta = new Vector2(0, 0);
+
+            }
+        }
+    }
 }
