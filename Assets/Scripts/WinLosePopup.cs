@@ -20,7 +20,7 @@ namespace Ricimi
         public float duration = 1.0f;
         public Color color = Color.black;
 
-        float currentTime = 2f;
+        float currentTime = 3f;
 
         private void Start()
         {

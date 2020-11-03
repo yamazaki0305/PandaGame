@@ -21,12 +21,12 @@ public class ResumePortrait : MonoBehaviour
     // CSVデータ
     List<string[]> csvDatas = new List<string[]>(); // CSVの中身を入れるリスト;
 
-    float currentTime = 2f;
+    float currentTime = 3f;
 
     // Start is called before the first frame update
     void Start()
     {
-        currentTime = 2f;
+        currentTime = 3f;
 
         int rand = UnityEngine.Random.Range(1, DataBase.MAXSTAGE+1);
         dogimg.sprite = Resources.Load<Sprite>("LessonIMG/" + rand);
@@ -48,7 +48,7 @@ public class ResumePortrait : MonoBehaviour
             currentTime -= Time.deltaTime;
 
         if (!DataBase.AdResumeNowFlg)
-            currentTime = 2f;
+            currentTime = 3f;
 
 
         //Debug.Log("curent_time:" + currentTime);
