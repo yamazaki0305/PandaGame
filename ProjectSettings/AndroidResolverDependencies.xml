@@ -1,6 +1,7 @@
 <dependencies>
   <packages>
     <package>com.google.ads.mediation:imobile:2.0.22.0</package>
+    <package>com.google.ads.mediation:maio:1.1.11.1</package>
     <package>com.google.android.gms:play-services-ads:15.0.1</package>
   </packages>
   <files />
