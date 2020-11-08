@@ -168,7 +168,7 @@ PlayerSettings:
     iPhone: MY.Panda.Release
   buildNumber:
     iPhone: 1.0.2
-  AndroidBundleVersionCode: 2
+  AndroidBundleVersionCode: 3
   AndroidMinSdkVersion: 29
   AndroidTargetSdkVersion: 0
   AndroidPreferredInstallLocation: 1
