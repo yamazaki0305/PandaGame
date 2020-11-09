@@ -47,16 +47,20 @@ namespace Ricimi
             GameObject mask2 = GameObject.Find("whitemask2");
             GameObject mask3 = GameObject.Find("whitemask3");
 
-            if (mask1)
+            if (mask1 && currentTime <= 0.0f)
             {
+                mask1.SetActive(false);
 
-                if (currentTime <= 0.0f)
-                {
-                    mask1.SetActive(false);
-                    mask2.SetActive(false);
-                    mask3.SetActive(false);
+            }
+            if (mask2 && currentTime <= 0.0f)
+            {
+                mask2.SetActive(false);
 
-                }
+            }
+            if (mask3 && currentTime <= 0.0f)
+            {
+                mask3.SetActive(false);
+
             }
 
         }
